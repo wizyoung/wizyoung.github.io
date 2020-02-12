@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://just-ux.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-12T09:11:59.438Z</updated>
+    <updated>2020-02-12T09:17:13.366Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://just-ux.github.io"/>
     <link rel="self" href="https://just-ux.github.io/atom.xml"/>
@@ -1355,8 +1355,8 @@ sudo reboot
     </entry>
     <entry>
         <title type="html"><![CDATA[Ubuntu14.04 + GTX 960 +Tensorflow安装教程]]></title>
-        <id>https://just-ux.github.io/post/Ubuntu14.04%20+%20GTX%20960%20+Tensorflow安装教程/</id>
-        <link href="https://just-ux.github.io/post/Ubuntu14.04%20+%20GTX%20960%20+Tensorflow安装教程/">
+        <id>https://just-ux.github.io/post/Ubuntu14.04 + GTX 960 +Tensorflow安装教程/</id>
+        <link href="https://just-ux.github.io/post/Ubuntu14.04 + GTX 960 +Tensorflow安装教程/">
         </link>
         <updated>2017-01-16T03:58:15.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="1-安装cuda80">1. 安装CUDA8.0</h2>
