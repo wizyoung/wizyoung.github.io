@@ -1,0 +1,213 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>CaptainChen</title>
+<link rel="shortcut icon" href="https://just-ux.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://just-ux.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="/media/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media/css/align.css">
+<link rel="stylesheet" href="https://just-ux.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="CaptainChen - Atom Feed" href="https://just-ux.github.io/atom.xml">
+
+<script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+    
+
+  <meta name="description" content="Stay hungry, stay foolish" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+    <a href="https://just-ux.github.io/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto ">
+      
+        <header class="flex py-16 md:py-32 mt-12 flex-col md:flex-row px-4 md:px-0 animated fadeIn">
+  <div class="flex-1 order-2 md:order-1 md:pr-16">
+    <div class="text-4xl font-bold text-center md:text-left">
+      CaptainChen
+    </div>
+    <div class="text-xl text-gray-500 mt-4 text-center md:text-left">
+      Stay hungry, stay foolish
+    </div>
+    
+    
+      <div class="mt-8 flex items-center">
+        
+          <div class="text-gray-500 mr-2">
+            Follow me 👉
+          </div>
+        
+        
+          
+        
+          
+            
+              <a href="mailto:happyyanghehe@gmail.com" target="_blank" class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+                <i class="ri-mail-line"></i>
+              </a>
+            
+          
+        
+          
+            
+              <a href="https://github.com/wizyoung" target="_blank" class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+                <i class="ri-github-line"></i>
+              </a>
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+          
+            
+              <a href="https://t.me/wizyang" target="_blank" class="mr-2 w-8 h-8 inline-flex items-center justify-center text-xl hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast">
+                <i class="ri-telegram-line"></i>
+              </a>
+            
+          
+        
+          
+        
+          
+        
+          
+        
+          
+        
+      </div>
+    
+  </div>
+  <div class="md:mx-8 flex-shrink-0 self-start rounded-full border-4 border-dotted border-transparent hover:border-yellow-50 p-2 w-32 h-32 order-1 md:order-2 mx-auto s3-dotted">
+    <img class="rounded-full object-cover" src="https://just-ux.github.io/images/avatar.png?v=1581498136758" alt="CaptainChen" width="100%" height="100%">
+  </div>
+</header>
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://just-ux.github.io/post/tensorflow_reading_files/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          TensorFlow 学习笔记 -- Input Pipeline
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2020-02-07</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
+
+      </div>
+      <a href="https://just-ux.github.io/post/tensorflow_reading_files/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://just-ux.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Ubuntu下GTX1080显卡驱动折腾小记
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-03-02</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
+
+      </div>
+      <a href="https://just-ux.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://just-ux.github.io/post/Ubuntu14.04%20+%20GTX%20960%20+Tensorflow安装教程/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Ubuntu14.04 + GTX 960 +Tensorflow安装教程
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-01-16</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <h2 id="1-安装cuda80">1. 安装CUDA8.0</h2>
+<p><strong>说明</strong>1：本文默认已安装 Nvidia 私有驱动。检查方法：桌面右上角点击设置图标，点击<code>关于这台计算机</code>，在<code>图形</code>一栏若显示 <code>GeForce GTX960/…</code> 类似字样，说明已安装 N 卡私有驱动。否则请参考我的另一篇博客<a href="https://wizyoung.github.io/Ubuntu%E4%B8%8BGTX1080%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E6%8A%98%E8%85%BE%E5%B0%8F%E8%AE%B0/">Ubuntu下GTX1080显卡驱动折腾小记</a>。</p>
+<p><strong>说明2</strong>：若已安装 CUDA8.0 之前的版本（比如7.5）建议先卸载旧版本 CUDA: 运行位于<code>/usr/local/cuda-7.5/bin</code>下的uninstall脚本，然后<strong>重启</strong>。</p>
+<h3 id="11-下载-cuda-80">1.1 下载 CUDA 8.0</h3>
+<p>下载地址：https://developer.nvidia.com/cuda-downloads</p>
+<p>本文选取 runfile 文件安装方式，如下图：</p>
+
+      </div>
+      <a href="https://just-ux.github.io/post/Ubuntu14.04%20+%20GTX%20960%20+Tensorflow安装教程/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+      <footer class="py-12 text-center px-3 md:px-0" v-pre>
+  CopyRight © 2017 - 2020
+	<br>
+	本站已稳定运行
+	<strong><script type="text/javascript">
+	var urodz= new Date("01/16/2017");
+	var now = new Date();
+	var ile = now.getTime() - urodz.getTime();
+	var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+	document.write(+dni)
+	</script>
+	</strong>天 总访问量 <strong><span id="busuanzi_value_site_uv"></span></strong> 次
+
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://just-ux.github.io/media/scripts/main.js"></script>
+</body>
+
+</html>
