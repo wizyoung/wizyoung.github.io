@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen</title>
+<title>Mac 个人使用小技巧汇总 - CaptainChen</title>
 <link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/media/css/font-awesome.min.css">
 <link rel="stylesheet" href="/media/css/align.css">
 <link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Mac 个人使用小技巧汇总 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
 
 <script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
@@ -29,18 +29,21 @@
   </script>
     
 
-  <meta name="description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一..." />
-  <meta property="og:title" content="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen">
-  <meta property="og:description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一..." />
+  <meta name="description" content="手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。
+..." />
+  <meta property="og:title" content="Mac 个人使用小技巧汇总 - CaptainChen">
+  <meta property="og:description" content="手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。
+..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/" />
+  <meta property="og:url" content="https://wizyoung.github.io/post/Mac个人使用小技巧汇总/" />
   <meta property="og:image" content="https://wizyoung.github.io/images/avatar.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
-  <meta name="twitter:title" content="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen">
-  <meta name="twitter:description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一...">
+  <meta name="twitter:title" content="Mac 个人使用小技巧汇总 - CaptainChen">
+  <meta name="twitter:description" content="手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。
+...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/">
+  <link rel="canonical" href="https://wizyoung.github.io/post/Mac个人使用小技巧汇总/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
@@ -62,16 +65,16 @@
     <div class="max-w-4xl w-full mx-auto">
       <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
         <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
-          Ubuntu下GTX1080显卡驱动折腾小记
+          Mac 个人使用小技巧汇总
         </h1>
         
         <div class="mb-8 flex flex-wrap">
           <div class="text-gray-400 text-sm mr-4">
-            <i class="fa fa-calendar"></i>  2017-03-02
+            <i class="fa fa-calendar"></i>  2017-08-09
             <span style="margin-right:8px"></span>
-            <i class="fa fa-clock-o"></i>  2146 words (about 8 min read)
+            <i class="fa fa-clock-o"></i>  1606 words (about 7 min read)
             <!-- <span style="margin-right:8px"></span>
-            <i class="fa fa-file-word-o"></i>  2146 words -->
+            <i class="fa fa-file-word-o"></i>  1606 words -->
             <span style="margin-right:8px"></span>
             <i class="fa fa-eye"></i>  <span class="date_info"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> Views
 </span>
@@ -111,111 +114,83 @@
             <i class="fa fa-refresh"></i>  <a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体">简→繁</a>
           </div>
           
-            <a href="https://wizyoung.github.io/tag/3aE7THEdP/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+            <a href="https://wizyoung.github.io/tag/VvW0sqrQr/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
               <i class="ri-hashtag"></i>
-              Ubuntu
-            </a>
-          
-            <a href="https://wizyoung.github.io/tag/GqIPwuF3Om/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
-              <i class="ri-hashtag"></i>
-              Nvidia
+              mac
             </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
-          <p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
+          <p>手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。</p>
 <!-- more -->
-<blockquote>
-<p>硬件平台：i7-6700K CPU, GTX1080 GPU, 华硕 Z170 主板<br>
-软件平台: Ubuntu 16.04</p>
-</blockquote>
-<p>先看看网上最流行的3个不靠谱解决方案：</p>
-<ul>
-<li>更改 /etc/profile 环境变量，更改 Xauthority 文件权限等 <a href="http://www.tuicool.com/articles/IBreErY">链接</a></li>
-<li>显卡驱动 .run 文件添加 --no-opengl-files 参数 <a href="http://www.cnblogs.com/Qwells/p/6086773.html">链接</a></li>
-<li>.run 文件有 bug，改用 .deb 文件安装 <a href="https://zhuanlan.zhihu.com/p/21434933?refer=intelligentunit">链接</a></li>
-</ul>
-<p>基于我自己和我身边朋友的经历，以上三个方法<strong>根本无法解决</strong>开机无限登录的问题。</p>
-<p>其实当我走完了所有流程后发现，其实出现安装失败，无限重启的根由是：<strong>安装独显驱动的时候不要让独显处于被占用状态</strong>，否则出错。什么叫被占用状态呢？当你把显示器的线( 通过HDMI 或者 DP口)<strong>接在独显</strong>上，一旦开机<strong>图形系统被自动后台启用</strong>后，独显就被占用了。</p>
-<p>那么解决的方案其实很简单：</p>
-<ul>
-<li>对于 Intel 系列如 i7-6700K 这样自带集显的 CPU，可以通过<strong>拔线法</strong>配合后面的<strong>系统设置附加驱动安装法</strong>解决，这样最简单。也就是说，在装 N 卡驱动前，把显示器连接线一直插在 CPU 集显口上，驱动装完后再把线接回到独显上。</li>
-<li>对于 AMD 系列 CPU，很多都不带集显，显示器的线就只能插在独显口上。这种情况下得用后文的 <strong>ppa法</strong> 或者 <strong>.run文件</strong> 法安装驱动，也就是安装驱动时保持关闭系统图形界面，使独显自始至终不被占用。ppa法或者.run文件法是通用方法，适用于所有CPU。</li>
-</ul>
-<p>以下是稍详细的方案说明：</p>
-<h3 id="1-安装ubuntu系统">1. 安装Ubuntu系统</h3>
-<p>这里我安装的是 Ubuntu 16.04 系统。若在安装过程中遇到开机黑屏，或者显示器提示频率超出范围，在开机时修改 grub 设置即可：开机时狂按键盘上的<code>e</code>键，进入 grub 编辑界面，在 quiet splash 后面加上 nomodeset。添加该参数的目的是让内核在加载 X11 Window 系统前不要加载视频驱动程序，转而采用基本的 BIOS 模式，避免前面的黑屏等不兼容情况出现。</p>
-<h3 id="2-屏蔽开源驱动-nouveau">2. 屏蔽开源驱动 nouveau</h3>
-<p>Nouveau 是 Linux 诸多发行版为 Nvidia 显卡提供的默认开源驱动程序，在显示效能上当然比不上 Nvidia 官方提供的默认驱动。因此，首先我们要卸载这个开源驱动，为安装官方闭源驱动做准备。</p>
-<p>打开终端执行 (下面以 gedit 文本编辑器为例)：</p>
-<pre><code class="language-shell">sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
+<h3 id="1-safari-清除历史记录却不丢失网站登录信息">1. Safari 清除历史记录却不丢失网站登录信息</h3>
+<p>点击任务栏 <code>Safari</code>，鼠标放在 <code>清除历史记录...</code> 上，按住 <code>Option</code> 键，该选项变成<code>清除历史记录但保留网站数据</code>。这样，将不会丢失保存网站的登录信息。</p>
+<h3 id="2-safari-知乎复制文字版权问题">2. Safari 知乎复制文字版权问题</h3>
+<p>知乎复制文字，经常最后面带版权小尾巴；或者禁止转载的，直接不能复制。</p>
+<p>解决方法：Safari任务栏点击<code>开发</code>→<code>停用JavaScript</code>，再刷新网页即可。若无开发选项，可在Safari<code>偏好设置</code>→<code>高级</code>勾选<code>在菜单栏中显示“开发”菜单</code>。</p>
+<h3 id="3-系统-window-界面动画迟滞">3. 系统 Window 界面动画迟滞</h3>
+<p>感觉 MacOS Sierra 稳定性和发热的控制和 OSX 10.11 相比相差太远，尤其是 WindowServer 的动画过渡上。从 Docker 上打开 Safari，明显感觉到动画的迟滞。可用以下两条指令加快动画:</p>
+<pre><code class="language-shell">defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO 
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
 </code></pre>
-<p>在新增的文件中写入以下内容保存:</p>
-<pre><code class="language-shell">blacklist nouveau
-blacklist lbm-nouveau
-options nouveau modeset=0
-alias nouveau off
-alias lbm-nouveau off
+<p>系统整体动画迟滞的原因还有一种可能，就是支付宝服务后台搞事，相关说明和操作详见: <a href="https://zhuanlan.zhihu.com/p/20606174">【警告】支付宝后台服务会妨害 rMBP 的显示效能（更新灭活脚本）</a></p>
+<h3 id="4-字体册-fontbook-浏览卡顿">4. 字体册 Fontbook 浏览卡顿</h3>
+<p>升级到 macOS Sierra 后，发现字体册 Fontbook 浏览字体明显卡顿，曾以为是系统特色，后来发现其实重置相关设置就好。在Finder中删除 <code>~/Library/Preferences/com.apple.FontBook.plist</code> 即可。</p>
+<h3 id="5-finder-打开卡顿缓慢">5. Finder 打开卡顿缓慢</h3>
+<p>遇到 Finder 打开速度极其缓慢，半天才显示文件，也是重置相关设置就好：删除 <code>~/Library/Preferences/com.apple.finder.plist</code> 后重启Finder。</p>
+<p>其实，哪个软件出了问题，删除 <code>~/Library/Preferences/</code> 下对应的plist文件重置就好。</p>
+<h3 id="6-合盖休眠耗电问题">6. 合盖休眠耗电问题</h3>
+<p>经 <a href="https://www.v2ex.com/t/361578#reply5">V2EX</a> 讨论，证实为 WiFi TCP Keep Alive 耗电，最简单的设置是终端执行:</p>
+<pre><code class="language-shell">sudo pmset -a tcpkeepalive 0
 </code></pre>
-<p>然后在终端中执行:</p>
-<pre><code class="language-shell">echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
-sudo update-initramfs -u
+<p>亲测执行此命令后，合盖一晚，掉电为 0。</p>
+<h3 id="7-终端走代理">7. 终端走代理</h3>
+<p>可能很多人推荐使用<code>Proxychains-ng</code>，个人觉得还是麻烦。考虑到我使用 zsh 和 surge，因此我的解决方案是: 在 <code>~/.zshrc</code> 中添加指令:</p>
+<pre><code class="language-shell">proxy(){
+	export https_proxy=&quot;http://127.0.0.1:localport&quot;
+	export http_proxy=&quot;http://127.0.0.1:localport&quot;
+	echo &quot;HTTP Proxy on&quot;
+}
+
+noproxy(){
+	unset http_proxy
+	unset https_proxy
+	echo &quot;HTTP Proxy off&quot;
+}
 </code></pre>
-<p>检查 nouveau 开源驱动是否屏蔽成功:</p>
-<pre><code class="language-shell">lsmod | grep nouveau
+<p>终端中键入 <code>proxy</code> 即可打开代理，键入 <code>noproxy</code> 可关闭代理。</p>
+<h3 id="8-风扇全速运转时cpu降速">8. 风扇全速运转时CPU降速</h3>
+<p>[本条来自某锁推的推主] 风扇全速运转时，macOS 会调用 kernel_task 给 CPU 降速，最终导致系统整体迟滞，解决方案是在禁用 SIP 的情况下删除 <code>/System/Library/Extensions/IOPlatformPluginFamily.kext</code> 后重启。详细可参见 <a href="https://www.davidschlachter.com/misc/kernel_task">Disable OS X kernel_task throttling</a>.</p>
+<h3 id="9-appstore-下载慢">9. AppStore 下载慢</h3>
+<p>在正在下载的 App 上点击使下载暂停，然后清除 DNS 缓存，再点击继续下载，只要 Apple 服务器和本地网络没问题，速度马上飚满带宽。</p>
+<h3 id="10-onenote-同步缓慢">10. OneNote 同步缓慢</h3>
+<p>OneNote 经常同步出错，或者同步缓慢，根据 MS 官方建议，使用 DNS 4.2.2.1 或 4.2.2.2 即可，然而将其用作备 DNS 简直就是扯淡（备用 DNS 上场的机会都没有）。即使使用了优质梯子还是慢。还好我们有Surge，只需要让 Surge 指定 OneNote 同步的服务器使用 4.2.2.1 或者 4.2.2.2 作为 DNS 就好：在 Surge 配置文件中增加以下几行:</p>
+<pre><code>[Host]
+d.docs.live.net = server:4.2.2.1
+www.onenote.com = server:4.2.2.1
+*.microsoft.com = server:4.2.2.1
+*.live.com = server:4.2.2.1
 </code></pre>
-<p>若无内容输出，则说明 nouveau 已经屏蔽成功，可以进行下一步操作了，否则仔细检查以上操作有无操作上的失误。</p>
-<h3 id="3-安装n卡驱动">3. 安装N卡驱动</h3>
-<p>安装驱动的方式有好几种，比如系统设置附加驱动安装法，官方 .run 驱动文件安装法，ppa 法和自行编译法。这里将前三种都大概讲一下，根据情况任选其一即可。</p>
-<h4 id="31-系统设置附加驱动安装法">3.1 系统设置附加驱动安装法</h4>
-<p><strong>注意：这种方法仅适用于拔线法，不适用于没有集显的CPU使用。因为这种方法是在图形界面里执行的，而没有集显口可用的情况下，独显是一直被占用的。</strong></p>
-<p>在系统设置里面更新软件源缓存列表后，在附加驱动里面勾选类似于 Nvidia-387 字样的私有驱动进行安装，装完重启电脑即可。</p>
-<p>这一步若遇到安装 N 卡驱动时进度条一直卡在最后走不满的情况，可进终端用 top 指令查看是什么进程在占用 CPU。若是 aptd 进程长时间占用 100% CPU，在系统设置里面关闭所有系统更新相关的设置即可解决。</p>
-<h4 id="32-ppa-安装法">3.2 ppa 安装法</h4>
-<p>首先大致介绍一下 Ubuntu 的桌面图形系统的运作方式和相关概念。第一个概念是 DE (desktop environment), 即桌面环境，可以理解为整个图形界面的 GUI 显示模式，不同的 Ubuntu 定制版和同一定制版的不同版本采用的 DE 可能都不一样，常见的 DE 有界面简洁但是资源占用少的 Xfce，Ubuntu 14 和16 都采用的 Unity，以及 Ubuntu 17 后开始采用的 gnome 等等。第二个概念是 DM (Display Manager), 前面提到了 DE，用于管理 DE 的软件就是 DM 了，比如可以同时安装多个 DE，用 DM 去手动切换。Ubuntu 16 采用的 DM 叫 lightdm。</p>
-<p>因此，这里安装显卡驱动时，我们直接把整个 DM 关闭掉就不会让 DE 占用独显了。DM 的存放位置在 <code>/etc/init.d/</code> 文件夹下，里面一般带 dm 后缀的就是系统默认 DM 了。</p>
-<p><code>ctrl</code>+<code>alt</code>+<code>F1</code>进入文本模式：</p>
-<p>关闭图形界面：</p>
-<pre><code class="language-shell">sudo /etc/init.d/lightdm stop
+<p>再出现同步慢你来打我.</p>
+<h3 id="11-omnigraffle-不支持数学公式">11. OmniGraffle 不支持数学公式</h3>
+<p>下载 LaTeXiT，键入 LaTeX 生成公式后，直接拖进 OmniGraffle 就好，选择矢量图形，双击还能回到 LaTexiT 编辑。</p>
+<h3 id="12-保持当前窗口最前操作后面的窗口">12. 保持当前窗口最前操作后面的窗口</h3>
+<p>按住 <code>Cmd</code> 键再点击操作后面的窗口即可。这个操作非常实用，比如复制后面浏览器中的问题到当前的文本编辑器中，这样鼠标选中后面浏览器中的文字复制时，最前的的编辑器窗口并不会消失。</p>
+<h3 id="13-百度云下载限速">13. 百度云下载限速</h3>
+<p><strong>已失效</strong> 浏览器使用<a href="https://github.com/acgotaku/BaiduExporter">BaiduExporter</a>或者<a href="https://greasyfork.org/scripts/31921-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B">相关油猴脚本</a>解析导出真实地址再用多线程工具下载。大部分人偏向于使用<a href="https://aria2.github.io">Aria2</a>下载，但是本人更偏好轻量的<a href="https://github.com/eribertomota/axel">Axel</a>，命令行呼出就可用:  <code>axel -n num_of_connections -a download_link</code></p>
+<p>亲测20M带宽下，开30+线程，能直接跑满带宽。</p>
+<h3 id="14-右键中有重复或者已卸载软件的快捷方式">14. 右键中有重复或者已卸载软件的快捷方式</h3>
+<p>终端执行:</p>
+<pre><code class="language-shell">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
 </code></pre>
-<p>添加 ppa 源并更新缓存:</p>
-<pre><code class="language-shell">sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt-get update
-</code></pre>
-<p>安装驱动:</p>
-<pre><code class="language-shell">sudo apt-get install nvidia-xxx  # xxx是版本号，这里按tab选择版本即可
-</code></pre>
-<p>重启电脑或重新打开图形界面(sudo /etc/init.d/lightdm start, 然后 ctrl alt F6进入图形界面)</p>
-<h4 id="33-run文件安装法">3.3 run文件安装法</h4>
-<p>Nvidia 提供的驱动文件格式是 .run 后缀的，去官网下载对应的驱动文件，然后按照 ppa 法关闭图形环境，在文本模式输入：</p>
-<pre><code class="language-shell">chmod a+x a.run  # a.run为驱动文件
-sudo sh ./a.run
-</code></pre>
-<p>装完重启或者重新打开图形界面。</p>
-<h4 id="34-出错重来">3.4 出错重来</h4>
-<p>如果操作过程中发现安装出错了要重新装驱动，首先得卸载驱动残余，再重新安装驱动：</p>
-<pre><code class="language-shell">sudo apt-get remove --purge nvidia*
-sudo apt-get autoremove
-sudo reboot
-</code></pre>
-<p>注: .run文件安装的驱动最好上面卸载可能不干净，最好先执行: <code>sudo /usr/bin/nvidia-uninstall</code></p>
-<h4 id="35-装完检查">3.5 装完检查</h4>
-<p>上述几种方法安装完驱动后，开机进入系统，屏幕右上角点击关于此计算机，图形一栏应该会显示这是NVIDIA 的显卡，说明独显驱动已安装成功。若仍然显示为 Intel 集显，可尝试手动切换到独显：</p>
-<pre><code class="language-shell">sudo prime-select nvidia
-</code></pre>
-<p>这时再输入指令：</p>
-<pre><code class="language-shell">prime-select query
-</code></pre>
-<p>若显示 <code>nvidia</code> 说明已切换到独显，但是要重启才能生效。</p>
-<p>如果这一步仍然失败，一定是前面哪一步出错了。</p>
-<h3 id="4-对于华硕主板配合拔线法安装的说明">4. 对于华硕主板配合拔线法安装的说明</h3>
-<p>在拔线法的情况下，安装 N 卡独显驱动前，需要把显示器线接在集显口上。然而<strong>某些</strong>华硕主板设置是<strong>默认关闭集显</strong>的，因此要先在主板设置中将其打开并暂时将优先级设为最高，再插线到集显接口，否则该接口无法使用。</p>
-<p>更改方法：</p>
-<p>开机时进入BIOS设置，依次进入 Advanced—&gt;System Agent Configuration—&gt;Graphics Configuration中，将 iGPU 设为开启，然后 Primary Display 设为 IGFX，保存重启。再把视频线接到主板上 CPU 那儿的集显接口上，开机进入 Ubuntu 系统。</p>
-<p>根据第 3 部分教程安装完独显驱动后，再把显示器线接到独显口上，这时再去主板中启用独显：</p>
-<p>上一步的步骤中把 Primary Display 设置为 PCIE 或者 Auto</p>
-<h3 id="5-总结">5. 总结</h3>
-<p>总结起来一句话：给独显装驱动的时候，不要占用独显。凡是线插在独显口，又进入 GUI 图形界面操作的，一定失败！</p>
+<p>然后重启。</p>
+<h3 id="15-mission-control-动画太慢">15. Mission Control 动画太慢</h3>
+<p>升级到 macOS Sierra 后，Mission Control 动画是在太慢，影响效率。可到系统设置的触控板设置中，关闭自带的 Mission Control 手势，然后转用第三方软件 Jitouch 的 Mission Control。</p>
+<h3 id="16-查看某-app-支持的-applescript-脚本">16. 查看某 App 支持的 AppleScript 脚本</h3>
+<p>日常编写 AppleScript 完成一些自动化操作时，却不知道某些 App 支持哪些 AppleScript 脚本，其实 macOS 提供了一个很隐蔽的方式来查看：打开脚本编辑器，任务栏点击<code>文件</code>→<code>打开词典...</code>，再选择目标 App 即可.</p>
+<h3 id="17-popclip-在某些应用中弹不出来">17. Popclip 在某些应用中弹不出来</h3>
+<p>Popclip 是个极好的软件，然而，有些 App 中，由于适配原因，鼠标选中文字后并不能弹出 Popclip 插件条，这时可借助 BetterTouchTool 软件强行让 Popclip 弹出来:</p>
+<p>建立一个 .scpt 脚本，里面填入 <code>tell application &quot;PopClip&quot; to appear</code> 保存。然后在 BetterTouchTool 新建一个 Gesture (触摸板手势我选择的是 3 Fingers Swipe Up)，<code>Predefined Action</code> 中选择 <code>Open Application / File / Apple Script ...</code>，在弹出的窗口选中刚才那个 scpt 脚本。这样，每当鼠标选中文字，Popclip 插件条不出来的时候，三个手指在触摸板上顺势网上一推，插件条就强行被手动唤出了.</p>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -297,19 +272,23 @@ sudo reboot
 <ul>
 <li>
 <ul>
-<li><a href="#1-%E5%AE%89%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F">1. 安装Ubuntu系统</a></li>
-<li><a href="#2-%E5%B1%8F%E8%94%BD%E5%BC%80%E6%BA%90%E9%A9%B1%E5%8A%A8-nouveau">2. 屏蔽开源驱动 nouveau</a></li>
-<li><a href="#3-%E5%AE%89%E8%A3%85n%E5%8D%A1%E9%A9%B1%E5%8A%A8">3. 安装N卡驱动</a>
-<ul>
-<li><a href="#31-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E9%99%84%E5%8A%A0%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E6%B3%95">3.1 系统设置附加驱动安装法</a></li>
-<li><a href="#32-ppa-%E5%AE%89%E8%A3%85%E6%B3%95">3.2 ppa 安装法</a></li>
-<li><a href="#33-run%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85%E6%B3%95">3.3 run文件安装法</a></li>
-<li><a href="#34-%E5%87%BA%E9%94%99%E9%87%8D%E6%9D%A5">3.4 出错重来</a></li>
-<li><a href="#35-%E8%A3%85%E5%AE%8C%E6%A3%80%E6%9F%A5">3.5 装完检查</a></li>
-</ul>
-</li>
-<li><a href="#4-%E5%AF%B9%E4%BA%8E%E5%8D%8E%E7%A1%95%E4%B8%BB%E6%9D%BF%E9%85%8D%E5%90%88%E6%8B%94%E7%BA%BF%E6%B3%95%E5%AE%89%E8%A3%85%E7%9A%84%E8%AF%B4%E6%98%8E">4. 对于华硕主板配合拔线法安装的说明</a></li>
-<li><a href="#5-%E6%80%BB%E7%BB%93">5. 总结</a></li>
+<li><a href="#1-safari-%E6%B8%85%E9%99%A4%E5%8E%86%E5%8F%B2%E8%AE%B0%E5%BD%95%E5%8D%B4%E4%B8%8D%E4%B8%A2%E5%A4%B1%E7%BD%91%E7%AB%99%E7%99%BB%E5%BD%95%E4%BF%A1%E6%81%AF">1. Safari 清除历史记录却不丢失网站登录信息</a></li>
+<li><a href="#2-safari-%E7%9F%A5%E4%B9%8E%E5%A4%8D%E5%88%B6%E6%96%87%E5%AD%97%E7%89%88%E6%9D%83%E9%97%AE%E9%A2%98">2. Safari 知乎复制文字版权问题</a></li>
+<li><a href="#3-%E7%B3%BB%E7%BB%9F-window-%E7%95%8C%E9%9D%A2%E5%8A%A8%E7%94%BB%E8%BF%9F%E6%BB%9E">3. 系统 Window 界面动画迟滞</a></li>
+<li><a href="#4-%E5%AD%97%E4%BD%93%E5%86%8C-fontbook-%E6%B5%8F%E8%A7%88%E5%8D%A1%E9%A1%BF">4. 字体册 Fontbook 浏览卡顿</a></li>
+<li><a href="#5-finder-%E6%89%93%E5%BC%80%E5%8D%A1%E9%A1%BF%E7%BC%93%E6%85%A2">5. Finder 打开卡顿缓慢</a></li>
+<li><a href="#6-%E5%90%88%E7%9B%96%E4%BC%91%E7%9C%A0%E8%80%97%E7%94%B5%E9%97%AE%E9%A2%98">6. 合盖休眠耗电问题</a></li>
+<li><a href="#7-%E7%BB%88%E7%AB%AF%E8%B5%B0%E4%BB%A3%E7%90%86">7. 终端走代理</a></li>
+<li><a href="#8-%E9%A3%8E%E6%89%87%E5%85%A8%E9%80%9F%E8%BF%90%E8%BD%AC%E6%97%B6cpu%E9%99%8D%E9%80%9F">8. 风扇全速运转时CPU降速</a></li>
+<li><a href="#9-appstore-%E4%B8%8B%E8%BD%BD%E6%85%A2">9. AppStore 下载慢</a></li>
+<li><a href="#10-onenote-%E5%90%8C%E6%AD%A5%E7%BC%93%E6%85%A2">10. OneNote 同步缓慢</a></li>
+<li><a href="#11-omnigraffle-%E4%B8%8D%E6%94%AF%E6%8C%81%E6%95%B0%E5%AD%A6%E5%85%AC%E5%BC%8F">11. OmniGraffle 不支持数学公式</a></li>
+<li><a href="#12-%E4%BF%9D%E6%8C%81%E5%BD%93%E5%89%8D%E7%AA%97%E5%8F%A3%E6%9C%80%E5%89%8D%E6%93%8D%E4%BD%9C%E5%90%8E%E9%9D%A2%E7%9A%84%E7%AA%97%E5%8F%A3">12. 保持当前窗口最前操作后面的窗口</a></li>
+<li><a href="#13-%E7%99%BE%E5%BA%A6%E4%BA%91%E4%B8%8B%E8%BD%BD%E9%99%90%E9%80%9F">13. 百度云下载限速</a></li>
+<li><a href="#14-%E5%8F%B3%E9%94%AE%E4%B8%AD%E6%9C%89%E9%87%8D%E5%A4%8D%E6%88%96%E8%80%85%E5%B7%B2%E5%8D%B8%E8%BD%BD%E8%BD%AF%E4%BB%B6%E7%9A%84%E5%BF%AB%E6%8D%B7%E6%96%B9%E5%BC%8F">14. 右键中有重复或者已卸载软件的快捷方式</a></li>
+<li><a href="#15-mission-control-%E5%8A%A8%E7%94%BB%E5%A4%AA%E6%85%A2">15. Mission Control 动画太慢</a></li>
+<li><a href="#16-%E6%9F%A5%E7%9C%8B%E6%9F%90-app-%E6%94%AF%E6%8C%81%E7%9A%84-applescript-%E8%84%9A%E6%9C%AC">16. 查看某 App 支持的 AppleScript 脚本</a></li>
+<li><a href="#17-popclip-%E5%9C%A8%E6%9F%90%E4%BA%9B%E5%BA%94%E7%94%A8%E4%B8%AD%E5%BC%B9%E4%B8%8D%E5%87%BA%E6%9D%A5">17. Popclip 在某些应用中弹不出来</a></li>
 </ul>
 </li>
 </ul>

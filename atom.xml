@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-14T13:03:45.230Z</updated>
+    <updated>2020-02-14T13:11:39.354Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -12,8 +12,8 @@
     <rights>All rights reserved 2020, CaptainChen</rights>
     <entry>
         <title type="html"><![CDATA[Bibtex 文献引用小技巧 -- Identification String]]></title>
-        <id>https://wizyoung.github.io/bibtex-entries-skill/</id>
-        <link href="https://wizyoung.github.io/bibtex-entries-skill/">
+        <id>https://wizyoung.github.io/post/bibtex-entries-skill/</id>
+        <link href="https://wizyoung.github.io/post/bibtex-entries-skill/">
         </link>
         <updated>2018-08-23T06:33:01.000Z</updated>
         <summary type="html"><![CDATA[<p>LaTeX 中引用参考文献时使用 bibtex 非常方便，然而不同的期刊/会议对于 .bib 条目中的 Booktitle 的要求是不一样的，比如引用一篇 CVPR 文献，有些期刊要求 References 里面写成 In <em>CVPR</em>, 2017，有些又要求写成 In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition，标准不一，每次频繁改来改去，让人十分头疼。</p>
@@ -44,8 +44,8 @@ publisher = {IEEE}
     </entry>
     <entry>
         <title type="html"><![CDATA[TensorFlow 学习笔记 -- Input Pipeline]]></title>
-        <id>https://wizyoung.github.io/tensorflow_reading_files/</id>
-        <link href="https://wizyoung.github.io/tensorflow_reading_files/">
+        <id>https://wizyoung.github.io/post/tensorflow_reading_files/</id>
+        <link href="https://wizyoung.github.io/post/tensorflow_reading_files/">
         </link>
         <updated>2018-08-21T16:23:43.000Z</updated>
         <summary type="html"><![CDATA[<p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
@@ -1283,8 +1283,8 @@ with tf.Session() as sess:
     </entry>
     <entry>
         <title type="html"><![CDATA[Python2 笔记—编码问题]]></title>
-        <id>https://wizyoung.github.io/python-encoding/</id>
-        <link href="https://wizyoung.github.io/python-encoding/">
+        <id>https://wizyoung.github.io/post/python-encoding/</id>
+        <link href="https://wizyoung.github.io/post/python-encoding/">
         </link>
         <updated>2017-09-09T06:54:38.000Z</updated>
         <summary type="html"><![CDATA[<p>初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 [^1] [^2]，感觉豁然开朗，做成笔记，方便日后查阅。</p>
@@ -1505,8 +1505,8 @@ UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal 
     </entry>
     <entry>
         <title type="html"><![CDATA[Mac 个人使用小技巧汇总]]></title>
-        <id>https://wizyoung.github.io/Mac个人使用小技巧汇总/</id>
-        <link href="https://wizyoung.github.io/Mac个人使用小技巧汇总/">
+        <id>https://wizyoung.github.io/post/Mac个人使用小技巧汇总/</id>
+        <link href="https://wizyoung.github.io/post/Mac个人使用小技巧汇总/">
         </link>
         <updated>2017-08-09T11:31:12.000Z</updated>
         <summary type="html"><![CDATA[<p>手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。</p>
@@ -1585,8 +1585,8 @@ www.onenote.com = server:4.2.2.1
     </entry>
     <entry>
         <title type="html"><![CDATA[提高效率第二弹之自己开发谷歌翻译 popclip 插件]]></title>
-        <id>https://wizyoung.github.io/提高效率第二弹之自己开发谷歌翻译popclip插件/</id>
-        <link href="https://wizyoung.github.io/提高效率第二弹之自己开发谷歌翻译popclip插件/">
+        <id>https://wizyoung.github.io/post/提高效率第二弹之自己开发谷歌翻译popclip插件/</id>
+        <link href="https://wizyoung.github.io/post/提高效率第二弹之自己开发谷歌翻译popclip插件/">
         </link>
         <updated>2017-08-04T15:17:14.000Z</updated>
         <summary type="html"><![CDATA[<blockquote>
@@ -1677,8 +1677,8 @@ www.onenote.com = server:4.2.2.1
     </entry>
     <entry>
         <title type="html"><![CDATA[信息熵，相对熵，交叉熵的理解]]></title>
-        <id>https://wizyoung.github.io/信息熵，相对熵，交叉熵的理解/</id>
-        <link href="https://wizyoung.github.io/信息熵，相对熵，交叉熵的理解/">
+        <id>https://wizyoung.github.io/post/信息熵，相对熵，交叉熵的理解/</id>
+        <link href="https://wizyoung.github.io/post/信息熵，相对熵，交叉熵的理解/">
         </link>
         <updated>2017-05-01T17:33:07.000Z</updated>
         <summary type="html"><![CDATA[<h2 id="1-香农信息量">1. 香农信息量</h2>
@@ -1744,8 +1744,8 @@ www.onenote.com = server:4.2.2.1
     </entry>
     <entry>
         <title type="html"><![CDATA[Ubuntu下GTX1080显卡驱动折腾小记]]></title>
-        <id>https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/</id>
-        <link href="https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/">
+        <id>https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/</id>
+        <link href="https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/">
         </link>
         <updated>2017-03-01T16:30:35.000Z</updated>
         <summary type="html"><![CDATA[<p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
@@ -1847,8 +1847,8 @@ sudo reboot
     </entry>
     <entry>
         <title type="html"><![CDATA[实验室挂代理宿舍免费上网折腾小记]]></title>
-        <id>https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/</id>
-        <link href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/">
+        <id>https://wizyoung.github.io/post/实验室挂代理宿舍免费上网折腾小记/</id>
+        <link href="https://wizyoung.github.io/post/实验室挂代理宿舍免费上网折腾小记/">
         </link>
         <updated>2017-02-21T05:10:07.000Z</updated>
         <summary type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
@@ -1986,8 +1986,8 @@ sudo systemctl start ss.service
     </entry>
     <entry>
         <title type="html"><![CDATA[极路由 1s 刷老毛子 Padavan 固件教程]]></title>
-        <id>https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/</id>
-        <link href="https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/">
+        <id>https://wizyoung.github.io/post/极路由1s刷老毛子Padavan固件教程/</id>
+        <link href="https://wizyoung.github.io/post/极路由1s刷老毛子Padavan固件教程/">
         </link>
         <updated>2017-02-12T02:39:00.000Z</updated>
         <summary type="html"><![CDATA[<p>不得不说，极路由官方固件实在太烂，难以忍受，网上普遍反应的间歇跳 Ping，网络不稳定需要重启等问题我都遇到过，更让人烦躁的是重启速度极慢(往往需要 3 分钟之久)，断网状态下手机 APP 竟然不能访问后台以及断网时网页版后台各种抽风(每次配置个路由中继要死的心都有了)等等诸如此类的问题。2015 年初以不到百元的价格买到的手头台极路由 1S，拥有 16 M 闪存，128 M 内存如此强大的配置，却配着如此垃圾的固件实在可惜，因此今天花了点时间将它刷成了老毛子 Padavan 固件。</p>
@@ -2056,8 +2056,8 @@ brctl addif br0 eth2.2
     </entry>
     <entry>
         <title type="html"><![CDATA[我的 Mac 软件列表]]></title>
-        <id>https://wizyoung.github.io/我的Mac软件列表/</id>
-        <link href="https://wizyoung.github.io/我的Mac软件列表/">
+        <id>https://wizyoung.github.io/post/我的Mac软件列表/</id>
+        <link href="https://wizyoung.github.io/post/我的Mac软件列表/">
         </link>
         <updated>2017-01-28T14:54:56.000Z</updated>
         <content type="html"><![CDATA[<blockquote>

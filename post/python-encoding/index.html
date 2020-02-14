@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta http-equiv="X-UA-Compatible" content="ie=edge">
-<title>Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen</title>
+<title>Python2 笔记—编码问题 - CaptainChen</title>
 <link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
 <link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/media/css/font-awesome.min.css">
 <link rel="stylesheet" href="/media/css/align.css">
 <link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
-<link rel="alternate" type="application/atom+xml" title="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+<link rel="alternate" type="application/atom+xml" title="Python2 笔记—编码问题 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
 
 <script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
@@ -29,18 +29,30 @@
   </script>
     
 
-  <meta name="description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一..." />
-  <meta property="og:title" content="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen">
-  <meta property="og:description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一..." />
+  <meta name="description" content="初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 [1] [2]，感觉豁然开朗，做成笔记，方便日后查阅。
+
+1. 从编码谈起
+
+ASCII: 全称American Strandard Code for In..." />
+  <meta property="og:title" content="Python2 笔记—编码问题 - CaptainChen">
+  <meta property="og:description" content="初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 [1] [2]，感觉豁然开朗，做成笔记，方便日后查阅。
+
+1. 从编码谈起
+
+ASCII: 全称American Strandard Code for In..." />
   <meta property="og:type" content="articles">
-  <meta property="og:url" content="https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/" />
+  <meta property="og:url" content="https://wizyoung.github.io/post/python-encoding/" />
   <meta property="og:image" content="https://wizyoung.github.io/images/avatar.png">
   <meta property="og:image:height" content="630">
   <meta property="og:image:width" content="1200">
-  <meta name="twitter:title" content="Ubuntu下GTX1080显卡驱动折腾小记 - CaptainChen">
-  <meta name="twitter:description" content="最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一...">
+  <meta name="twitter:title" content="Python2 笔记—编码问题 - CaptainChen">
+  <meta name="twitter:description" content="初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 [1] [2]，感觉豁然开朗，做成笔记，方便日后查阅。
+
+1. 从编码谈起
+
+ASCII: 全称American Strandard Code for In...">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="canonical" href="https://wizyoung.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/">
+  <link rel="canonical" href="https://wizyoung.github.io/post/python-encoding/">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
@@ -62,16 +74,16 @@
     <div class="max-w-4xl w-full mx-auto">
       <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
         <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
-          Ubuntu下GTX1080显卡驱动折腾小记
+          Python2 笔记—编码问题
         </h1>
         
         <div class="mb-8 flex flex-wrap">
           <div class="text-gray-400 text-sm mr-4">
-            <i class="fa fa-calendar"></i>  2017-03-02
+            <i class="fa fa-calendar"></i>  2017-09-09
             <span style="margin-right:8px"></span>
-            <i class="fa fa-clock-o"></i>  2146 words (about 8 min read)
+            <i class="fa fa-clock-o"></i>  2012 words (about 9 min read)
             <!-- <span style="margin-right:8px"></span>
-            <i class="fa fa-file-word-o"></i>  2146 words -->
+            <i class="fa fa-file-word-o"></i>  2012 words -->
             <span style="margin-right:8px"></span>
             <i class="fa fa-eye"></i>  <span class="date_info"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> Views
 </span>
@@ -111,111 +123,225 @@
             <i class="fa fa-refresh"></i>  <a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体">简→繁</a>
           </div>
           
-            <a href="https://wizyoung.github.io/tag/3aE7THEdP/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+            <a href="https://wizyoung.github.io/tag/E1T5P6edB/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
               <i class="ri-hashtag"></i>
-              Ubuntu
-            </a>
-          
-            <a href="https://wizyoung.github.io/tag/GqIPwuF3Om/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
-              <i class="ri-hashtag"></i>
-              Nvidia
+              Python
             </a>
           
         </div>
         <div class="markdown mb-8" v-pre>
-          <p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
+          <p>初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，感觉豁然开朗，做成笔记，方便日后查阅。</p>
 <!-- more -->
+<h3 id="1-从编码谈起">1. 从编码谈起</h3>
+<ul>
+<li>ASCII: 全称American Strandard Code for Information Interchange。ASCII只使用了一个字节(8个比特位)来编码。且ASCII只使用了后7位，最高位位0，因此只有128个字符编码。如字符<code>A</code>对应的二进制数值为<code>01000001</code>，对应的十进制数就是65。</li>
+<li>EASCII(ISO/8859-1): ASCII扩展而来，主要是考虑西欧地区的符号编码。</li>
+<li>GBK: 中文编码。开始是<code>GB2312</code>，又称GB0，共收录了6763个汉字，兼容ASCII。后来扩展到<code>GBK</code>，收录了27484个汉字，同时还收录了藏文等少数名族文字。GBK也是兼容ASCII，英文字符用1个字节表示，汉字用两个字节表示。</li>
+<li>Unicode: Unicode全称Universal Multiple-Octet Coded Character Set, 又简称为UCS。UCS有两种格式：UCS-2和UCS-4，顾名思义就是用2个字节和4个字节来编码。Unicode只是规定了如何编码，没有规定如何传输，保存这个编码。比如一个汉字到底是用4个字节还是3个字节来表示，依赖于具体的实现方式，如UTF-8等。</li>
+<li>UTF-8: Unicode Transformation Format，Unicode的一种实现方式，是可变长字符编码，根据具体使用情况用1-4个字节来表示一个字符。</li>
+</ul>
+<h3 id="2-字节与字符编码与解码">2. 字节与字符，编码与解码</h3>
+<ul>
+<li>
+<p>字节与字符：</p>
+<ul>
+<li>字节：计算机存储一切数据都是由一串01的字节序列构成</li>
+<li>字符：就是一个符号，比如汉字，字母等</li>
+</ul>
+</li>
+<li>
+<p>编码与解码</p>
+<ul>
+<li>编码encode: 字符→字节。编码是为了存储和传输</li>
+<li>解码decode: 字节→字符。解码是为了显示和阅读</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-python2的编码问题">3. Python2的编码问题</h3>
+<h4 id="31-默认编码">3.1 默认编码</h4>
+<p>Python2默认用ASCII编码:</p>
+<pre><code class="language-python">import sys
+print sys.getdefaultencoding()  # ascii
+</code></pre>
+<p>就是说默认的解释器会把str类型的字符串当做ASCII编码来处理。</p>
+<p>注意区分的是：文档开头往往加上一句<code># coding: utf-8</code>是来指定脚本文件的编码方式。</p>
+<h4 id="32-str和unicode">3.2 str和unicode</h4>
+<p>Python2中，str和unicode都是basestring的子类，可见str和unicode是两种不同类型的字符串对象。</p>
+<p>以汉字“禅”为例，str打印出来就是十六进制形式的\xe7\xa6\x85，对应于一长串二进制序列；而用unicode打印出来就是unicode符号u'\u7985':</p>
+<ul>
+<li>str:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '禅'
+&gt;&gt;&gt; s
+'\xe7\xa6\x85'
+&gt;&gt;&gt; type(s)
+&lt;type 'str'&gt;
+</code></pre>
+<ul>
+<li>unicode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; u = u'禅'
+&gt;&gt;&gt; u
+u'\u7985'
+&gt;&gt;&gt; type(u)
+&lt;type 'unicode'&gt;
+</code></pre>
+<p>如果要把unicode符号保存到文件，或者是传输到网络，那就必须编码为str类型；反之亦然：</p>
+<ul>
+<li>encode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; u = u'禅'
+&gt;&gt;&gt; u
+u'\u7985'
+&gt;&gt;&gt; u.encode('utf-8')
+'\xe7\xa6\x85'
+</code></pre>
+<ul>
+<li>decode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '禅'
+&gt;&gt;&gt; s
+'\xe7\xa6\x85'
+&gt;&gt;&gt; s.decode('utf-8')
+u'\u7985'
+</code></pre>
+<p>说白了：</p>
+<p>编码：字符到二进制数据的转换，即: encode: unicode → str</p>
+<p>解码：二进制数据到字符的转换，即: decode: str → unicode</p>
+<h4 id="33-不同编码之间的转换">3.3 不同编码之间的转换</h4>
+<figure data-type="image" tabindex="1"><img src="http://7xqr14.com1.z0.glb.clouddn.com/python_encoding.jpg" alt="" loading="lazy"></figure>
+<p>不同的编码之间通过unicode作为中间媒介来互相转换:</p>
+<p>比如一个用utf-8编码好的汉字'\xe7\xa6\x85'，要变成gbk:</p>
+<pre><code class="language-shell">'\xe7\xa6\x85'.decode('utf-8').encode('gbk')
+</code></pre>
+<h4 id="34-unicodexxxerror-错误及原因">3.4 UnicodeXXXError 错误及原因</h4>
+<ul>
+<li>
+<p>case1:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '你好'
+&gt;&gt;&gt; s.decode()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>s.decode()默认使用ascii解码，但是ascii字符集中是没有中文字符的，因此报错: 0xe4超出范围了</p>
+</li>
+<li>
+<p>case2:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; a = u'你好'
+&gt;&gt;&gt; a.encode()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+</code></pre>
+<p>与case1类似，unicode转换str时默认用ascii，也是报错。</p>
+</li>
+<li>
+<p>case3:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '你好'  # str类型
+&gt;&gt;&gt; y = u'python'  # unicode类型
+&gt;&gt;&gt; s + y    # 隐式转换，即 s.decode('ascii') + u
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>str和unicode混用时，str会隐式地decode为unicode，然后也是由于用了ascii找不到汉字报错。这里详细见3.8节。</p>
+</li>
+</ul>
+<h4 id="35-乱码问题">3.5 乱码问题</h4>
+<pre><code class="language-shell"># coding: utf-8
+&gt;&gt;&gt; a='好'
+&gt;&gt;&gt; a
+'\xe5\xa5\xbd'
+&gt;&gt;&gt; b=a.decode(&quot;utf-8&quot;)
+&gt;&gt;&gt; b
+u'\u597d'
+&gt;&gt;&gt; c=b.encode(&quot;gbk&quot;)
+&gt;&gt;&gt; c
+'\xba\xc3'
+&gt;&gt;&gt; print c
+��
+</code></pre>
+<p>utf-8编码的字符‘好’占用3个字节，解码成Unicode后，如果再用gbk来解码后，只有2个字节的长度了，最后出现了乱码的问题，因此防止乱码的最好方式就是始终坚持使用同一种编码格式对字符进行编码和解码操作。</p>
+<h4 id="36-str和unicode">3.6 str()和unicode()</h4>
+<p>str()和unicode()是两个工厂方法，分别返回str字符串对象和unicode字符串对象。</p>
+<p>其实本质为:</p>
+<p>str(s) = s.encode('ascii')</p>
+<p>unicode(s) = s.decode('ascii')</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s3 = u&quot;你好&quot;
+&gt;&gt;&gt; s3
+u'\u4f60\u597d'
+&gt;&gt;&gt; str(s3)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+</code></pre>
+<ul>
+<li>技巧:</li>
+</ul>
+<p>对于一个unicode形式的str字符串，如<code>\u4f60\u597d</code>这样的，如何变成真正的unicode呢?</p>
+<p>最简单是前面加个u:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; print u'\u4f60\u597d'
+你好
+</code></pre>
+<p>但是在像解析html时，储存在了一个字符串中，就可以这么做:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s='\u4f60\u597d'
+&gt;&gt;&gt; type(s)
+&lt;type 'str'&gt;
+&gt;&gt;&gt; s = s.decode('unicode-escape')
+&gt;&gt;&gt; print s
+你好
+</code></pre>
+<h4 id="37-检测编码">3.7 检测编码</h4>
+<p>可用chardet检测字符编码:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; import chardet
+&gt;&gt;&gt; a = '好'
+&gt;&gt;&gt; print chardet.detect(a)
+{'confidence': 0.73, 'language': '', 'encoding': 'ISO-8859-1'}
+</code></pre>
+<h4 id="38-syssetdefaultencodingutf-8的作用">3.8 sys.setdefaultencoding('utf-8')的作用</h4>
+<p>Python2会在必要的情况下，对string作必要的编码类型转换，如<code>==</code>操作，字节和字符拼接，以及对str编码(encode)时。</p>
+<p>看3.4的例子，我们这么操作就不会报错了:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; import sys
+&gt;&gt;&gt; reload(sys)
+&lt;module 'sys' (built-in)&gt;
+&gt;&gt;&gt; sys.setdefaultencoding('utf-8')  # 初始化后删除了 sys.setdefaultencoding 方法，我们需要重新载入 
+&gt;&gt;&gt; s = '你好'
+&gt;&gt;&gt; y = u'python'
+&gt;&gt;&gt; s + y
+u'\u4f60\u597dpython'
+</code></pre>
+<p>s和y类型不一样，于是Python调用更改后的默认编码utf-8对s进行decode为unicode再操作。</p>
+<p>再看:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s='你好'
+&gt;&gt;&gt; s.encode('gb2312')
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>直接对str进行编码，首先会解码到unicode，默认ASCII，所以报错。</p>
+<p>修改的方式为改成<code>s.decode('utf-8').encode('gb2312')</code>或者加上sys.setdefaultencoding('utf-8')</p>
+<p><strong>注意</strong>: 用这种方法是有潜在危害的，详见: <a href="https://blog.ernest.me/post/python-setdefaultencoding-unicode-bytes">立即停止使用 setdefaultencoding('utf-8')， 以及为什么</a></p>
+<p>文中提到，好的习惯是:</p>
 <blockquote>
-<p>硬件平台：i7-6700K CPU, GTX1080 GPU, 华硕 Z170 主板<br>
-软件平台: Ubuntu 16.04</p>
+<ul>
+<li>所有 text string 都应该是 unicode 类型，而不是 str，如果你在操作 text，而类型却是 str，那就是在制造 bug。</li>
+<li>在需要转换的时候，显式转换。从字节解码成文本，用 var.decode(encoding)，从文本编码成字节，用 var.encode(encoding)。</li>
+<li>从外部读取数据时，默认它是字节，然后 decode 成需要的文本；同样的，当需要向外部发送文本时，encode 成字节再发送。</li>
+</ul>
 </blockquote>
-<p>先看看网上最流行的3个不靠谱解决方案：</p>
-<ul>
-<li>更改 /etc/profile 环境变量，更改 Xauthority 文件权限等 <a href="http://www.tuicool.com/articles/IBreErY">链接</a></li>
-<li>显卡驱动 .run 文件添加 --no-opengl-files 参数 <a href="http://www.cnblogs.com/Qwells/p/6086773.html">链接</a></li>
-<li>.run 文件有 bug，改用 .deb 文件安装 <a href="https://zhuanlan.zhihu.com/p/21434933?refer=intelligentunit">链接</a></li>
-</ul>
-<p>基于我自己和我身边朋友的经历，以上三个方法<strong>根本无法解决</strong>开机无限登录的问题。</p>
-<p>其实当我走完了所有流程后发现，其实出现安装失败，无限重启的根由是：<strong>安装独显驱动的时候不要让独显处于被占用状态</strong>，否则出错。什么叫被占用状态呢？当你把显示器的线( 通过HDMI 或者 DP口)<strong>接在独显</strong>上，一旦开机<strong>图形系统被自动后台启用</strong>后，独显就被占用了。</p>
-<p>那么解决的方案其实很简单：</p>
-<ul>
-<li>对于 Intel 系列如 i7-6700K 这样自带集显的 CPU，可以通过<strong>拔线法</strong>配合后面的<strong>系统设置附加驱动安装法</strong>解决，这样最简单。也就是说，在装 N 卡驱动前，把显示器连接线一直插在 CPU 集显口上，驱动装完后再把线接回到独显上。</li>
-<li>对于 AMD 系列 CPU，很多都不带集显，显示器的线就只能插在独显口上。这种情况下得用后文的 <strong>ppa法</strong> 或者 <strong>.run文件</strong> 法安装驱动，也就是安装驱动时保持关闭系统图形界面，使独显自始至终不被占用。ppa法或者.run文件法是通用方法，适用于所有CPU。</li>
-</ul>
-<p>以下是稍详细的方案说明：</p>
-<h3 id="1-安装ubuntu系统">1. 安装Ubuntu系统</h3>
-<p>这里我安装的是 Ubuntu 16.04 系统。若在安装过程中遇到开机黑屏，或者显示器提示频率超出范围，在开机时修改 grub 设置即可：开机时狂按键盘上的<code>e</code>键，进入 grub 编辑界面，在 quiet splash 后面加上 nomodeset。添加该参数的目的是让内核在加载 X11 Window 系统前不要加载视频驱动程序，转而采用基本的 BIOS 模式，避免前面的黑屏等不兼容情况出现。</p>
-<h3 id="2-屏蔽开源驱动-nouveau">2. 屏蔽开源驱动 nouveau</h3>
-<p>Nouveau 是 Linux 诸多发行版为 Nvidia 显卡提供的默认开源驱动程序，在显示效能上当然比不上 Nvidia 官方提供的默认驱动。因此，首先我们要卸载这个开源驱动，为安装官方闭源驱动做准备。</p>
-<p>打开终端执行 (下面以 gedit 文本编辑器为例)：</p>
-<pre><code class="language-shell">sudo gedit /etc/modprobe.d/blacklist-nouveau.conf
-</code></pre>
-<p>在新增的文件中写入以下内容保存:</p>
-<pre><code class="language-shell">blacklist nouveau
-blacklist lbm-nouveau
-options nouveau modeset=0
-alias nouveau off
-alias lbm-nouveau off
-</code></pre>
-<p>然后在终端中执行:</p>
-<pre><code class="language-shell">echo options nouveau modeset=0 | sudo tee -a /etc/modprobe.d/nouveau-kms.conf
-sudo update-initramfs -u
-</code></pre>
-<p>检查 nouveau 开源驱动是否屏蔽成功:</p>
-<pre><code class="language-shell">lsmod | grep nouveau
-</code></pre>
-<p>若无内容输出，则说明 nouveau 已经屏蔽成功，可以进行下一步操作了，否则仔细检查以上操作有无操作上的失误。</p>
-<h3 id="3-安装n卡驱动">3. 安装N卡驱动</h3>
-<p>安装驱动的方式有好几种，比如系统设置附加驱动安装法，官方 .run 驱动文件安装法，ppa 法和自行编译法。这里将前三种都大概讲一下，根据情况任选其一即可。</p>
-<h4 id="31-系统设置附加驱动安装法">3.1 系统设置附加驱动安装法</h4>
-<p><strong>注意：这种方法仅适用于拔线法，不适用于没有集显的CPU使用。因为这种方法是在图形界面里执行的，而没有集显口可用的情况下，独显是一直被占用的。</strong></p>
-<p>在系统设置里面更新软件源缓存列表后，在附加驱动里面勾选类似于 Nvidia-387 字样的私有驱动进行安装，装完重启电脑即可。</p>
-<p>这一步若遇到安装 N 卡驱动时进度条一直卡在最后走不满的情况，可进终端用 top 指令查看是什么进程在占用 CPU。若是 aptd 进程长时间占用 100% CPU，在系统设置里面关闭所有系统更新相关的设置即可解决。</p>
-<h4 id="32-ppa-安装法">3.2 ppa 安装法</h4>
-<p>首先大致介绍一下 Ubuntu 的桌面图形系统的运作方式和相关概念。第一个概念是 DE (desktop environment), 即桌面环境，可以理解为整个图形界面的 GUI 显示模式，不同的 Ubuntu 定制版和同一定制版的不同版本采用的 DE 可能都不一样，常见的 DE 有界面简洁但是资源占用少的 Xfce，Ubuntu 14 和16 都采用的 Unity，以及 Ubuntu 17 后开始采用的 gnome 等等。第二个概念是 DM (Display Manager), 前面提到了 DE，用于管理 DE 的软件就是 DM 了，比如可以同时安装多个 DE，用 DM 去手动切换。Ubuntu 16 采用的 DM 叫 lightdm。</p>
-<p>因此，这里安装显卡驱动时，我们直接把整个 DM 关闭掉就不会让 DE 占用独显了。DM 的存放位置在 <code>/etc/init.d/</code> 文件夹下，里面一般带 dm 后缀的就是系统默认 DM 了。</p>
-<p><code>ctrl</code>+<code>alt</code>+<code>F1</code>进入文本模式：</p>
-<p>关闭图形界面：</p>
-<pre><code class="language-shell">sudo /etc/init.d/lightdm stop
-</code></pre>
-<p>添加 ppa 源并更新缓存:</p>
-<pre><code class="language-shell">sudo add-apt-repository ppa:graphics-drivers/ppa
-sudo apt-get update
-</code></pre>
-<p>安装驱动:</p>
-<pre><code class="language-shell">sudo apt-get install nvidia-xxx  # xxx是版本号，这里按tab选择版本即可
-</code></pre>
-<p>重启电脑或重新打开图形界面(sudo /etc/init.d/lightdm start, 然后 ctrl alt F6进入图形界面)</p>
-<h4 id="33-run文件安装法">3.3 run文件安装法</h4>
-<p>Nvidia 提供的驱动文件格式是 .run 后缀的，去官网下载对应的驱动文件，然后按照 ppa 法关闭图形环境，在文本模式输入：</p>
-<pre><code class="language-shell">chmod a+x a.run  # a.run为驱动文件
-sudo sh ./a.run
-</code></pre>
-<p>装完重启或者重新打开图形界面。</p>
-<h4 id="34-出错重来">3.4 出错重来</h4>
-<p>如果操作过程中发现安装出错了要重新装驱动，首先得卸载驱动残余，再重新安装驱动：</p>
-<pre><code class="language-shell">sudo apt-get remove --purge nvidia*
-sudo apt-get autoremove
-sudo reboot
-</code></pre>
-<p>注: .run文件安装的驱动最好上面卸载可能不干净，最好先执行: <code>sudo /usr/bin/nvidia-uninstall</code></p>
-<h4 id="35-装完检查">3.5 装完检查</h4>
-<p>上述几种方法安装完驱动后，开机进入系统，屏幕右上角点击关于此计算机，图形一栏应该会显示这是NVIDIA 的显卡，说明独显驱动已安装成功。若仍然显示为 Intel 集显，可尝试手动切换到独显：</p>
-<pre><code class="language-shell">sudo prime-select nvidia
-</code></pre>
-<p>这时再输入指令：</p>
-<pre><code class="language-shell">prime-select query
-</code></pre>
-<p>若显示 <code>nvidia</code> 说明已切换到独显，但是要重启才能生效。</p>
-<p>如果这一步仍然失败，一定是前面哪一步出错了。</p>
-<h3 id="4-对于华硕主板配合拔线法安装的说明">4. 对于华硕主板配合拔线法安装的说明</h3>
-<p>在拔线法的情况下，安装 N 卡独显驱动前，需要把显示器线接在集显口上。然而<strong>某些</strong>华硕主板设置是<strong>默认关闭集显</strong>的，因此要先在主板设置中将其打开并暂时将优先级设为最高，再插线到集显接口，否则该接口无法使用。</p>
-<p>更改方法：</p>
-<p>开机时进入BIOS设置，依次进入 Advanced—&gt;System Agent Configuration—&gt;Graphics Configuration中，将 iGPU 设为开启，然后 Primary Display 设为 IGFX，保存重启。再把视频线接到主板上 CPU 那儿的集显接口上，开机进入 Ubuntu 系统。</p>
-<p>根据第 3 部分教程安装完独显驱动后，再把显示器线接到独显口上，这时再去主板中启用独显：</p>
-<p>上一步的步骤中把 Primary Display 设置为 PCIE 或者 Auto</p>
-<h3 id="5-总结">5. 总结</h3>
-<p>总结起来一句话：给独显装驱动的时候，不要占用独显。凡是线插在独显口，又进入 GUI 图形界面操作的，一定失败！</p>
+<h4 id="39-print时的编码处理">3.9 print时的编码处理</h4>
+<p>Python2.7中调用print打印出var变量时，操作系统会对var做一定的字符处理：如果var是str类型的变量，则直接将var变量交付给终端进行显示；如果var变量是unicode类型，则操作系统首先将var编码成str类型的对象，再显示。<br>
+因此对于unicode中有中文，打印前一定要先encode('utf-8')之类，或者用sys.setdefaultencoding('utf-8')也行。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://foofish.net/python-unicode-error.html">Python 编码错误的本质原因</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://blog.ernest.me/post/python-setdefaultencoding-unicode-bytes">立即停止使用 setdefaultencoding('utf-8')， 以及为什么</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
 
         </div>
         <!-- Share to Twitter, Weibo, Telegram -->
@@ -297,19 +423,21 @@ sudo reboot
 <ul>
 <li>
 <ul>
-<li><a href="#1-%E5%AE%89%E8%A3%85ubuntu%E7%B3%BB%E7%BB%9F">1. 安装Ubuntu系统</a></li>
-<li><a href="#2-%E5%B1%8F%E8%94%BD%E5%BC%80%E6%BA%90%E9%A9%B1%E5%8A%A8-nouveau">2. 屏蔽开源驱动 nouveau</a></li>
-<li><a href="#3-%E5%AE%89%E8%A3%85n%E5%8D%A1%E9%A9%B1%E5%8A%A8">3. 安装N卡驱动</a>
+<li><a href="#1-%E4%BB%8E%E7%BC%96%E7%A0%81%E8%B0%88%E8%B5%B7">1. 从编码谈起</a></li>
+<li><a href="#2-%E5%AD%97%E8%8A%82%E4%B8%8E%E5%AD%97%E7%AC%A6%E7%BC%96%E7%A0%81%E4%B8%8E%E8%A7%A3%E7%A0%81">2. 字节与字符，编码与解码</a></li>
+<li><a href="#3-python2%E7%9A%84%E7%BC%96%E7%A0%81%E9%97%AE%E9%A2%98">3. Python2的编码问题</a>
 <ul>
-<li><a href="#31-%E7%B3%BB%E7%BB%9F%E8%AE%BE%E7%BD%AE%E9%99%84%E5%8A%A0%E9%A9%B1%E5%8A%A8%E5%AE%89%E8%A3%85%E6%B3%95">3.1 系统设置附加驱动安装法</a></li>
-<li><a href="#32-ppa-%E5%AE%89%E8%A3%85%E6%B3%95">3.2 ppa 安装法</a></li>
-<li><a href="#33-run%E6%96%87%E4%BB%B6%E5%AE%89%E8%A3%85%E6%B3%95">3.3 run文件安装法</a></li>
-<li><a href="#34-%E5%87%BA%E9%94%99%E9%87%8D%E6%9D%A5">3.4 出错重来</a></li>
-<li><a href="#35-%E8%A3%85%E5%AE%8C%E6%A3%80%E6%9F%A5">3.5 装完检查</a></li>
+<li><a href="#31-%E9%BB%98%E8%AE%A4%E7%BC%96%E7%A0%81">3.1 默认编码</a></li>
+<li><a href="#32-str%E5%92%8Cunicode">3.2 str和unicode</a></li>
+<li><a href="#33-%E4%B8%8D%E5%90%8C%E7%BC%96%E7%A0%81%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2">3.3 不同编码之间的转换</a></li>
+<li><a href="#34-unicodexxxerror-%E9%94%99%E8%AF%AF%E5%8F%8A%E5%8E%9F%E5%9B%A0">3.4 UnicodeXXXError 错误及原因</a></li>
+<li><a href="#35-%E4%B9%B1%E7%A0%81%E9%97%AE%E9%A2%98">3.5 乱码问题</a></li>
+<li><a href="#36-str%E5%92%8Cunicode">3.6 str()和unicode()</a></li>
+<li><a href="#37-%E6%A3%80%E6%B5%8B%E7%BC%96%E7%A0%81">3.7 检测编码</a></li>
+<li><a href="#38-syssetdefaultencodingutf-8%E7%9A%84%E4%BD%9C%E7%94%A8">3.8 sys.setdefaultencoding('utf-8')的作用</a></li>
+<li><a href="#39-print%E6%97%B6%E7%9A%84%E7%BC%96%E7%A0%81%E5%A4%84%E7%90%86">3.9 print时的编码处理</a></li>
 </ul>
 </li>
-<li><a href="#4-%E5%AF%B9%E4%BA%8E%E5%8D%8E%E7%A1%95%E4%B8%BB%E6%9D%BF%E9%85%8D%E5%90%88%E6%8B%94%E7%BA%BF%E6%B3%95%E5%AE%89%E8%A3%85%E7%9A%84%E8%AF%B4%E6%98%8E">4. 对于华硕主板配合拔线法安装的说明</a></li>
-<li><a href="#5-%E6%80%BB%E7%BB%93">5. 总结</a></li>
 </ul>
 </li>
 </ul>
