@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-14T13:13:59.022Z</updated>
+    <updated>2020-02-14T13:16:25.110Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -44,8 +44,8 @@ publisher = {IEEE}
     </entry>
     <entry>
         <title type="html"><![CDATA[TensorFlow 学习笔记 -- Input Pipeline]]></title>
-        <id>https://wizyoung.github.io/tensorflow_reading_files/</id>
-        <link href="https://wizyoung.github.io/tensorflow_reading_files/">
+        <id>https://wizyoung.github.io/tensorflow-reading-files/</id>
+        <link href="https://wizyoung.github.io/tensorflow-reading-files/">
         </link>
         <updated>2018-08-21T16:23:43.000Z</updated>
         <summary type="html"><![CDATA[<p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
