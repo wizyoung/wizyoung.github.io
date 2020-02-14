@@ -1,0 +1,244 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>CaptainChen</title>
+<link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="/media/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media/css/align.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+
+<script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d74f9d2ab6f1000123c83b9&product=inline-share-buttons' async='async'></script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90329290-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-90329290-1');
+  </script>
+    
+
+  <meta name="description" content="Stay hungry, stay foolish" />
+</head>
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+
+    <div class="nav py-3 md:py-8 fixed w-full z-10 bg-gray-50 dark:bg-gray-700 transition-all duration-300" :class="{ 'scroll': scrolled }">
+  <div class="flex justify-end px-4">
+    <div class="w-8 h-8 flex justify-center items-center rounded-full md:hidden" @click="showMenu = !showMenu">
+      <i class="ri-close-line" v-show="showMenu"></i>
+      <i class="ri-menu-3-line" v-show="!showMenu"></i>
+    </div>
+  </div>
+  <nav class="max-w-4xl w-full mx-auto text-center flex flex-col md:flex-row justify-center md:block" :class="`${ showMenu ? 'block' : 'hidden' }`">
+    
+      <a href="/" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        首页
+      </a>
+    
+      <a href="/archives" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        归档
+      </a>
+    
+      <a href="/tags" target="" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        标签
+      </a>
+    
+      <a href="http://152.136.143.237:8080" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+        MyCloud
+      </a>
+    
+    <a href="https://wizyoung.github.io/atom.xml" target="_blank" class="py-2 md:py-1 px-4 mx-4 inline-flex transition font-semibold rounded dark:hover:bg-gray-600 hover:bg-gray-200">
+      RSS
+    </a>
+  </nav>
+</div>
+
+    <div class="max-w-4xl w-full mx-auto pt-32">
+      
+
+      <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
+        
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Ubuntu下GTX1080显卡驱动折腾小记
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-03-02</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          实验室挂代理宿舍免费上网折腾小记
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-02-21</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          极路由 1s 刷老毛子 Padavan 固件教程
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-02-12</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>不得不说，极路由官方固件实在太烂，难以忍受，网上普遍反应的间歇跳 Ping，网络不稳定需要重启等问题我都遇到过，更让人烦躁的是重启速度极慢(往往需要 3 分钟之久)，断网状态下手机 APP 竟然不能访问后台以及断网时网页版后台各种抽风(每次配置个路由中继要死的心都有了)等等诸如此类的问题。2015 年初以不到百元的价格买到的手头台极路由 1S，拥有 16 M 闪存，128 M 内存如此强大的配置，却配着如此垃圾的固件实在可惜，因此今天花了点时间将它刷成了老毛子 Padavan 固件。</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/我的Mac软件列表/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          我的 Mac 软件列表
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-01-28</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        
+本文更新于 2020.1.13
+
+作为 macOS 忠实用户，自从我 2015 年抛弃 Windows 投入 macOS 阵营来，除偶尔需要游戏不方便外，整体的体验还是较之前 Windows 时代好不少，究其原因，无非三点：（1） mac...
+      </div>
+      <a href="https://wizyoung.github.io/我的Mac软件列表/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/Shell/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          将 Sublime 打造成交互式 Python Shell
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-01-24</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <blockquote>
+<p>本文更新于 2020.1.13</p>
+</blockquote>
+<p>虽然 Pycharm 是宇宙第一 Python IDE(不服打脸)，但日常总遇到想测试极短代码片段而不想打开 Pycharm 这个庞然大物的情形，这时候用自带的 Python IDLE 吧，不仅不支持语法高亮，还不能自动补全；用 Jupyter Notebook 吧，还要开浏览器等系列步骤，还是不够快；用终端吧，额，算了。</p>
+<p>看着手边宇宙第一编辑器 Sublime，心想能不能做成一个支持语法高亮，代码自动补全，简洁快速，颜值爆表的交互式 Python shell 呢？答案是可以的～</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/Shell/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/Python2笔记-类/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Python2笔记--类
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-01-24</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <p>Python面向对象特性中最核心的一部分就是类了，花了点时间整理了一下，做成笔记，方便日后翻阅。</p>
+<h2 id="1-新式类object类和旧式类">1. 新式类(object类)和旧式类</h2>
+<h3 id="11-定义">1.1 定义</h3>
+<ul>
+<li>旧式类：</li>
+</ul>
+<p>定义一个旧式类A:</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/Python2笔记-类/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+  
+      </div>
+
+      
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://wizyoung.github.io/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+      <a href="https://wizyoung.github.io/page/3/" class="btn btn-white">
+        下一页
+        <i class="ri-arrow-right-line ml-4"></i>
+      </a>
+    
+  </div>
+
+      <footer class="py-12 text-center px-3 md:px-0" v-pre>
+  CopyRight © 2017 - 2020
+	<br>
+	本站已稳定运行
+	<strong><script type="text/javascript">
+	var urodz= new Date("01/16/2017");
+	var now = new Date();
+	var ile = now.getTime() - urodz.getTime();
+	var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+	document.write(+dni)
+	</script>
+	</strong>天 总访问量 <strong><span id="busuanzi_value_site_uv"></span></strong> 次
+
+</footer>
+
+    </div>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://wizyoung.github.io/media/scripts/main.js"></script>
+</body>
+
+</html>

@@ -13823,6 +13823,7 @@ blockquote.markdown {
   padding-right: 2rem;
   margin-left: 0rem;
   margin-right: 0rem;
+  border-radius: 1em;
 }
 
 @media (min-width: 768px) {
@@ -13830,6 +13831,7 @@ blockquote.markdown {
   blockquote.markdown {
     margin-left: 0rem;
     margin-right: 0rem;
+    border-radius: 1rem;
   }
 }
 

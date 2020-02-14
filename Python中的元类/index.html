@@ -1,0 +1,549 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>Python中的元类 - CaptainChen</title>
+<link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="/media/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media/css/align.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="Python中的元类 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+
+<script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d74f9d2ab6f1000123c83b9&product=inline-share-buttons' async='async'></script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90329290-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-90329290-1');
+  </script>
+    
+
+  <meta name="description" content="
+本文摘自我的笔记Python2笔记—类
+
+1. 继承与实例化
+在面向对象体系里面，存在两种关系：
+
+继承关系：在python里面用__base__可查看，顶层是object
+实例关系：表现为某个类型的实例化。在python里面用__cla..." />
+  <meta property="og:title" content="Python中的元类 - CaptainChen">
+  <meta property="og:description" content="
+本文摘自我的笔记Python2笔记—类
+
+1. 继承与实例化
+在面向对象体系里面，存在两种关系：
+
+继承关系：在python里面用__base__可查看，顶层是object
+实例关系：表现为某个类型的实例化。在python里面用__cla..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://wizyoung.github.io/Python中的元类/" />
+  <meta property="og:image" content="https://wizyoung.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="Python中的元类 - CaptainChen">
+  <meta name="twitter:description" content="
+本文摘自我的笔记Python2笔记—类
+
+1. 继承与实例化
+在面向对象体系里面，存在两种关系：
+
+继承关系：在python里面用__base__可查看，顶层是object
+实例关系：表现为某个类型的实例化。在python里面用__cla...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wizyoung.github.io/Python中的元类/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://wizyoung.github.io/media/css/prism-material-oceanic.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://wizyoung.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      CaptainChen
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          Python中的元类
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-calendar"></i>  2017-01-23
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-clock-o"></i>  965 words (about 5 min read)
+            <!-- <span style="margin-right:8px"></span>
+            <i class="fa fa-file-word-o"></i>  965 words -->
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-eye"></i>  <span class="date_info"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> Views
+</span>
+          </div>
+            
+            <script>
+              function lan(){
+                if (document.getElementById("lan").innerText == "简→繁"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_tw.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "繁→簡"
+                }
+                else if(document.getElementById("lan").innerText == "繁→簡"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_cn.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "简→繁"
+                  }
+              }
+            </script>
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-refresh"></i>  <a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体">简→繁</a>
+          </div>
+          
+            <a href="https://wizyoung.github.io/tag/E1T5P6edB/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              Python
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <blockquote>
+<p>本文摘自我的笔记<a href="https://wizyoung.github.io/Python2%E7%AC%94%E8%AE%B0-%E7%B1%BB/">Python2笔记—类</a></p>
+</blockquote>
+<h2 id="1-继承与实例化">1. 继承与实例化</h2>
+<p>在面向对象体系里面，存在两种关系：</p>
+<ul>
+<li>继承关系：在python里面用<code>__base__</code>可查看，顶层是<code>object</code></li>
+<li>实例关系：表现为某个类型的实例化。在python里面用<code>__class__</code>查看，顶层为<code>type</code>。</li>
+</ul>
+<!-- more -->
+<pre><code class="language-python">&gt;&gt;&gt; object.__base__  # 继承关系上object为顶层
+None
+&gt;&gt;&gt; object.__class__  # object是type的实例
+&lt;type 'type'&gt;
+
+&gt;&gt;&gt; type.__base__  # type继承自obect
+&lt;type 'object'&gt;
+&gt;&gt;&gt; type.__class__  # type是type的实例
+&lt;type 'type'&gt;
+
+# python中type和object就像鸡和蛋的关系
+
+&gt;&gt;&gt; int.__base__  # int继承自object
+&lt;type 'object'&gt;
+&gt;&gt;&gt; int.__class__  # int是type的实例
+&lt;type 'type'&gt;
+</code></pre>
+<p>再看一个实例化的例子：</p>
+<pre><code class="language-python">&gt;&gt;&gt; class A(object):
+... 	pass 
+&gt;&gt;&gt; a = A()
+&gt;&gt;&gt; a.__class__  # a是A的实例
+&lt;class '__main__.A'&gt;
+&gt;&gt;&gt; a.__base__  # 报错。实例没有继承关系，所以没有__base__属性
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+AttributeError: 'A' object has no attribute '__base__'
+</code></pre>
+<h2 id="2-type的用法">2. type的用法</h2>
+<ul>
+<li><code>type(obj)</code>：获取对象的相应类型，与<code>obj.__class__</code>等同</li>
+<li><code>type(className, (parents), {attr: value})</code>：创建并返回一个类，三个参数分别对应与类名(字符串)，父类(元组形式)，属性(字典形式)</li>
+</ul>
+<p>因此以下两个语句等价：</p>
+<pre><code class="language-python">class Integer(object):
+    name = 'interger'
+    def inc(self, num):
+        return num + 1
+#------------------------
+# 父类元组为空，默认继承object
+Integer = type('Integer', (), {'name': 'interger',
+                                   'increase': lambda self, num: num + 1})
+</code></pre>
+<p>也就是说，类的定义过程，其实是<strong>type类型实例化的过程</strong></p>
+<h2 id="3-元类metaclass">3. 元类metaclass</h2>
+<p>先总结下：</p>
+<ul>
+<li>
+<p>类的类就是元类(强调实例化)，默认是type</p>
+</li>
+<li>
+<p>type是所有元类的<strong>父亲</strong></p>
+</li>
+<li>
+<p>在实例化时，也就是创建类型对象时，会按以下顺序查找<code>__metaclass__</code>属性：</p>
+</li>
+</ul>
+<p><code>class.__metaclass__ -&gt; bases.__metaclass__ -&gt; module.__metaclass__ -&gt; type</code></p>
+<p>理解以上几点，看下面例子：</p>
+<pre><code class="language-python">&gt;&gt;&gt; class M(type):
+... 	pass
+&gt;&gt;&gt; M.__class__
+&lt;type 'type'&gt;
+&gt;&gt;&gt; M.__base__  # 继承自type
+&lt;type 'type'&gt;
+</code></pre>
+<p>上面的M就是一个元类。要实例化，可定义一个类：</p>
+<pre><code class="language-python">&gt;&gt;&gt; class TM(object):
+... 	__metaclass__ = M  # 指定元类
+&gt;&gt;&gt; TM.__class__
+&lt;class '__main__.M'&gt;
+&gt;&gt;&gt; TM.__base__
+&lt;type 'object'&gt;
+</code></pre>
+<p>其实上面的<code>__metaclass__ = M</code>是一个语法糖，它等价于<code>TM = M('TM', (), {})</code></p>
+<h2 id="4-元类的作用">4. 元类的作用</h2>
+<p>元类的作用：控制类的创建过程。</p>
+<p>例子: 让定义的类的所有方法和属性名称前面都加上<code>my_</code>前缀：</p>
+<pre><code class="language-python">class PrefixMetaclass(type):
+    def __new__(cls, className, bases, attrs):
+        _attrs = dict(('my_' + name, value) for name, value in attrs.items())
+        return type.__new__(cls, className, bases, _attrs)
+        # return type(className, bases, _attrs)
+        # return super(PrefixMetaclass, cls).__new__(cls, className, bases, _attrs)
+
+
+class Foo(object):
+    __metaclass__ = PrefixMetaclass  # 这样Foo就是PrefixMetaclass的实例了
+    name = 'foo'
+
+    def bar(self):
+        return 'bar'
+
+
+foo = Foo()
+print foo.name    # AttributeError: 'Foo' object has no attribute 'name'
+print foo.my_name # foo
+print foo.bar()   # AttributeError: 'Foo' object has no attribute 'bar'
+print foo.my_bar()# bar
+</code></pre>
+<p>参数解释：</p>
+<ul>
+<li>cls：指向当前类PrefixMetaclass</li>
+<li>className: 后面要创建的类名字</li>
+<li>bases: 要创建的类的父类</li>
+<li>attrs: 要创建的类的属性和方法，为一个字典</li>
+</ul>
+<p>最后三个return语句本质上是相同的。</p>
+<h2 id="5-应用">5. 应用</h2>
+<p>例1:创建一个静态类(static class): 不允许创建实例，通常作为工具类(Utility)存在:</p>
+<pre><code class="language-python">class StaticMetaclass(type):
+    def __new__(cls, name, base, attr):
+        ret = type.__new__(cls, name, base, attr)  # 创建类实例
+
+        def ctor(cls, *args, **kwargs):
+            raise RuntimeError(&quot;Cannot create a instance of the static class!&quot;)
+
+        ret.__new__ = staticmethod(ctor)  # 无法实例化
+
+        return ret
+
+class Data(object):
+    __metaclass__ = StaticMetaclass
+
+Data()  # RuntimeError: Cannot create a instance of the static class!
+</code></pre>
+<p>例2: 创建一个密封类(sealed class)：禁止被继承</p>
+<pre><code class="language-python">class SealedMetaclass(type):
+    _types = set()
+    
+    def __init__(cls, name, base, attr):
+        if cls._types &amp; set(base):  # 其实是只能继承自object，创建的类_types非空，再创建子类会报错
+            raise SyntaxError(&quot;Cannot inherit form a sealed class!&quot;)
+        cls._types.add(cls)
+
+class A(object):
+    __metaclass__ = SealedMetaclass
+
+class B(A):
+    pass
+# SyntaxError: Cannot inherit form a sealed class!
+</code></pre>
+<hr>
+<p>参考资料：</p>
+<p><a href="http://funhacks.net">Pyton之旅</a></p>
+<p><a href="http://www.liaoxuefeng.com/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000/001386820064557c69858840b4c48d2b8411bc2ea9099ba000">使用元类 - 廖雪峰的官方网站</a></p>
+<p><a href="http://gohom.win/2015/10/23/pyMetaClass/">Python:元类metaclass</a></p>
+<p><a href="http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html">Python Types and Objects</a></p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+       <!--  <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div> -->
+        <br>
+        <hr>
+        <br>
+        <div class="sharethis-inline-share-buttons"></div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-user"></i> 本文由<a rel="license" href="/"> CaptainChen </a>创作</div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-cc"></i> 该文章采用<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"> 知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。转载请注明出处！</div>
+      </div>
+
+      <!--  -->
+<!-- 
+       -->
+
+      <!-- 来必力City版安装代码 -->
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDUwMS83MDU1">
+      <script type="text/javascript">
+         (function(d, s) {
+             var j, e = d.getElementsByTagName(s)[0];
+
+             if (typeof LivereTower === 'function') { return; }
+
+             j = d.createElement(s);
+             j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+             j.async = true;
+
+             e.parentNode.insertBefore(j, e);
+         })(document, 'script');
+      </script>
+      <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+      <!-- City版安装代码已完成 -->
+
+      <footer class="py-12 text-center px-3 md:px-0" v-pre>
+  CopyRight © 2017 - 2020
+	<br>
+	本站已稳定运行
+	<strong><script type="text/javascript">
+	var urodz= new Date("01/16/2017");
+	var now = new Date();
+	var ile = now.getTime() - urodz.getTime();
+	var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+	document.write(+dni)
+	</script>
+	</strong>天 总访问量 <strong><span id="busuanzi_value_site_uv"></span></strong> 次
+
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-%E7%BB%A7%E6%89%BF%E4%B8%8E%E5%AE%9E%E4%BE%8B%E5%8C%96">1. 继承与实例化</a></li>
+<li><a href="#2-type%E7%9A%84%E7%94%A8%E6%B3%95">2. type的用法</a></li>
+<li><a href="#3-%E5%85%83%E7%B1%BBmetaclass">3. 元类metaclass</a></li>
+<li><a href="#4-%E5%85%83%E7%B1%BB%E7%9A%84%E4%BD%9C%E7%94%A8">4. 元类的作用</a></li>
+<li><a href="#5-%E5%BA%94%E7%94%A8">5. 应用</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://wizyoung.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://wizyoung.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+</body>
+
+</html>

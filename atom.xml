@@ -1,21 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://just-ux.github.io</id>
+    <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-12T09:36:21.070Z</updated>
+    <updated>2020-02-14T12:40:47.433Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://just-ux.github.io"/>
-    <link rel="self" href="https://just-ux.github.io/atom.xml"/>
+    <link rel="alternate" href="https://wizyoung.github.io"/>
+    <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
     <subtitle>Stay hungry, stay foolish</subtitle>
-    <logo>https://just-ux.github.io/images/avatar.png</logo>
-    <icon>https://just-ux.github.io/favicon.ico</icon>
+    <logo>https://wizyoung.github.io/images/avatar.png</logo>
+    <icon>https://wizyoung.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CaptainChen</rights>
     <entry>
-        <title type="html"><![CDATA[TensorFlow 学习笔记 -- Input Pipeline]]></title>
-        <id>https://just-ux.github.io/post/tensorflow_reading_files/</id>
-        <link href="https://just-ux.github.io/post/tensorflow_reading_files/">
+        <title type="html"><![CDATA[Bibtex 文献引用小技巧 -- Identification String]]></title>
+        <id>https://wizyoung.github.io/bibtex-entries-skill/</id>
+        <link href="https://wizyoung.github.io/bibtex-entries-skill/">
         </link>
-        <updated>2020-02-07T11:06:44.000Z</updated>
+        <updated>2018-08-23T06:33:01.000Z</updated>
+        <summary type="html"><![CDATA[<p>LaTeX 中引用参考文献时使用 bibtex 非常方便，然而不同的期刊/会议对于 .bib 条目中的 Booktitle 的要求是不一样的，比如引用一篇 CVPR 文献，有些期刊要求 References 里面写成 In <em>CVPR</em>, 2017，有些又要求写成 In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition，标准不一，每次频繁改来改去，让人十分头疼。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>LaTeX 中引用参考文献时使用 bibtex 非常方便，然而不同的期刊/会议对于 .bib 条目中的 Booktitle 的要求是不一样的，比如引用一篇 CVPR 文献，有些期刊要求 References 里面写成 In <em>CVPR</em>, 2017，有些又要求写成 In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition，标准不一，每次频繁改来改去，让人十分头疼。</p>
+<!-- more -->
+<p>今天无意中在网上看到了纽约州立大学石溪分校计算机实验室的 <a href="https://www3.cs.stonybrook.edu/~cvl/content/others/m_cvl_latex_guide.pdf">LaTeX Guidelines</a>，才发现原来可以使用标致串(Identification String)的小技巧来解决这一痛点，即把 Booktitle 后的字段统一替换为自定义的 Identification String 来提高效率，避免重复操作。举个例子，经过这么一番操作后，ref.bib 文件中的引用条目会变成这样:</p>
+<pre><code class="language-shell">@inproceedings{Buch:2017SST,
+author = {Buch, Shyamal and Escorcia, Victor and Shen, Chuanqi and Ghanem, Bernard and Niebles, Juan Carlos},
+title = {SST: Single-Stream Temporal Action Proposals},
+booktitle = CVPR,
+year = {2017},
+pages = {6373--6382},
+publisher = {IEEE}
+}
+</code></pre>
+<p>这里的 booktitle 后的 CVPR 就是一个 Identification String，注意没有大括号包围。它实际上是一个占位符，或者说变量，需要额外定义。因此，我们可以新建一个新的 bib 文件(不妨命名为strings.bib)，里面是各种 Identification String 的定义:</p>
+<pre><code class="language-shell">@string{CVPR = &quot;Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition&quot;}
+</code></pre>
+<p>这样在 tex 文件末尾导入 bib 引用的时候，多导入一个 strings.bib 即可:</p>
+<pre><code class="language-shell">\bibliography{strings,ref}
+</code></pre>
+<p>这样，针对不同的期刊/会议的引用格式要求，我们每次只需要修改 strings.bib 文件即可，效率一下得到极大提高。</p>
+<p>当然，这样还有一个好处，那就是在使用文献管理软件时，文章来源一律写成期刊/会议简写即可。比如我使用的 Papers 文献管理软件，对于 Conference 那一栏直接写成对应会议的简写就好:</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581680710249.png" alt="" loading="lazy"></figure>
+<p>这样日常的查阅，筛选，管理也会更轻松。</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[TensorFlow 学习笔记 -- Input Pipeline]]></title>
+        <id>https://wizyoung.github.io/tensorflow_reading_files/</id>
+        <link href="https://wizyoung.github.io/tensorflow_reading_files/">
+        </link>
+        <updated>2018-08-21T16:23:43.000Z</updated>
         <summary type="html"><![CDATA[<p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
 ]]></summary>
         <content type="html"><![CDATA[<p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
@@ -35,7 +67,7 @@
 <li>Dataset 模块中, shuffle 的 buffer_size 要好好设计，同时 shuffle 和 repeat 的顺序要注意</li>
 <li>Dataset.from_tensor_slices 是把传进来的输入以 tf.constant() 的形式存在于 Graph 中，而一个 Graph Protobuf 文件的上限是 2G</li>
 </ul>
-<p>**推荐阅读: ** <a href="https://cs230-stanford.github.io/tensorflow-input-data.html">CS230 课件</a> “An overview of tf.data” 部分列举的所有链接。</p>
+<p><strong>推荐阅读:</strong> <a href="https://cs230-stanford.github.io/tensorflow-input-data.html">CS230 课件</a> “An overview of tf.data” 部分列举的所有链接。</p>
 <hr>
 <h2 id="1-tfrecord">1. TFRecord</h2>
 <h3 id="11-tfrecord-格式">1.1 TFRecord 格式</h3>
@@ -238,13 +270,13 @@ with tf.gfile.FastGFile('test.png', 'wb') as f:
 <li>tf.image.resize_images(images, size, method=ResizedMethod.BILINEAR, align_corners=False)</li>
 </ul>
 <p>输入：</p>
-<pre><code>images: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
+<pre><code class="language-shell">images: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
 
 size: [new_height, new_width]
 
 method: 默认双线性插值。可选0-3。0：双线性插值；1：最近邻法；2：双三次插值；3：面积插值
-
-  align_corners: 角度是否对齐。`记得务必设置为 True`
+	
+align_corners: 角度是否对齐。`记得务必设置为 True`
 </code></pre>
 <blockquote>
 <p>说明: tf 中的图片 resize 和 opencv，PIL 等主流库的实现不一样。opencv 等主流库在插值计算时，对齐时是把每个像素看做一个“点区域”，因此用的是中心点对齐，有个 0.5 的偏移计算设置，可参考 <a href="https://blog.csdn.net/deeplan_1994/article/details/78375823">CSDN博客</a>；而 tf 在实现的时候，每个像素就是一个点，align_corners 设置为 False 就是上述博客中没加偏移的情况，显然不合理；align_corners 设置为 True 就是对齐四个角顶点，连续插值。个人觉得 tf 的设置 align_corners=True 更加合理。代码的区别可参加图: https://i.loli.net/2018/08/16/5b755dc364464.png。这一部分的相关讨论参见: https://github.com/tensorflow/tensorflow/issues/6720。</p>
@@ -269,7 +301,7 @@ print img.eval()
 <li>tf.image.crop_to_bounding_box(image, offset_h, offset_w, target_h, target_w)</li>
 </ul>
 <p>输入:</p>
-<pre><code>image: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
+<pre><code class="language-shell">image: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
 
 offset_h, offset_w: 裁剪区域的左上角坐标
 
@@ -279,7 +311,7 @@ target_h, target_w: 输出区域的大小
 <li>tf.image.pad_to_bounding_box(image, offset_h, offset_w, target_h, target_w)</li>
 </ul>
 <p>输入:</p>
-<pre><code>image: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
+<pre><code class="language-shell">image: 4D 的 [N, H, W, C] 或 3D 的 [H, W, C] 数据。因此这个函数支持批处理。
 
 offset_h, offset_w: 原图上面要补充多少行0，原图左侧要补充多少列0
 
@@ -326,7 +358,7 @@ target_h, target_w: 输出区域的大小。多出的区域一律补0
 <li>tf.image.draw_bounding_boxes(image, boxes): 在图上画标注框。</li>
 </ul>
 <p><strong>输入</strong>:</p>
-<pre><code>image: 4D 的 [N, H, W, C] 图像。注意数据类型必须为 float。
+<pre><code class="language-shell">image: 4D 的 [N, H, W, C] 图像。注意数据类型必须为 float。
 
 boxes: [batch, box_num, 4]。bounding box 的坐标，四个点的坐标格式是 [y_min, x_min, y_max, x_max]，这四个参数都是 [0, 1] 的数，表示比例。
 </code></pre>
@@ -343,7 +375,7 @@ plt.show()
 <li>tf.image.sample_distorted_bounding_box(image_size, bounding_boxes, min_object_covered=0.1, aspect_ratio_range, max_attempts=None, use_image_if_no_bounding_boxes=None): 根据 Ground_truth 标记框的位置，根据一些约束随机生成图像。用于数据扩充。</li>
 </ul>
 <p><strong>输入</strong>:</p>
-<pre><code>image_size: [h, w, c] 原图的 shape。
+<pre><code class="language-shell">image_size: [h, w, c] 原图的 shape。
 
 bounding_boxes:  [batch, box_num, 4], ground_truth 的位置信息。坐标格式仍然是 [y_min, x_min, y_max, x_max]，四个参数均为 [0, 1] 之间的浮点数，表示比例。
 
@@ -356,14 +388,13 @@ max_attempts: 默认100。最大尝试次数。
 use_image_if_no_bounding_boxes: 默认 False。不提供标记框时是否返回原图。
 </code></pre>
 <p><strong>输出</strong>：元组 (begin, size, bboxes):</p>
-<pre><code>begin: [offset_height, offset_width, 0]。输出区域起点，即左上角的坐标。
+<pre><code class="language-shell">begin: [offset_height, offset_width, 0]。输出区域起点，即左上角的坐标。
 
 size: [target_height, target_width, -1]。输出区域的大小。
 
 bboxes: 输出框的坐标，shape: [1, 1, 4]。
-
-其中输出的 begin 和 size 可作为 tf.slice 的输入，bboxes 可作为 tf.image.draw_bounding_boxes 的输入。
 </code></pre>
+<p>其中输出的 begin 和 size 可作为 tf.slice 的输入，bboxes 可作为 tf.image.draw_bounding_boxes 的输入。</p>
 <pre><code class="language-python"># img: [h, w, c]
 begin, size, bbox_for_draw = tf.image.sample_distorted_bounding_box(tf.shape(img),[[[0.1, 0.3, 0.5, 0.7]]], min_object_covered=0.4)
 # distorted 为随机提取出来的图像区域
@@ -615,7 +646,7 @@ def preprocess_image(image, height, width,
 <li>tf.PriorityQueue: 带优先级出列的队列</li>
 </ul>
 <p>这些类型的 Queue 的 API 大致差不多，以 FIFOQueue 为例:</p>
-<pre><code>tf.FIFOQueue(capacity, dtypes, shapes=None): capacity 为队列容量，dtypes 为队列中元素的数据类型，shapes 为队列中元素的 shape。
+<pre><code class="language-shell">tf.FIFOQueue(capacity, dtypes, shapes=None): capacity 为队列容量，dtypes 为队列中元素的数据类型，shapes 为队列中元素的 shape。
 -&gt; 常用函数:
 - dequeue(): 出队一个元素
 - dequeue_many(n): 出队 n 个元素。使用此函数必须手动指定 shapes。
@@ -676,7 +707,7 @@ coord.join(threads)
 <p>tf 中的多线程使用的队列启动方案。与 tf.train.Coordinator 一起使用。</p>
 <p>比如一个经典的文件输入流程: 第一批线程通过往第一个队列里面不断填充要处理的文件名；第二批线程从前面的队列取出文件名，然后进行读取处理等操作，得到的张量放在第二个队列；第三批线程从第二个队列中取出张量，组成 batch，输入网络进行训练。</p>
 <p>初始化方法:</p>
-<pre><code>__init__(queue=None, enqueue_ops=None)
+<pre><code class="language-python">__init__(queue=None, enqueue_ops=None)
 </code></pre>
 <p>其中 queue 为要操作的队列，enqueue_ops 为要对该队列执行的多线程操作。</p>
 <p>tf.train.QueueRunner 常与以下两个类一起使用:</p>
@@ -777,7 +808,7 @@ with tf.Session() as sess:
 <h4 id="325-组合训练数据-batching">3.2.5 组合训练数据 (batching)</h4>
 <p>一个高效的数据 pipeline 应该是一个生产者——消费者模型，即生产者是一个文件名队列，里面存储要处理的文件的名字，这个队列用单线程处理即可；消费者为多线程从生产者队列里面取出文件名，进行文件读取和预处理，然后放置在另一个队列，最终的数据从这个队列中取出。</p>
 <p>一个完整的流程如图:</p>
-<figure data-type="image" tabindex="1"><img src="AnimatedFileQueues.gif" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581680353625.gif#w90#h30" alt="" loading="lazy"></figure>
 <p>TensorFlow 中提供的对应的 batch 数据的函数为:</p>
 <ul>
 <li>tf.train.batch(tensors, batch_size, num_threads=1, capacity=32, enqueue_many=False, dynamic_pad=False, allow_smaller_final_batch=False): 组合输入的 tensors, 形成一个 batch，放置在新建的一个 Queue 中，并同时新建一个 QueueRunner (添加到默认的 QueueRunner collection)。allow_smaller_final_batch 为 True 时，最后的不够一个 batch 的数据也会留下。返回一个 batch 的数据。</li>
@@ -954,7 +985,7 @@ with tf.Session() as sess:
 <h3 id="42-案例分析">4.2 案例分析</h3>
 <h4 id="421-性能优化">4.2.1 性能优化</h4>
 <p>以一个简单的文本处理为例，假设为分布式文件系统，有 5 个 txt 文件，每个文件里面存放某一类样本的文件名和类别标号，形如:</p>
-<pre><code>- file1.txt:
+<pre><code class="language-shell">- file1.txt:
 	cat1.jpg 0
  	cat2.jpg 0
  	...
@@ -985,7 +1016,7 @@ iterator = dataset.make_one_shot_iterator()
 next_element = iterator.get_next()
 </code></pre>
 <p>输出的结果为:</p>
-<pre><code>[['bird1.jpg' '3']
+<pre><code class="language-shell">[['bird1.jpg' '3']
  ['dog4.jpg' '1']]
 [['dog2.jpg' '1']
  ['bird3.jpg' '3']]
@@ -1251,9 +1282,470 @@ with tf.Session() as sess:
 ]]></content>
     </entry>
     <entry>
+        <title type="html"><![CDATA[Python2 笔记—编码问题]]></title>
+        <id>https://wizyoung.github.io/python-encoding/</id>
+        <link href="https://wizyoung.github.io/python-encoding/">
+        </link>
+        <updated>2017-09-09T06:54:38.000Z</updated>
+        <summary type="html"><![CDATA[<p>初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 [^1] [^2]，感觉豁然开朗，做成笔记，方便日后查阅。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>初学 Python2，感觉Python2中的编码问题一直很烦人，无意中看到几篇博文 <sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> <sup class="footnote-ref"><a href="#fn2" id="fnref2">[2]</a></sup>，感觉豁然开朗，做成笔记，方便日后查阅。</p>
+<!-- more -->
+<h3 id="1-从编码谈起">1. 从编码谈起</h3>
+<ul>
+<li>ASCII: 全称American Strandard Code for Information Interchange。ASCII只使用了一个字节(8个比特位)来编码。且ASCII只使用了后7位，最高位位0，因此只有128个字符编码。如字符<code>A</code>对应的二进制数值为<code>01000001</code>，对应的十进制数就是65。</li>
+<li>EASCII(ISO/8859-1): ASCII扩展而来，主要是考虑西欧地区的符号编码。</li>
+<li>GBK: 中文编码。开始是<code>GB2312</code>，又称GB0，共收录了6763个汉字，兼容ASCII。后来扩展到<code>GBK</code>，收录了27484个汉字，同时还收录了藏文等少数名族文字。GBK也是兼容ASCII，英文字符用1个字节表示，汉字用两个字节表示。</li>
+<li>Unicode: Unicode全称Universal Multiple-Octet Coded Character Set, 又简称为UCS。UCS有两种格式：UCS-2和UCS-4，顾名思义就是用2个字节和4个字节来编码。Unicode只是规定了如何编码，没有规定如何传输，保存这个编码。比如一个汉字到底是用4个字节还是3个字节来表示，依赖于具体的实现方式，如UTF-8等。</li>
+<li>UTF-8: Unicode Transformation Format，Unicode的一种实现方式，是可变长字符编码，根据具体使用情况用1-4个字节来表示一个字符。</li>
+</ul>
+<h3 id="2-字节与字符编码与解码">2. 字节与字符，编码与解码</h3>
+<ul>
+<li>
+<p>字节与字符：</p>
+<ul>
+<li>字节：计算机存储一切数据都是由一串01的字节序列构成</li>
+<li>字符：就是一个符号，比如汉字，字母等</li>
+</ul>
+</li>
+<li>
+<p>编码与解码</p>
+<ul>
+<li>编码encode: 字符→字节。编码是为了存储和传输</li>
+<li>解码decode: 字节→字符。解码是为了显示和阅读</li>
+</ul>
+</li>
+</ul>
+<h3 id="3-python2的编码问题">3. Python2的编码问题</h3>
+<h4 id="31-默认编码">3.1 默认编码</h4>
+<p>Python2默认用ASCII编码:</p>
+<pre><code class="language-python">import sys
+print sys.getdefaultencoding()  # ascii
+</code></pre>
+<p>就是说默认的解释器会把str类型的字符串当做ASCII编码来处理。</p>
+<p>注意区分的是：文档开头往往加上一句<code># coding: utf-8</code>是来指定脚本文件的编码方式。</p>
+<h4 id="32-str和unicode">3.2 str和unicode</h4>
+<p>Python2中，str和unicode都是basestring的子类，可见str和unicode是两种不同类型的字符串对象。</p>
+<p>以汉字“禅”为例，str打印出来就是十六进制形式的\xe7\xa6\x85，对应于一长串二进制序列；而用unicode打印出来就是unicode符号u'\u7985':</p>
+<ul>
+<li>str:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '禅'
+&gt;&gt;&gt; s
+'\xe7\xa6\x85'
+&gt;&gt;&gt; type(s)
+&lt;type 'str'&gt;
+</code></pre>
+<ul>
+<li>unicode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; u = u'禅'
+&gt;&gt;&gt; u
+u'\u7985'
+&gt;&gt;&gt; type(u)
+&lt;type 'unicode'&gt;
+</code></pre>
+<p>如果要把unicode符号保存到文件，或者是传输到网络，那就必须编码为str类型；反之亦然：</p>
+<ul>
+<li>encode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; u = u'禅'
+&gt;&gt;&gt; u
+u'\u7985'
+&gt;&gt;&gt; u.encode('utf-8')
+'\xe7\xa6\x85'
+</code></pre>
+<ul>
+<li>decode:</li>
+</ul>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '禅'
+&gt;&gt;&gt; s
+'\xe7\xa6\x85'
+&gt;&gt;&gt; s.decode('utf-8')
+u'\u7985'
+</code></pre>
+<p>说白了：</p>
+<p>编码：字符到二进制数据的转换，即: encode: unicode → str</p>
+<p>解码：二进制数据到字符的转换，即: decode: str → unicode</p>
+<h4 id="33-不同编码之间的转换">3.3 不同编码之间的转换</h4>
+<figure data-type="image" tabindex="1"><img src="http://7xqr14.com1.z0.glb.clouddn.com/python_encoding.jpg" alt="" loading="lazy"></figure>
+<p>不同的编码之间通过unicode作为中间媒介来互相转换:</p>
+<p>比如一个用utf-8编码好的汉字'\xe7\xa6\x85'，要变成gbk:</p>
+<pre><code class="language-shell">'\xe7\xa6\x85'.decode('utf-8').encode('gbk')
+</code></pre>
+<h4 id="34-unicodexxxerror-错误及原因">3.4 UnicodeXXXError 错误及原因</h4>
+<ul>
+<li>
+<p>case1:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '你好'
+&gt;&gt;&gt; s.decode()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>s.decode()默认使用ascii解码，但是ascii字符集中是没有中文字符的，因此报错: 0xe4超出范围了</p>
+</li>
+<li>
+<p>case2:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; a = u'你好'
+&gt;&gt;&gt; a.encode()
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+</code></pre>
+<p>与case1类似，unicode转换str时默认用ascii，也是报错。</p>
+</li>
+<li>
+<p>case3:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s = '你好'  # str类型
+&gt;&gt;&gt; y = u'python'  # unicode类型
+&gt;&gt;&gt; s + y    # 隐式转换，即 s.decode('ascii') + u
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>str和unicode混用时，str会隐式地decode为unicode，然后也是由于用了ascii找不到汉字报错。这里详细见3.8节。</p>
+</li>
+</ul>
+<h4 id="35-乱码问题">3.5 乱码问题</h4>
+<pre><code class="language-shell"># coding: utf-8
+&gt;&gt;&gt; a='好'
+&gt;&gt;&gt; a
+'\xe5\xa5\xbd'
+&gt;&gt;&gt; b=a.decode(&quot;utf-8&quot;)
+&gt;&gt;&gt; b
+u'\u597d'
+&gt;&gt;&gt; c=b.encode(&quot;gbk&quot;)
+&gt;&gt;&gt; c
+'\xba\xc3'
+&gt;&gt;&gt; print c
+��
+</code></pre>
+<p>utf-8编码的字符‘好’占用3个字节，解码成Unicode后，如果再用gbk来解码后，只有2个字节的长度了，最后出现了乱码的问题，因此防止乱码的最好方式就是始终坚持使用同一种编码格式对字符进行编码和解码操作。</p>
+<h4 id="36-str和unicode">3.6 str()和unicode()</h4>
+<p>str()和unicode()是两个工厂方法，分别返回str字符串对象和unicode字符串对象。</p>
+<p>其实本质为:</p>
+<p>str(s) = s.encode('ascii')</p>
+<p>unicode(s) = s.decode('ascii')</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s3 = u&quot;你好&quot;
+&gt;&gt;&gt; s3
+u'\u4f60\u597d'
+&gt;&gt;&gt; str(s3)
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeEncodeError: 'ascii' codec can't encode characters in position 0-1: ordinal not in range(128)
+</code></pre>
+<ul>
+<li>技巧:</li>
+</ul>
+<p>对于一个unicode形式的str字符串，如<code>\u4f60\u597d</code>这样的，如何变成真正的unicode呢?</p>
+<p>最简单是前面加个u:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; print u'\u4f60\u597d'
+你好
+</code></pre>
+<p>但是在像解析html时，储存在了一个字符串中，就可以这么做:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s='\u4f60\u597d'
+&gt;&gt;&gt; type(s)
+&lt;type 'str'&gt;
+&gt;&gt;&gt; s = s.decode('unicode-escape')
+&gt;&gt;&gt; print s
+你好
+</code></pre>
+<h4 id="37-检测编码">3.7 检测编码</h4>
+<p>可用chardet检测字符编码:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; import chardet
+&gt;&gt;&gt; a = '好'
+&gt;&gt;&gt; print chardet.detect(a)
+{'confidence': 0.73, 'language': '', 'encoding': 'ISO-8859-1'}
+</code></pre>
+<h4 id="38-syssetdefaultencodingutf-8的作用">3.8 sys.setdefaultencoding('utf-8')的作用</h4>
+<p>Python2会在必要的情况下，对string作必要的编码类型转换，如<code>==</code>操作，字节和字符拼接，以及对str编码(encode)时。</p>
+<p>看3.4的例子，我们这么操作就不会报错了:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; import sys
+&gt;&gt;&gt; reload(sys)
+&lt;module 'sys' (built-in)&gt;
+&gt;&gt;&gt; sys.setdefaultencoding('utf-8')  # 初始化后删除了 sys.setdefaultencoding 方法，我们需要重新载入 
+&gt;&gt;&gt; s = '你好'
+&gt;&gt;&gt; y = u'python'
+&gt;&gt;&gt; s + y
+u'\u4f60\u597dpython'
+</code></pre>
+<p>s和y类型不一样，于是Python调用更改后的默认编码utf-8对s进行decode为unicode再操作。</p>
+<p>再看:</p>
+<pre><code class="language-shell">&gt;&gt;&gt; s='你好'
+&gt;&gt;&gt; s.encode('gb2312')
+Traceback (most recent call last):
+  File &quot;&lt;stdin&gt;&quot;, line 1, in &lt;module&gt;
+UnicodeDecodeError: 'ascii' codec can't decode byte 0xe4 in position 0: ordinal not in range(128)
+</code></pre>
+<p>直接对str进行编码，首先会解码到unicode，默认ASCII，所以报错。</p>
+<p>修改的方式为改成<code>s.decode('utf-8').encode('gb2312')</code>或者加上sys.setdefaultencoding('utf-8')</p>
+<p><strong>注意</strong>: 用这种方法是有潜在危害的，详见: <a href="https://blog.ernest.me/post/python-setdefaultencoding-unicode-bytes">立即停止使用 setdefaultencoding('utf-8')， 以及为什么</a></p>
+<p>文中提到，好的习惯是:</p>
+<blockquote>
+<ul>
+<li>所有 text string 都应该是 unicode 类型，而不是 str，如果你在操作 text，而类型却是 str，那就是在制造 bug。</li>
+<li>在需要转换的时候，显式转换。从字节解码成文本，用 var.decode(encoding)，从文本编码成字节，用 var.encode(encoding)。</li>
+<li>从外部读取数据时，默认它是字节，然后 decode 成需要的文本；同样的，当需要向外部发送文本时，encode 成字节再发送。</li>
+</ul>
+</blockquote>
+<h4 id="39-print时的编码处理">3.9 print时的编码处理</h4>
+<p>Python2.7中调用print打印出var变量时，操作系统会对var做一定的字符处理：如果var是str类型的变量，则直接将var变量交付给终端进行显示；如果var变量是unicode类型，则操作系统首先将var编码成str类型的对象，再显示。<br>
+因此对于unicode中有中文，打印前一定要先encode('utf-8')之类，或者用sys.setdefaultencoding('utf-8')也行。</p>
+<hr class="footnotes-sep">
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p><a href="https://foofish.net/python-unicode-error.html">Python 编码错误的本质原因</a> <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+<li id="fn2" class="footnote-item"><p><a href="https://blog.ernest.me/post/python-setdefaultencoding-unicode-bytes">立即停止使用 setdefaultencoding('utf-8')， 以及为什么</a> <a href="#fnref2" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[Mac 个人使用小技巧汇总]]></title>
+        <id>https://wizyoung.github.io/Mac个人使用小技巧汇总/</id>
+        <link href="https://wizyoung.github.io/Mac个人使用小技巧汇总/">
+        </link>
+        <updated>2017-08-09T11:31:12.000Z</updated>
+        <summary type="html"><![CDATA[<p>手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>手里的 15 款 MacBook Pro 使用两年下来，积累了不少使用小技巧，不同于网上烂大街分享的“玩机经验”，这些技巧大部分是基于自己的长时间使用发现和总结出来的，有些偏小众，却都很实用，今天花点时间整理一部分，日后想到更多的再补充。</p>
+<!-- more -->
+<h3 id="1-safari-清除历史记录却不丢失网站登录信息">1. Safari 清除历史记录却不丢失网站登录信息</h3>
+<p>点击任务栏 <code>Safari</code>，鼠标放在 <code>清除历史记录...</code> 上，按住 <code>Option</code> 键，该选项变成<code>清除历史记录但保留网站数据</code>。这样，将不会丢失保存网站的登录信息。</p>
+<h3 id="2-safari-知乎复制文字版权问题">2. Safari 知乎复制文字版权问题</h3>
+<p>知乎复制文字，经常最后面带版权小尾巴；或者禁止转载的，直接不能复制。</p>
+<p>解决方法：Safari任务栏点击<code>开发</code>→<code>停用JavaScript</code>，再刷新网页即可。若无开发选项，可在Safari<code>偏好设置</code>→<code>高级</code>勾选<code>在菜单栏中显示“开发”菜单</code>。</p>
+<h3 id="3-系统-window-界面动画迟滞">3. 系统 Window 界面动画迟滞</h3>
+<p>感觉 MacOS Sierra 稳定性和发热的控制和 OSX 10.11 相比相差太远，尤其是 WindowServer 的动画过渡上。从 Docker 上打开 Safari，明显感觉到动画的迟滞。可用以下两条指令加快动画:</p>
+<pre><code class="language-shell">defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool NO 
+defaults write -g NSAutomaticWindowAnimationsEnabled -bool false
+</code></pre>
+<p>系统整体动画迟滞的原因还有一种可能，就是支付宝服务后台搞事，相关说明和操作详见: <a href="https://zhuanlan.zhihu.com/p/20606174">【警告】支付宝后台服务会妨害 rMBP 的显示效能（更新灭活脚本）</a></p>
+<h3 id="4-字体册-fontbook-浏览卡顿">4. 字体册 Fontbook 浏览卡顿</h3>
+<p>升级到 macOS Sierra 后，发现字体册 Fontbook 浏览字体明显卡顿，曾以为是系统特色，后来发现其实重置相关设置就好。在Finder中删除 <code>~/Library/Preferences/com.apple.FontBook.plist</code> 即可。</p>
+<h3 id="5-finder-打开卡顿缓慢">5. Finder 打开卡顿缓慢</h3>
+<p>遇到 Finder 打开速度极其缓慢，半天才显示文件，也是重置相关设置就好：删除 <code>~/Library/Preferences/com.apple.finder.plist</code> 后重启Finder。</p>
+<p>其实，哪个软件出了问题，删除 <code>~/Library/Preferences/</code> 下对应的plist文件重置就好。</p>
+<h3 id="6-合盖休眠耗电问题">6. 合盖休眠耗电问题</h3>
+<p>经 <a href="https://www.v2ex.com/t/361578#reply5">V2EX</a> 讨论，证实为 WiFi TCP Keep Alive 耗电，最简单的设置是终端执行:</p>
+<pre><code class="language-shell">sudo pmset -a tcpkeepalive 0
+</code></pre>
+<p>亲测执行此命令后，合盖一晚，掉电为 0。</p>
+<h3 id="7-终端走代理">7. 终端走代理</h3>
+<p>可能很多人推荐使用<code>Proxychains-ng</code>，个人觉得还是麻烦。考虑到我使用 zsh 和 surge，因此我的解决方案是: 在 <code>~/.zshrc</code> 中添加指令:</p>
+<pre><code class="language-shell">proxy(){
+	export https_proxy=&quot;http://127.0.0.1:localport&quot;
+	export http_proxy=&quot;http://127.0.0.1:localport&quot;
+	echo &quot;HTTP Proxy on&quot;
+}
+
+noproxy(){
+	unset http_proxy
+	unset https_proxy
+	echo &quot;HTTP Proxy off&quot;
+}
+</code></pre>
+<p>终端中键入 <code>proxy</code> 即可打开代理，键入 <code>noproxy</code> 可关闭代理。</p>
+<h3 id="8-风扇全速运转时cpu降速">8. 风扇全速运转时CPU降速</h3>
+<p>[本条来自某锁推的推主] 风扇全速运转时，macOS 会调用 kernel_task 给 CPU 降速，最终导致系统整体迟滞，解决方案是在禁用 SIP 的情况下删除 <code>/System/Library/Extensions/IOPlatformPluginFamily.kext</code> 后重启。详细可参见 <a href="https://www.davidschlachter.com/misc/kernel_task">Disable OS X kernel_task throttling</a>.</p>
+<h3 id="9-appstore-下载慢">9. AppStore 下载慢</h3>
+<p>在正在下载的 App 上点击使下载暂停，然后清除 DNS 缓存，再点击继续下载，只要 Apple 服务器和本地网络没问题，速度马上飚满带宽。</p>
+<h3 id="10-onenote-同步缓慢">10. OneNote 同步缓慢</h3>
+<p>OneNote 经常同步出错，或者同步缓慢，根据 MS 官方建议，使用 DNS 4.2.2.1 或 4.2.2.2 即可，然而将其用作备 DNS 简直就是扯淡（备用 DNS 上场的机会都没有）。即使使用了优质梯子还是慢。还好我们有Surge，只需要让 Surge 指定 OneNote 同步的服务器使用 4.2.2.1 或者 4.2.2.2 作为 DNS 就好：在 Surge 配置文件中增加以下几行:</p>
+<pre><code>[Host]
+d.docs.live.net = server:4.2.2.1
+www.onenote.com = server:4.2.2.1
+*.microsoft.com = server:4.2.2.1
+*.live.com = server:4.2.2.1
+</code></pre>
+<p>再出现同步慢你来打我.</p>
+<h3 id="11-omnigraffle-不支持数学公式">11. OmniGraffle 不支持数学公式</h3>
+<p>下载 LaTeXiT，键入 LaTeX 生成公式后，直接拖进 OmniGraffle 就好，选择矢量图形，双击还能回到 LaTexiT 编辑。</p>
+<h3 id="12-保持当前窗口最前操作后面的窗口">12. 保持当前窗口最前操作后面的窗口</h3>
+<p>按住 <code>Cmd</code> 键再点击操作后面的窗口即可。这个操作非常实用，比如复制后面浏览器中的问题到当前的文本编辑器中，这样鼠标选中后面浏览器中的文字复制时，最前的的编辑器窗口并不会消失。</p>
+<h3 id="13-百度云下载限速">13. 百度云下载限速</h3>
+<p><strong>已失效</strong> 浏览器使用<a href="https://github.com/acgotaku/BaiduExporter">BaiduExporter</a>或者<a href="https://greasyfork.org/scripts/31921-%E7%99%BE%E5%BA%A6%E7%BD%91%E7%9B%98%E7%9B%B4%E6%8E%A5%E4%B8%8B%E8%BD%BD%E5%8A%A9%E6%89%8B">相关油猴脚本</a>解析导出真实地址再用多线程工具下载。大部分人偏向于使用<a href="https://aria2.github.io">Aria2</a>下载，但是本人更偏好轻量的<a href="https://github.com/eribertomota/axel">Axel</a>，命令行呼出就可用:  <code>axel -n num_of_connections -a download_link</code></p>
+<p>亲测20M带宽下，开30+线程，能直接跑满带宽。</p>
+<h3 id="14-右键中有重复或者已卸载软件的快捷方式">14. 右键中有重复或者已卸载软件的快捷方式</h3>
+<p>终端执行:</p>
+<pre><code class="language-shell">/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user
+</code></pre>
+<p>然后重启。</p>
+<h3 id="15-mission-control-动画太慢">15. Mission Control 动画太慢</h3>
+<p>升级到 macOS Sierra 后，Mission Control 动画是在太慢，影响效率。可到系统设置的触控板设置中，关闭自带的 Mission Control 手势，然后转用第三方软件 Jitouch 的 Mission Control。</p>
+<h3 id="16-查看某-app-支持的-applescript-脚本">16. 查看某 App 支持的 AppleScript 脚本</h3>
+<p>日常编写 AppleScript 完成一些自动化操作时，却不知道某些 App 支持哪些 AppleScript 脚本，其实 macOS 提供了一个很隐蔽的方式来查看：打开脚本编辑器，任务栏点击<code>文件</code>→<code>打开词典...</code>，再选择目标 App 即可.</p>
+<h3 id="17-popclip-在某些应用中弹不出来">17. Popclip 在某些应用中弹不出来</h3>
+<p>Popclip 是个极好的软件，然而，有些 App 中，由于适配原因，鼠标选中文字后并不能弹出 Popclip 插件条，这时可借助 BetterTouchTool 软件强行让 Popclip 弹出来:</p>
+<p>建立一个 .scpt 脚本，里面填入 <code>tell application &quot;PopClip&quot; to appear</code> 保存。然后在 BetterTouchTool 新建一个 Gesture (触摸板手势我选择的是 3 Fingers Swipe Up)，<code>Predefined Action</code> 中选择 <code>Open Application / File / Apple Script ...</code>，在弹出的窗口选中刚才那个 scpt 脚本。这样，每当鼠标选中文字，Popclip 插件条不出来的时候，三个手指在触摸板上顺势网上一推，插件条就强行被手动唤出了.</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[提高效率第二弹之自己开发谷歌翻译 popclip 插件]]></title>
+        <id>https://wizyoung.github.io/提高效率第二弹之自己开发谷歌翻译popclip插件/</id>
+        <link href="https://wizyoung.github.io/提高效率第二弹之自己开发谷歌翻译popclip插件/">
+        </link>
+        <updated>2017-08-04T15:17:14.000Z</updated>
+        <summary type="html"><![CDATA[<blockquote>
+<p>根据 Google Translate 开发的 Popclip 插件，响应速度是我用过的翻译插件里最快的，可以选择翻译源（.com .cn），有多种国外语言可以翻译，点击按钮后在屏幕右上方显示译文。                           ——<a href="https://www.waerfa.com/what-apps-are-frank-playing-eposide-4">MAC玩儿法</a>报道</p>
+</blockquote>
+<p>继上次自己开发 Alfred Workflow 后，这次我又盯上了 popclip。</p>
+<p>事因是自己一直渴望有一种完美的谷歌翻译使用方式，目的是用鼠标选中待选定句子，然后弹出谷歌翻译内容。无奈一直没人做，只好自己动手实现。</p>
+]]></summary>
+        <content type="html"><![CDATA[<blockquote>
+<p>根据 Google Translate 开发的 Popclip 插件，响应速度是我用过的翻译插件里最快的，可以选择翻译源（.com .cn），有多种国外语言可以翻译，点击按钮后在屏幕右上方显示译文。                           ——<a href="https://www.waerfa.com/what-apps-are-frank-playing-eposide-4">MAC玩儿法</a>报道</p>
+</blockquote>
+<p>继上次自己开发 Alfred Workflow 后，这次我又盯上了 popclip。</p>
+<p>事因是自己一直渴望有一种完美的谷歌翻译使用方式，目的是用鼠标选中待选定句子，然后弹出谷歌翻译内容。无奈一直没人做，只好自己动手实现。</p>
+<!-- more -->
+<h2 id="1-使用效果展示">1. 使用效果展示</h2>
+<p>展示一下最终的自制 popclip 谷歌翻译插件使用效果:</p>
+<p>首先设置里面有几个选项可以设置:</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581672359730.jpg#w70" alt="" loading="lazy"></figure>
+<ul>
+<li><code>Google Translate Site</code>: 可选 <code>translate.google.cn</code> 和 <code>translate.google.com</code> 作为翻译服务器，前者给墙内的朋友使用，后者则是给墙外的使用。</li>
+<li><code>Destination Language</code> 和 <code>Source Language</code>: 目标外语 (destination language) 和母语 (source language)。程序将对划中的语言进行检测，若检测的语言非母语，则翻译为母语；若检测的语言为母语，则翻译为目标外语。</li>
+</ul>
+<p>使用效果GIF：</p>
+<p>英译中:</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581672455232.gif" alt="" loading="lazy"></figure>
+<p>中译英:</p>
+<figure data-type="image" tabindex="3"><img src="https://wizyoung.github.io/post-images/1581672474906.gif" alt="" loading="lazy"></figure>
+<p>确实很方便~</p>
+<h2 id="2-为什么选择popclip">2. 为什么选择popclip</h2>
+<p>其实 Mac 上的翻译方案很多，在本插件出来之前，个人觉得最好用的当属 <a href="http://translate-tab.com">Translate Tab</a>了，鼠标选中待翻译字段，点击其 popclip 图标，然后通知栏弹出翻译：</p>
+<figure data-type="image" tabindex="4"><img src="https://wizyoung.github.io/post-images/1581672764624.png" alt="" loading="lazy"></figure>
+<p>然而 Translate Tab 也是有缺点的：</p>
+<ul>
+<li>收费 (其实就是简单封装了一下 google translate 网页版）</li>
+<li>通过 popclip 选择文字这种调用方式，第一次打开很慢，经常转了无数圈，结果才翻译出来</li>
+<li>服务器只能走 <code>translate.google.com</code>，不翻墙无法使用。我给开发者发邮件，开发者回复道 <code>Theoretically google must redirect app to the domain according to geolocation. I will check this moment</code>，然后我再回复就没有后文了。。。如果用 Surge 的 URL Rewrite 功能设置<code>translate.google.com</code> 跳转到 <code>translate.google.cn</code>，需要开启 MitM，比较浪费性能。</li>
+</ul>
+<p>因为我非常喜欢 popclip 这种形式的小软件，因此决定转入 popclip 插件开发。popclip 官方 API 提供了一种 <code>show-result</code> 形式的 GUI 显示文本，然而效果实在太挫了：只能在屏幕中像下面一样显示一长条，不支持换行，太长了就自动截断了，也是让人很醉：</p>
+<figure data-type="image" tabindex="5"><img src="https://wizyoung.github.io/post-images/1581672965135.png#w90" alt="" loading="lazy"></figure>
+<p>一开始我使用的方案是采用第三方 <a href="http://mstratman.github.io/cocoadialog/">cocoaDialog</a> 做结果显示 GUI，做了右上角弹出 Bubble 或者屏幕中央弹出 Msgbox 的方式。使用几个版本后还是抛弃了 cocoaDialog，因为弹出的 MsgBox 30 秒后自动消失，往往翻译结果还没看完就消失了。研究 AppleScript 时发现自带的 osascript 提供了 dialog 的组件显示文本，非常好用。就是 dialog 要显示自定义图标文件全网缺少相关文档，找的方案基本不可行，硬是被自己试出来。。。</p>
+<h2 id="3-调用谷歌翻译">3. 调用谷歌翻译</h2>
+<p>如何调用谷歌翻译，我第一反应当然是爬虫，然而用 Chrome 到 translate.google.cn 抓包一看：</p>
+<figure data-type="image" tabindex="6"><img src="https://wizyoung.github.io/post-images/1581674609602.png#w80#h30" alt="" loading="lazy"></figure>
+<p>上图中的 Request URL 中有一个 tk 值，这个值是根据输入的文字调用 JavaScript 计算的，代码经过了非常复杂的混淆包装，几万行代码就为了混淆一个 tk 值，太可怕了。。。</p>
+<p>那就试试谷歌官方的收费 API 吧。于是我去开通了 Google Cloud，绑定了信用卡，然后发现新用户居然赠送 300 美金优惠券（限一年用完）！激动！另外，谷歌翻译官方 API 使用方式也很简单，用自己的 API KEY 组合成这样一个 URL: <code>https://translation.googleapis.com/language/translate/v2?key=' + API_KEY</code>，然后把 <code>{'target':target_lang, 'q': query}</code> post 上去，就可以得到结果。不需要科学上网，速度也是超级快。然而谷歌计费方式是每 1 M 个 characters 收费 20 美金，我在写代码过程中就随便小测了一下，居然用了 3 K 个 characters，所以这个 characters 咋算的，字母数么。。。要是分享出去用的人多了，用不了几天 300 美金就花光了。</p>
+<p>然后我又去搜索，有没有免费的谷歌翻译 API，果然在知乎找到了: <a href="https://www.zhihu.com/question/47239748?sort=created">请问如何调用谷歌翻译API?</a>。用 <code>http://translate.google.cn/translate_a/single?client=gtx&amp;amp;amp;amp;sl=en&amp;tl=zh-CN&amp;dt=t&amp;q=query</code> 的形式去查询就可以免费调用谷歌翻译。难道是漏网之鱼？不一会我就发现，woc，同一 IP 下调用此 API 多次就直接被 Google 给 ban 了！心机你 Google！</p>
+<p>好在 GitHub 大神多，一通搜索，有人逆向了谷歌的 tk，还封装好了😅: <a href="https://github.com/ssut/py-googletrans">py-googletrans</a>。好了，既然有现成的轮子了，我就直接用了~</p>
+<h2 id="4-popclip-插件的编写">4. popclip 插件的编写</h2>
+<p>虽说第一次接触 popclip 插件的编写，小试一下，发现还是蛮简单的。写起来比 Alfred Workflow 简单不少，然而没法调试，略蛋疼。全程主要参考了少数派 <a href="https://sspai.com/post/26154">让剪切板在 OS X 上飞起来：PopClip 插件编写教程</a> 和 popclip 官方 <a href="https://github.com/pilotmoon/PopClip-Extensions">github documentation</a>。</p>
+<p>一个 popclip 插件，主要包括三部分:</p>
+<ul>
+<li>Config.plist: 属性列表文件。其实类似于 Python 的字典，主要是用 key-value 的形式，设置变量。这里面最重要的两个主 key 就是 Actions 和 Options。Actions 决定了对鼠标选中的文字如何去传参和处理，如何去调用 Shell Script 或 Apple Script 来执行你想要的功能，以及如何输出。Options 则是处理设定框中的选项，是勾选框还是多选栏。具体的细节官方文档一看就懂。下图是本插件 Config.plist 的一部分截图:</li>
+</ul>
+<figure data-type="image" tabindex="7"><img src="https://wizyoung.github.io/post-images/1581676180458.jpg#s70" alt="" loading="lazy"></figure>
+<ul>
+<li>
+<p>Icon.png: 图标文件。这么好的功能当然要有个卡哇伊的图标啦。</p>
+</li>
+<li>
+<p>Script: 脚本文件。执行目标功能。popclip 默认只支持 Shell Script 和 Apple Script。要用其他语言，也只能通过这两种 Script 来调用。</p>
+</li>
+</ul>
+<p>其实，最终实现谷歌翻译的 Python 脚本很简单，一共才 60 余行代码，和上次那个优越加速 Alfred Workflow 几百行相比简单太多，逻辑上也更简单。</p>
+<p>首先我的 <code>translate.py</code> 通过 <code>argparse</code> 接受以下几个参数:</p>
+<pre><code class="language-python">--site site_arg --srclang srclang_arg --destlang destlang_arg
+</code></pre>
+<p>然后通过 <code>go.sh</code> 来执行此 py 文件：</p>
+<pre><code class="language-shell">/usr/bin/python translate.py --site $POPCLIP_OPTION_SITE  --destlang $POPCLIP_OPTION_DESTLANG --srclang $POPCLIP_OPTION_SRCLANG $POPCLIP_URLENCODED_TEXT &amp;
+</code></pre>
+<p>上面的 <code>$POPCLIP_XXX</code> 是 popclip 传递来的变量。以 <code>--site</code> 为例，在上面提到的 Config.plist文件的 Options 中，我设置了一个标题为 <code>Google Translate Site</code> 的多选栏，设定一个变量，其 <code>key</code> 设定为 <code>site</code>，<code>value</code> 设定为 <code>translate.google.cn</code> 或 <code>translate.google.com</code> (都是字符串)，靠用户来选择使用哪个 value。然后选定的 value 以名为 <code>$POPCLIP_OPTION_SITE</code> 的变量存在于整个插件运行的过程中，可随时调用。同样的，<code>$POPCLIP_OPTION_LANG</code> 代表 <code>Target Foreign Language</code> 那一栏的变量的 value，这里的详细设置参见我的 <a href="https://github.com/wizyoung/googletranslate.popclipext/blob/master/src/Config.plist">Config.plist</a>。</p>
+<p>然后有必要交代一下最后那个 <code>$POPCLIP_URLENCODED_TEXT</code>。如何去把鼠标选中的文字转换成一个变量，传递给脚本呢。</p>
+<p>起初，我是在 Config.plist 中的 Actions 中是这么设定的:</p>
+<pre><code class="language-shell">&lt;key&gt;Before&lt;/key&gt;
+&lt;string&gt;copy&lt;/string&gt;
+</code></pre>
+<p>然后用的变量名为 <code>$POPCLIP_TEXT</code>。Before 指的是在 popclip 执行主要 action 之前要干的事，这里我设定为 <code>copy</code>。这样，只要鼠标选中一段文字，将自动执行 <code>Command + C</code>，同时以 string 的形式保存为一个名叫 <code>$POPCLIP_TEXT</code> 的变量。这样的弊端也是显而易见的，每次鼠标划词都复制文字到剪切板，会扰乱剪切板。因此我改用:</p>
+<pre><code class="language-shell">&lt;key&gt;Requirements&lt;/key&gt;
+&lt;string&gt;copy&lt;/string&gt;
+</code></pre>
+<p>根据官方说明，这种情况下的 <code>copy</code> 就不会复制文字到剪切板了。另外之所以用 <code>$POPCLIP_URLENCODED_TEXT</code>，是因为坑爹的 <code>$POPCLIP_TEXT</code>，在遇到空格时就会停止复制，比如鼠标选中了 <code>a b c</code>，其实变量只存了 <code>a</code>。所以只好用 url-encoded 的形式，最后再用 urllib 库的 unquote 转换为正常的 String。</p>
+<p>最后，整体流程框图如下：</p>
+<figure data-type="image" tabindex="8"><img src="https://wizyoung.github.io/post-images/1581676446096.png#w90#h30" alt="" loading="lazy"></figure>
+<p>整体下来思路还是挺清晰的。然后只需要把以上所有文件放在一个文件夹中，强行加上一个 <code>.popclipext</code> 就大功告成啦~</p>
+<h2 id="5-代码与下载">5. 代码与下载</h2>
+<p>虽然代码很简单，开源到 GitHub 了，方便一下其他人参考编写 popclip 吧~</p>
+<p><mark><a href="https://github.com/wizyoung/googletranslate.popclipext">Github Repo</a></mark></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[信息熵，相对熵，交叉熵的理解]]></title>
+        <id>https://wizyoung.github.io/信息熵，相对熵，交叉熵的理解/</id>
+        <link href="https://wizyoung.github.io/信息熵，相对熵，交叉熵的理解/">
+        </link>
+        <updated>2017-05-01T17:33:07.000Z</updated>
+        <summary type="html"><![CDATA[<h2 id="1-香农信息量">1. 香农信息量</h2>
+<p>信息量可以理解为不确定性的多少。</p>
+<p>香农信息量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mi>p</mi></mfrac><mo>=</mo><mo>−</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">=log \frac{1}{p}=-logp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">p</span></span></span></span> (以 2 为底)</p>
+<p>上式中，p 越小，则不确定性越大，包含的信息量就越多。比如 32 支球队，在无任何先验信息的前提下，用二分法猜冠军队伍，最多猜 5 次，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mn>32</mn></mfrac><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">log {1\over32}=5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span>。</p>
+<p>香农信息量的单位是比特 (bit)。</p>
+]]></summary>
+        <content type="html"><![CDATA[<h2 id="1-香农信息量">1. 香农信息量</h2>
+<p>信息量可以理解为不确定性的多少。</p>
+<p>香农信息量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mi>p</mi></mfrac><mo>=</mo><mo>−</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">=log \frac{1}{p}=-logp</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.36687em;vertical-align:0em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">p</span></span></span></span> (以 2 为底)</p>
+<p>上式中，p 越小，则不确定性越大，包含的信息量就越多。比如 32 支球队，在无任何先验信息的前提下，用二分法猜冠军队伍，最多猜 5 次，也就是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mn>32</mn></mfrac><mo>=</mo><mn>5</mn></mrow><annotation encoding="application/x-tex">log {1\over32}=5</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.190108em;vertical-align:-0.345em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">3</span><span class="mord mtight">2</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">5</span></span></span></span>。</p>
+<p>香农信息量的单位是比特 (bit)。</p>
+<!-- more -->
+<h2 id="2-信息熵-entropy">2. 信息熵 (Entropy)</h2>
+<p>信息熵：香农信息量的期望</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow></munder><mi>p</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>p</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">H(X) = -\sum_{x\in X}p(x)log p(x )
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3717110000000003em;vertical-align:-1.321706em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">∈</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.321706em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></span></p>
+<p>信息熵的一种解释是，它表示的是最短的平均编码长度。</p>
+<p>同样的，不确定性越大，熵就越大。</p>
+<h2 id="3-相对熵relative-enrtopy">3. 相对熵(Relative Enrtopy)</h2>
+<p>又叫 KL 散度(Kullback-Leibler Divergence)</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>K</mi><mi>L</mi><mo>(</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>g</mi><mo>(</mo><mi>X</mi><mo>)</mo><mo>)</mo><mo>=</mo><munder><mo>∑</mo><mrow><mi>x</mi><mo>∈</mo><mi>X</mi></mrow></munder><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>⋅</mo><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mrow><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow><mrow><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo></mrow></mfrac></mrow><annotation encoding="application/x-tex">KL(f(x)||g(X))=\sum_{x \in X}f(x)\cdot log{f(x) \over g(x)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.3717110000000003em;vertical-align:-1.321706em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.050005em;"><span style="top:-1.8556639999999998em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">x</span><span class="mrel mtight">∈</span><span class="mord mathdefault mtight" style="margin-right:0.07847em;">X</span></span></span></span><span style="top:-3.0500049999999996em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.321706em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">⋅</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.363em;vertical-align:-0.936em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.427em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></span></p>
+<p>它用来衡量两个数值为<strong>正数</strong>的函数的相似性。</p>
+<p>很容易证明，有三个结论：</p>
+<blockquote>
+<p>(1) 两函数完全相同时，KL=0<br>
+(2) KL越大，差异越大<br>
+(3) 对概率分布或者概率密度函数 (&gt;0), KL 可用来衡量两个随机变量分布的差异性</p>
+</blockquote>
+<p>注意，KL 散度是不对称的，因此琴生和香农提出以下计算方法：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>J</mi><mi>S</mi><mo>(</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>)</mo><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><mo>[</mo><mi>K</mi><mi>L</mi><mo>(</mo><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>+</mo><mi>K</mi><mi>L</mi><mo>(</mo><mi>g</mi><mo>(</mo><mi>x</mi><mo>)</mo><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>f</mi><mo>(</mo><mi>x</mi><mo>)</mo><mo>)</mo><mo>)</mo><mo>]</mo></mrow><annotation encoding="application/x-tex">JS(f(x)||g(x))=\frac{1}{2}[KL(f(x)||g(x)+KL(g(x)||f(x)))]
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.00744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mopen">[</span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07153em;">K</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">]</span></span></span></span></span></p>
+<h2 id="4-交叉熵-cross-entropy">4. 交叉熵 (Cross-Entropy)</h2>
+<p>对一随机事件，其真实概率分布为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">p(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>，从数据中得到的概率分布为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>q</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">q(i)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span>，则我们定义，交叉熵为：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo>)</mo><mo>=</mo><mo>∑</mo><mi mathvariant="normal">_</mi><mi>i</mi><mi>p</mi><mo>(</mo><mi>i</mi><mo>)</mo><mfrac><mn>1</mn><mrow><mi>l</mi><mi>o</mi><mi>g</mi><mi>q</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow></mfrac><mo>=</mo><mo>−</mo><munder><mo>∑</mo><mi>i</mi></munder><mi>p</mi><mo>(</mo><mi>i</mi><mo>)</mo><mi>l</mi><mi>o</mi><mi>g</mi><mrow><mi>q</mi><mo>(</mo><mi>i</mi><mo>)</mo></mrow></mrow><annotation encoding="application/x-tex">H(p,q)= \sum\_{i}p(i)\frac{1}{logq(i)}=-\sum_{i}p(i)log{q(i)}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.25744em;vertical-align:-0.936em;"></span><span class="mop op-symbol large-op" style="position:relative;top:-0.000004999999999977245em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord" style="margin-right:0.02778em;">_</span><span class="mord"><span class="mord mathdefault">i</span></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.936em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327674em;vertical-align:-1.277669em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.0500050000000003em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mopen">(</span><span class="mord mathdefault">i</span><span class="mclose">)</span></span></span></span></span></span></p>
+<p>理解：</p>
+<p>我们用 p 来衡量识别一个样本的信息量，也就是最小编码长度：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo>)</mo><mo>=</mo><mo>∑</mo><mi>p</mi><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mi>p</mi></mfrac></mrow><annotation encoding="application/x-tex">H(p)=\sum p log{1 \over p}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>我们用 q 来估计真实分布为p的样本的信息量：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo>)</mo><mo>=</mo><mo>∑</mo><mi>p</mi><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mn>1</mn><mi>q</mi></mfrac></mrow><annotation encoding="application/x-tex">H(p,q)=\sum p log \frac{1}{q}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.326216em;vertical-align:-0.481108em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.845108em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></p>
+<p>则估算多出来的冗余信息量<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi><mo>(</mo><mi>p</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>q</mi><mo>)</mo><mo>=</mo><mi>H</mi><mo>(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo>)</mo><mo>−</mo><mi>H</mi><mo>(</mo><mi>p</mi><mo>)</mo><mo>=</mo><mo>∑</mo><mi>p</mi><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mi>p</mi><mi>q</mi></mfrac></mrow><annotation encoding="application/x-tex">D(p||q)=H(p,q)-H(p)=\sum p log{p \over q}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2311079999999999em;vertical-align:-0.481108em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7475em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span>（正好就是KL散度啊）</p>
+<p>在机器学习中，p 通常设定为真实标记的分布，q 设定为训练后模型预测标记的分布。</p>
+<p>很容易发现：</p>
+<p class='katex-block'><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo>)</mo><mo>=</mo><mi>H</mi><mo>(</mo><mi>p</mi><mo>)</mo><mo>+</mo><msub><mi>D</mi><mrow><mi>K</mi><mi>L</mi></mrow></msub><mo>(</mo><mi>p</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>q</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">H(p,q)=H(p)+D_{KL}(p||q)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.02778em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.07153em;">K</span><span class="mord mathdefault mtight">L</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span></span></span></span></span></p>
+<p>即：<strong>交叉熵=信息熵+KL散度（相对熵）</strong></p>
+<p>由于信息熵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">H(p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span> 是固定不变的，因此我们在机器学习中就用交叉熵作为损失函数。常见的做法是先用 Softmax 函数将神经网络的结果转换为概率分布，然后用交叉熵刻画估算的概率分布与真实的概率分布的“距离”。</p>
+<p>显然，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>H</mi><mo>(</mo><mi>p</mi><mo separator="true">,</mo><mi>q</mi><mo>)</mo><mo>≥</mo><mi>H</mi><mo>(</mo><mi>p</mi><mo>)</mo></mrow><annotation encoding="application/x-tex">H(p,q) \ge H(p)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.08125em;">H</span><span class="mopen">(</span><span class="mord mathdefault">p</span><span class="mclose">)</span></span></span></span></p>
+<p>可由吉布斯不等式证明得到：</p>
+<blockquote>
+<p>x&gt;0时，有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>l</mi><mi>n</mi><mi>x</mi><mo>≤</mo><mi>x</mi><mo>−</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">lnx \le x-1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">n</span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">x</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span><br>
+因此，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>∑</mo><mi>p</mi><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mi>p</mi><mi>q</mi></mfrac><mo>=</mo><mo>−</mo><mo>∑</mo><mi>p</mi><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mi>q</mi><mi>p</mi></mfrac><mo>≥</mo><mo>−</mo><mo>∑</mo><mi>p</mi><mo>(</mo><mfrac><mi>q</mi><mi>p</mi></mfrac><mo>−</mo><mn>1</mn><mo>)</mo><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\sum p log {p \over q}=-\sum p log{q \over p} \ge -\sum p({q \over p} -1)=0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2311079999999999em;vertical-align:-0.481108em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7475em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2311079999999999em;vertical-align:-0.481108em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7475em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.2311079999999999em;vertical-align:-0.481108em;"></span><span class="mord">−</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-symbol small-op" style="position:relative;top:-0.0000050000000000050004em;">∑</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">p</span><span class="mopen">(</span><span class="mord"><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.7475em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">p</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.446108em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03588em;">q</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.481108em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span><br>
+等号当且仅当在 p 和 q 分布完全一致时成立 (<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>p</mi><mi>i</mi></msub><mo>=</mo><msub><mi>q</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">p_i=q_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">p</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">q</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>)</p>
+</blockquote>
+<hr>
+<p>参考资料：</p>
+<p><a href="https://book.douban.com/subject/10750155/">《数学之美--吴军》</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Information_theory">Wikipedia: Information theory</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Cross_entropy">Wikipedia: Cross entropy</a></p>
+<p><a href="https://en.wikipedia.org/wiki/Gibbs%27_inequality">Wikipedia: Gibbs's inequality</a></p>
+]]></content>
+    </entry>
+    <entry>
         <title type="html"><![CDATA[Ubuntu下GTX1080显卡驱动折腾小记]]></title>
-        <id>https://just-ux.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/</id>
-        <link href="https://just-ux.github.io/post/Ubuntu下GTX1080显卡驱动折腾小记/">
+        <id>https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/</id>
+        <link href="https://wizyoung.github.io/Ubuntu下GTX1080显卡驱动折腾小记/">
         </link>
         <updated>2017-03-01T16:30:35.000Z</updated>
         <summary type="html"><![CDATA[<p>最近开始入深度学习的坑，给实验室电脑装 Ubuntu 系统和 GTX1080 显卡驱动，遇到不少坑，其中最大的问题是装完显卡驱动后开机登录输入密码显示不正确，然后陷入无限循环登录的无解状态。网上教程无数，然而通过本人近两天的逐个测试，其实一个靠谱的解决方案都没有，只能靠自己控制变量法 + Google + 大胆猜想折腾出解决方案，一路下来真的是十分曲折，无比艰辛。</p>
@@ -1354,119 +1846,288 @@ sudo reboot
 ]]></content>
     </entry>
     <entry>
-        <title type="html"><![CDATA[Ubuntu14.04 + GTX 960 +Tensorflow安装教程]]></title>
-        <id>https://just-ux.github.io/post/Ubuntu14.04 + GTX 960 +Tensorflow安装教程/</id>
-        <link href="https://just-ux.github.io/post/Ubuntu14.04 + GTX 960 +Tensorflow安装教程/">
+        <title type="html"><![CDATA[实验室挂代理宿舍免费上网折腾小记]]></title>
+        <id>https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/</id>
+        <link href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/">
         </link>
-        <updated>2017-01-16T03:58:15.000Z</updated>
-        <summary type="html"><![CDATA[<h2 id="1-安装cuda80">1. 安装CUDA8.0</h2>
-<p><strong>说明</strong>1：本文默认已安装 Nvidia 私有驱动。检查方法：桌面右上角点击设置图标，点击<code>关于这台计算机</code>，在<code>图形</code>一栏若显示 <code>GeForce GTX960/…</code> 类似字样，说明已安装 N 卡私有驱动。否则请参考我的另一篇博客<a href="https://wizyoung.github.io/Ubuntu%E4%B8%8BGTX1080%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E6%8A%98%E8%85%BE%E5%B0%8F%E8%AE%B0/">Ubuntu下GTX1080显卡驱动折腾小记</a>。</p>
-<p><strong>说明2</strong>：若已安装 CUDA8.0 之前的版本（比如7.5）建议先卸载旧版本 CUDA: 运行位于<code>/usr/local/cuda-7.5/bin</code>下的uninstall脚本，然后<strong>重启</strong>。</p>
-<h3 id="11-下载-cuda-80">1.1 下载 CUDA 8.0</h3>
-<p>下载地址：https://developer.nvidia.com/cuda-downloads</p>
-<p>本文选取 runfile 文件安装方式，如下图：</p>
+        <updated>2017-02-21T05:10:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
 ]]></summary>
-        <content type="html"><![CDATA[<h2 id="1-安装cuda80">1. 安装CUDA8.0</h2>
-<p><strong>说明</strong>1：本文默认已安装 Nvidia 私有驱动。检查方法：桌面右上角点击设置图标，点击<code>关于这台计算机</code>，在<code>图形</code>一栏若显示 <code>GeForce GTX960/…</code> 类似字样，说明已安装 N 卡私有驱动。否则请参考我的另一篇博客<a href="https://wizyoung.github.io/Ubuntu%E4%B8%8BGTX1080%E6%98%BE%E5%8D%A1%E9%A9%B1%E5%8A%A8%E6%8A%98%E8%85%BE%E5%B0%8F%E8%AE%B0/">Ubuntu下GTX1080显卡驱动折腾小记</a>。</p>
-<p><strong>说明2</strong>：若已安装 CUDA8.0 之前的版本（比如7.5）建议先卸载旧版本 CUDA: 运行位于<code>/usr/local/cuda-7.5/bin</code>下的uninstall脚本，然后<strong>重启</strong>。</p>
-<h3 id="11-下载-cuda-80">1.1 下载 CUDA 8.0</h3>
-<p>下载地址：https://developer.nvidia.com/cuda-downloads</p>
-<p>本文选取 runfile 文件安装方式，如下图：</p>
+        <content type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
 <!-- more -->
-<figure data-type="image" tabindex="1"><img src="https://just-ux.github.io/post-images/1581499259825.jpg" alt="" loading="lazy"></figure>
-<h3 id="12-执行runfile">1.2 执行runfile</h3>
-<p>切换到CUDA8.0 runfile的下载目录，执行：</p>
-<pre><code class="language-shell">sudo sh cuda_8.0.44_linux-run.run （注意版本号，后续不再提醒）
-</code></pre>
-<p>此时，屏幕上会开始出现一些协议和说明性的文字，键盘按下<code>q</code>键直接跳过协议阅读部分。</p>
-<p>然后屏幕上会依次出现以下询问文字：</p>
 <blockquote>
-<p>Do you accept the previously read EULA?</p>
-<p>Install NVIDIA Accelerated Graphics Driver for Linux-x86_64 3xx.xx?</p>
-<p>Install the CUDA 8.0 Toolkit?</p>
-<p>Enter Toolkit Location</p>
-<p>Do you want to install a symbolic link?</p>
-<p>Install the CUDA 8.0 Samples?</p>
-<p>Enter CUDA Samples Location</p>
+<p>服务端平台: Ubuntu 16.04<br>
+客户端平台: macOS</p>
 </blockquote>
-<p>除了第二行选择no拒绝重新安装N卡驱动外，其余一律选择yes和默认位置。</p>
-<h3 id="13-声明环境变量">1.3 声明环境变量</h3>
-<p><strong>说明</strong>：若以前安装过CUDA7.5这样的老版本CUDA，由于之前已创建过软链接（/usr/local/cuda)，声明环境变量部分可以跳过，后面为cuDNN配置环境变量时也是如此。</p>
-<p>更改<code>PATH</code>和<code>LD_LIBRARY_PATH</code>: 在<code>~/.bashrc</code>文件中，添加以下两行并保存(<code>sudo gedit ~/.bashrc</code>):</p>
-<pre><code class="language-shell">export PATH=$PATH:/usr/local/cuda/bin
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
+<h2 id="1-l2tp-ipsec-服务搭建">1. L2TP / IPsec 服务搭建</h2>
+<h3 id="11-获取公网-ip-和端口转发">1.1 获取公网 IP 和端口转发</h3>
+<p>实验室采用静态 IP，因此，进入路由器后台即可知道实验室网络公网 IP 地址。</p>
+<p>由于 L2TP / IPsec 服务需要占用 500 和 4500 udp 端口，因此，我们首先要在路由器后端开放这两个端口。以 Padavan 固件为例 (其他路由器系统类似)，在端口转发里添加如下规则:</p>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>源IP地址</th>
+<th>端口范围</th>
+<th>内网IP</th>
+<th>本地端口</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>udp500</td>
+<td>*.*.*.*</td>
+<td>500</td>
+<td>主机局域网IP</td>
+<td>500</td>
+<td>Both</td>
+</tr>
+<tr>
+<td>udp4500</td>
+<td>*.*.*.*</td>
+<td>4500</td>
+<td>主机局域网IP</td>
+<td>4500</td>
+<td>Both</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-l2tp-ipsec-服务">1.2 L2TP / IPsec 服务</h3>
+<p>最简单的 L2TP / IPsec VPN 搭建还是用 docker 比较方便。<br>
+首先创建一个 <code>env</code> 文件存储 PSK 密钥、用户名和密码，该文件如下填写：</p>
+<pre><code class="language-shell">VPN_IPSEC_PSK=自定义 PSK 密钥
+VPN_USER=自定义用户名
+VPN_PASSWORD=自定义密码
 </code></pre>
-<p>执行:</p>
-<pre><code class="language-shell">source ~/.bashrc
+<p>使用 hwdsl2/ipsec-vpn-server 镜像搭建服务:</p>
+<pre><code class="language-shell">docker run \
+    --name ipsec-vpn-server \
+    --env-file ./vpn.env(替换为自己的 env 文件路径) \
+    --restart=always \
+    -p 500:500/udp \
+    -p 4500:4500/udp \
+    -d --privileged \
+    hwdsl2/ipsec-vpn-server
 </code></pre>
-<p>可用<code>echo $PATH</code>和<code>echo $LD_LIBRARY_PATH</code>命令检查下是否配置成功。</p>
-<p>验证nvcc编译器版本：</p>
-<pre><code class="language-shell">nvcc -V
+<p>上面 <code>--restart=always</code> 保证了服务开机、失败后自启动。</p>
+<h3 id="12-macos-客户端设置">1.2 macOS 客户端设置</h3>
+<p>进入 <code>设置</code> -&gt; <code>网络</code>，点击左下角的加号 <code>+</code>, 添加新的 VPN 连接:</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581604645865.jpg" alt="" loading="lazy"></figure>
+<p>在认证连接里面，用户认证的密码对应于上面的 <code>VPN_PASSWORD</code>，机器认证的密码对应于 <code>VPN_IPSEC_PSK</code>。</p>
+<p>记得在高级选项里面勾选<strong>通过VPN连接发送所有流量</strong>，不然 VPN 连接后并不会进行流量转发，比较坑爹。</p>
+<p>这时候点击<code>连接</code>后即可连上 VPN 免费上网了。建议设置里面勾选<code>在菜单栏中显示VPN状态</code>，方便在任务栏一键连接 VPN 并实时查看连接状态。</p>
+<p>L2TP / IPsec VPN 的一个特点是，网络波动掉线后并不会重连，每次在电脑手动重连 VPN 还是比较麻烦的，因此我们可以利用 AppleScript 写一个脚本，实现掉线自动重连：</p>
+<p>打开脚本编辑器，选择语言类型为 AppleScript，填入如下脚本：</p>
+<pre><code class="language-javascript">on idle
+	tell application &quot;System Events&quot;
+		tell current location of network preferences
+			set myConnection to the service &quot;VPN (L2TP)&quot;
+			if myConnection is not null then
+				if current configuration of myConnection is not connected then
+					connect myConnection
+				end if
+			end if
+		end tell
+		return 30
+	end tell
+end idle
 </code></pre>
-<p>若正确安装，会显示CUDA版本。</p>
-<h3 id="14-可选编译示例代码">1.4 (可选)编译示例代码</h3>
-<p>跑一个简单的例子<code>deviceQuery</code>:</p>
-<p>在<code>~/NVIDIA_CUDA-8.0_Samples/1_Utilities/deviceQuery</code>路径下，依次执行：</p>
-<pre><code class="language-shell">make
-./deviceQuery
+<p>上面 <code>set myConnection to the service</code> 后对应的系统设置里面 VPN 连接的名字，默认是 <code>VPN (L2TP)</code>，注意这里括号前有一个空格。</p>
+<p>填写完毕后存储为应用程序即可，如下图所示：<br>
+<img src="https://wizyoung.github.io/post-images/1581605403648.jpg" alt="" loading="lazy"></p>
+<p>双击保存的 app 后即会自动掉线重连 VPN。</p>
+<h2 id="2-shadowsocks-服务搭建">2 Shadowsocks 服务搭建</h2>
+<p>shadowsocks 的搭建就比较简单了，这里安装 Python 版的 shadowsocks 服务:</p>
+<pre><code class="language-shell">sudo pip install shadowsocks
 </code></pre>
-<p>最后一行若显示为<code>Result = PASS</code>则表明CUDA8.0安装成功，运行正常</p>
-<h2 id="2-安装cudnn51">2. 安装cuDNN5.1</h2>
-<p><strong>注意</strong>：最新版的cuDNN已迭代至6.0版本，截至2017.5.1日，TensorFlow通过pip快速安装的版本只支持到5.1版。若要使用最新版cuDNN，需要手动编译TensorFlow。而本人亲测使用最新版cuDNN编译的TensorFlow版本速度快了不少，追求极致速度的推荐手动编译。</p>
-<h3 id="21-下载cudnn库文件">2.1 下载cuDNN库文件</h3>
-<p>下载地址：https://developer.nvidia.com/cudnn  （注意，下载cuDNN需要注册Nvidia开发者帐号）</p>
-<p>各种提示一路点下来，最后如下图：</p>
-<figure data-type="image" tabindex="2"><img src="http://ww2.sinaimg.cn/large/006tNc79jw1f9xgiayv6gj310o0vwakm.jpg" alt="" loading="lazy"></figure>
-<h3 id="22-配置库文件">2.2 配置库文件</h3>
-<p>解压第一个下载的cuDNN Library文件，解压，得到一个cuda文件夹。为方便后续操作，借助cp命令复制此cuda文件夹到<code>/usr/local/cuda</code>文件夹下（也就是让此cuda文件下又多一个cuda文件夹）:</p>
-<pre><code class="language-shell">sudo cp -rf 解压出的cuda文件夹所在目录/cuda/ /usr/local/cuda/cuda
+<p>新增配置文件，以新增 <code>/etc/shadowsocks.json</code> 为例，里面填写:</p>
+<pre><code class="language-json">{
+    &quot;server&quot;:&quot;::&quot;,
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:6153,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;rc4-md5&quot;,
+    &quot;server_port&quot;:443,
+    &quot;password&quot;:&quot;password&quot;,
+    &quot;fast_open&quot;:false
+}
 </code></pre>
-<p>切换到<code>/usr/local/cuda</code>文件夹下，执行：</p>
-<pre><code class="language-shell">sudo cp cuda/include/cudnn.h /usr/local/cuda/include
-sudo cp cuda/lib64/libcudnn* /usr/local/cuda/lib64
+<p>server填写 &quot;::&quot; 可以同时转发 ipv4 和 ipv6。考虑到我服务端本地还要运行一个 shadowsocks client 实例，因此为了避免冲突，local_port 不选 1080，而是随便选了一个 6153 端口。另外，为了提高性能，加密方式选用 rc4-md5。由于这里服务端开启了 443 端口，因此路由器记得开放 443 端口转发权限。</p>
+<p>开启 shadowsocks 服务：</p>
+<pre><code class="language-shell">sudo ssserver -c /etc/shadowsocks.json -d start
 </code></pre>
-<p>然后赋予可读权限：</p>
-<pre><code class="language-shell">sudo chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
+<p>可以利用 systemctl 添加一个开机自启动服务，使 ss 时刻后台运行。在 <code>etc/systemd/system</code> 下创建 <code>ss.service</code> 文件，内容填写:</p>
+<pre><code class="language-shell">[Unit]
+Description=shadowsocks server
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+
+ExecStart=/usr/local/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
 </code></pre>
-<p>配置环境变量：</p>
-<p><code>~/.bashrc</code>中添加两行：</p>
-<pre><code class="language-shell">export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/extras/CUPTI/lib64
-export CUDA_HOME=/usr/local/cuda
+<p>执行以下两条指令使服务生效:</p>
+<pre><code class="language-shell">sudo systemctl enable ss.service
+sudo systemctl start ss.service
 </code></pre>
-<p>然后执行：</p>
-<pre><code class="language-shell">source ~/.bashrc
+<p>客户端中随便一个 ss 客户端填入对应的 IP、端口、加密方式、密码就 OK 了。以 Surge 为例，填写以下配置就行：</p>
+<pre><code class="language-shell">代理名称 = ss, 公网 IP, 443, encrypt-method=rc4-md5, password=password
 </code></pre>
-<h3 id="23-可选编译示例代码">2.3 (可选)编译示例代码</h3>
-<p>解压第一步下载下来的<code>.deb</code>文件，切换到其中的<code>/usr/src/cudnn_samples_v5/mnistCUDNN</code>下，依次执行：</p>
-<pre><code class="language-shell">make
-./mnistCUDNN
+<p>千兆带宽下蹭网就是爽哈哈哈~</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581609375779.jpg#s70" alt="" loading="lazy"></figure>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[极路由 1s 刷老毛子 Padavan 固件教程]]></title>
+        <id>https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/</id>
+        <link href="https://wizyoung.github.io/极路由1s刷老毛子Padavan固件教程/">
+        </link>
+        <updated>2017-02-12T02:39:00.000Z</updated>
+        <summary type="html"><![CDATA[<p>不得不说，极路由官方固件实在太烂，难以忍受，网上普遍反应的间歇跳 Ping，网络不稳定需要重启等问题我都遇到过，更让人烦躁的是重启速度极慢(往往需要 3 分钟之久)，断网状态下手机 APP 竟然不能访问后台以及断网时网页版后台各种抽风(每次配置个路由中继要死的心都有了)等等诸如此类的问题。2015 年初以不到百元的价格买到的手头台极路由 1S，拥有 16 M 闪存，128 M 内存如此强大的配置，却配着如此垃圾的固件实在可惜，因此今天花了点时间将它刷成了老毛子 Padavan 固件。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>不得不说，极路由官方固件实在太烂，难以忍受，网上普遍反应的间歇跳 Ping，网络不稳定需要重启等问题我都遇到过，更让人烦躁的是重启速度极慢(往往需要 3 分钟之久)，断网状态下手机 APP 竟然不能访问后台以及断网时网页版后台各种抽风(每次配置个路由中继要死的心都有了)等等诸如此类的问题。2015 年初以不到百元的价格买到的手头台极路由 1S，拥有 16 M 闪存，128 M 内存如此强大的配置，却配着如此垃圾的固件实在可惜，因此今天花了点时间将它刷成了老毛子 Padavan 固件。</p>
+<!-- more -->
+<blockquote>
+<p>注意：本教程极路由版本为 HC5661A，其它版本需要下载对应的 Breed 和 Padavan 固件，方法通用。</p>
+</blockquote>
+<h2 id="1-开启开发者模式">1. 开启开发者模式</h2>
+<p>所谓的开启开发者模式其实就是 Root。操作步骤为：浏览器输入 192.168.199.1 进入后台管理界面，在云平台里面选择“路由器信息”，在页面的底部点击 + 号进入高级设置，里面点击蓝色的申请按钮申请开通开发者模式，后面按操作提示完成认证即可。</p>
+<h2 id="2-刷入-breed">2. 刷入 Breed</h2>
+<p>首先要刷入<strong>引导加载器</strong> Bootloader，它是用于加载操作系统的程序，现在的 BIOS、UEFI、GRUB 都叫Bootloader。这里要刷入的 Breed 也是 Bootloader 的一种，由网友 hackpascal 开发。</p>
+<p>首先去<a href="http://www.right.com.cn/forum/thread-161906-1-1.html">官方Breed发布界面</a>找到路由器对应的 Breed 版本，找到相应的下载链接。我这里找到的是 2017-2-11 发布的最新版本（好像后续更新后下载链接都不变），下载链接为：http://breed.hackpascal.net/breed-mt7628-hiwifi-hc5661a.bin</p>
+<p>Mac 平台下打开终端(Win 可使用 Putty)输入：</p>
+<pre><code class="language-powershell">ssh -p 1022 root@192.168.199.1
 </code></pre>
-<p>若最后一行出现<code>Test passed</code>，表明cuDNN安装成功。</p>
-<h2 id="3-安装tensorflow最新版">3. 安装TensorFlow最新版</h2>
-<h3 id="31-安装">3.1 安装</h3>
-<p>本文采取pip安装方式，其余如Anaconda等安装方式参见<a href="https://www.tensorflow.org/install/install_linux">官网</a></p>
-<p>安装必要文件：</p>
-<pre><code class="language-shell">sudo apt-get install python-pip python-dev
+<p>然后键入密码登陆。</p>
+<p>然后下载 Breed：</p>
+<pre><code class="language-powershell">wget http://breed.hackpascal.net/breed-mt7628-hiwifi-hc5661a.bin
 </code></pre>
-<p>安装TensorFlow：</p>
-<pre><code class="language-shell">sudo pip install tensorflow-gpu
+<p>刷入Breed：</p>
+<pre><code class="language-powershell">mtd write breed-mt7628-hiwifi-hc5661a.bin u-boot
 </code></pre>
-<p>安装完成。</p>
-<p><strong>注意</strong>：以上方式安装的为最新版TensorFlow。若要安装旧版本，可改用以下命令：</p>
-<pre><code class="language-shell">sudo pip install tensorflow-gpu==1.0(任一旧版本号)
+<p>执行完后启动 Breed：断电，用卡针顶住复位键不放，上电大约5秒后松开复位键，路由器插上网线连接 PC，访问 192.168.1.1 进入 Breed 节面(如下图)：</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581602902960.png#s70" alt="" loading="lazy"></figure>
+<h2 id="3-刷入-padavan-固件">3. 刷入 Padavan 固件</h2>
+<p>建议在刷入固件之前先对旧固件备份：点击上图左侧“固件备份”，备份所有。</p>
+<p>去恩山论坛固件<a href="http://www.right.com.cn/forum/thread-161324-1-1.html">发布界面</a>找到路由器对应的固件版本下载，我这里下载的是 2017-2-11 更新的<code>RT-AC1200-GPIO-38-ji1A-128M_3.4.3.9-099.trx</code> 文件。</p>
+<p>在上图点击“固件更新”，选择刚才下载的固件，上传，更新，等待进度条走满刷机完成即可。</p>
+<p>刷入后，新的默认网关为192.168.123.1，管理员默认账号和密码为：admin / admin，WIFI 默认 ssid 和密码为 PDCN / 1234567890。</p>
+<p>至此 Padavan 就刷机完成！如下图：</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581602951337.png#s90" alt="" loading="lazy"></figure>
+<h2 id="4-相关问题">4. 相关问题</h2>
+<h3 id="41-无线中继模式下的相关问题">4.1 无线中继模式下的相关问题</h3>
+<p>（1）中继显示连接失败：部分路由其兼容性问题导致，尝试更改 WIFI 信道带宽为 20 MHz</p>
+<p>（2）无线 AP 工作模式选择: AP-Client + AP 时，上级主路由和本路由在同一网段，因此从192.168.123.1 无法进入后台管理界面，应输入 192.168.1.1 进入上级主路由后台界面找到本路由分配的 LAN IP 再从该 IP 进入。比如从上图可看出，我的 LAN IP 为 192.168.1.239，不再是192.168.123.1。</p>
+<h3 id="42-校园网使用-ipv6">4.2 校园网使用 IPv6</h3>
+<p>北航使用 Native DHCPv6 协议，好像北邮等高校也是。</p>
+<p>路由器<code>外部网络</code>-&gt;<code>IPv6设置</code>那里连接类型选 Native DHCPv6, 下面几个开关全打开：</p>
+<figure data-type="image" tabindex="3"><img src="https://wizyoung.github.io/post-images/1581603000498.png" alt="" loading="lazy"></figure>
+<p>然后ssh进入后台执行以下三条命令即可[^1]：</p>
+<pre><code class="language-powershell">modprobe ip6table_mangle
+ebtables -t broute -A BROUTING -p ! ipv6 -j DROP -i eth2.2
+brctl addif br0 eth2.2
 </code></pre>
-<h3 id="32-测试">3.2 测试</h3>
-<p>终端执行：</p>
-<pre><code class="language-shell">$ python
-...
-&gt;&gt;&gt; import tensorflow as tf
-</code></pre>
-<p>若没报错，且出现几行<code>successfully opend CUDA library libcu***.so locally</code>字样，说明安装成功。</p>
-<p>另外本人发现在个别硬件上即使cuda和cuDNN配置正确，装完TensorFlow仍然不能调用gpu的情况。最后通过手动编译TensorFlow解决，暂无其他方法。</p>
-<h3 id="33-常见问题">3.3 常见问题</h3>
+<p>命令解释：</p>
+<blockquote>
 <ol>
-<li>安装过程出现错误：<a href="https://www.tensorflow.org/versions/r0.11/get_started/os_setup.html#common-problems">Common Problems</a></li>
-<li>运行时显卡调用问题集： <a href="https://zhuanlan.zhihu.com/p/23250782">知乎 深度学习theano/tensorflow多显卡多人使用问题集</a></li>
+<li>第一条命令：加载 ip6table_mangle 内核模块。</li>
+<li>第二条命令：阻止内网对外网所有非 IPV6 流量的访问，即 IPV4 流量依然通过 NAT。</li>
+<li>第三条命令：让 WAN 口（eth2.2）成为内网（br0）的一个端口，这样做使得局域网内的主机与外网处于一个广播域，可以收到校园网网关的路由配置信息，每一台主机便可以得到一个全局的 IPv6 地址。</li>
+</ol>
+</blockquote>
+<p>执行以上命令后，校园网会暂时中断一会儿，稍等片刻即可(我有时候偶尔等了好几分钟后 IPV6 才连上)</p>
+<p>考虑到每次重启路由器都要执行以上命令，因此我将以上三条命令写入路由器开机执行脚本里面：</p>
+<p>将以上三跳命令复制到<code>高级设置</code>—<code>自定义信息</code>—<code>脚本</code>—<code>在路由器启动后执行</code>里面即可</p>
+<h3 id="43-ss-功能不能使用">4.3 ss 功能不能使用</h3>
+<p>该固件 ss 部分有一个设置的提示有极大的误导性，见下图：</p>
+<figure data-type="image" tabindex="4"><img src="https://wizyoung.github.io/post-images/1581603045695.png#s70" alt="" loading="lazy"></figure>
+<p>这里的中括号不能填写进去！！！我一度以为这个固件的ss模块有bug，直到某一天删掉了这个中括号就好了~</p>
+<hr>
+<p>参考资料</p>
+<p>[1]<a href="http://qydw.blogspot.jp/2016/11/padavanipv6ipv6.html">三个命令解决Padavan路由器内网IPV6访问（适用于IPV6无需认证的网络）</a></p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[我的 Mac 软件列表]]></title>
+        <id>https://wizyoung.github.io/我的Mac软件列表/</id>
+        <link href="https://wizyoung.github.io/我的Mac软件列表/">
+        </link>
+        <updated>2017-01-28T14:54:56.000Z</updated>
+        <content type="html"><![CDATA[<blockquote>
+<p>本文更新于 2020.1.13</p>
+</blockquote>
+<p>作为 macOS 忠实用户，自从我 2015 年抛弃 Windows 投入 macOS 阵营来，除偶尔需要游戏不方便外，整体的体验还是较之前 Windows 时代好不少，究其原因，无非三点：（1） macOS 是类 Unix 系统，作为商业软件，整体的桌面环境又比一般 Linux 发行版好太多；（2）整体的软件生态环境比 Windows 好一点，大量的优质软件给整个平台带了良好的用户体验，再和 iOS 结合非常舒适。</p>
+<p>由于每年的需要不一致，这几年我电脑上的软件列表一直在发生变化，大概整理了一下截至 2020 年初我经常使用的软件列表：</p>
+<h2 id="1-效率工具">1 效率工具</h2>
+<ol>
+<li>HomeBrew: 一个好用的包管理工具，简单易用。我想主要的缺点是对旧版本软件的支持不太好吧，这一点比不上 apt-get 之类的工具，但大部分条件下够用了。</li>
+<li>iTerm 2 &amp; oh-my-zsh: 比较好用的终端，配合 oh-my-zsh 功能强大颜值又比较高，相信大部分的开发者都是使用的这套配置吧。</li>
+<li>Alfred: workflow 式的效率工具，配合各式插件功能强大，可以看成增强版 Spotlight 吧，日常工作生活中自己写了很多 workflow 进行自动化操作，还是比较方便的。</li>
+<li>Popclip: 鼠标选中文本后弹出的工具条，可进行多种效率操作。基本是日常使用频率最高的小软件了，自己也开发了不少小工具，比如谷歌翻译的插件 <a href="https://github.com/wizyoung/googletranslate.popclipext">googletranslate.popclipext</a>。</li>
+</ol>
+<h2 id="2-coding">2 Coding</h2>
+<ol>
+<li>IDE 系列：目前在用的比较“重”的 IDE: Xcode, Pycharm, IntelljJ IDEA。</li>
+<li>Sublime &amp; VS Code: Sublime 打开速度确实快，当做默认文本编辑器了，以及各种语言的 REPL 环境；VS Code 写写日常代码或者小工程，说到 VS Code 就不得不提远程端的 <a href="https://github.com/cdr/code-server">code-server</a>，单文件可执行文件，扔到 Linux 主机，开放一个端口，本地电脑打开浏览器输入地址就可以运行，远程调用代码，确实好用 （比如公司主机要通过层层跳板机连接，但是可以随便开放本地端口，就可以用这个替代 vim 呀，前提是公司允许）。</li>
+<li>Code Runner：测试小代码片段，随开随用。去年找工作刷 LeetCode 时经常用它作本地调试。</li>
+<li>Dash：全语言文档手册速查，离线查看。</li>
+<li>Tower：比较喜欢的一个 Git 客户端。</li>
+<li>Expression：测试正则表达式。</li>
+</ol>
+<h2 id="3-网络">3 网络</h2>
+<ol>
+<li>Surge: 无痛爬墙，简单网络抓包，好用到没朋友。这几年来一直自己维护了一套规则，经过了时间的考验，在网络上比较丝滑。Surge 提供的 snell 专有协议也比较不错，简单高性能，敏感时期 SS 都挂的时候 snell 比较稳定 (小众就是好呀)。</li>
+<li>Charles: 偶尔抓抓包。</li>
+<li>IP Scanner: 当网络很复杂时，比如多层路由中继，它能一个不落全扫描出来。</li>
+<li>Transmit: 比较好用的 SFTP 客户端，最好用的功能是一键在终端切换到远程路径下，在同类软件中简直无敌。同时支持挂载 google drive, webdav, backblaze b2 等诸多协议。</li>
+<li>BestTrace: IPIP 出品，用来看看 VPS 国际线路，是直连还是绕了地球一大圈。</li>
+<li>GoodSync：局域网文件同步和备份。</li>
+</ol>
+<h2 id="4-知识管理">4 知识管理</h2>
+<ol>
+<li>Keep It: 文档管理与同步工具。以前用 DEVONthink，功能确实强大，然而有点过于复杂，同步机制做的也不 OK，iOS 至今是个半残（即使我付费购买后又进一步解锁了内购），抛弃了。Keep It 虽然功能上不如 DEVONthink，然而基础功能经过一段比较长时间的验证发现完全够用，尽管软件有点小瑕疵，但是作者一直高频更新着，确实一次比一次好。</li>
+<li>Quiver：在经历了印象笔记，为知笔记，有道云笔记，notion，OneNote 等众多笔记软件后，还是选了Quiver。其实大家好评如潮的 notion 的 block 模式不就是抄的 quiver 么，15 年我用 quiver 时 quiver 就提出了 block 模式。与主流完全相反，我抵制 markdown 记笔记，尤其对理工科生而言，大量的图片、代码和公式，用 markdown 往往让人迷失在格式和排版中，混合 block 才是正解。可惜 quiver 是 one-man 软件，给作者反馈了大量意见，从 2018 年底开始就不断跟我说版本 4 要出来了，然而这都 2020 年了。。。独立开发不易，希望作者加把劲吧，再这样下去 notion 的离线模式做好了，quiver 可能就要消失在历史的长河中了。</li>
+<li>系统自带备忘录：自带备忘录记录零碎想法真的超级好用呀~</li>
+<li>OmniGraffle：写 Paper 画个结构图、流程图啥的比较好用。对于公式，配合免费的 LaTeXIT，输入 LaTeX 公式，把生成的矢量 PDF 直接拖入到 OmniGraffle 即可解决 OmniGraffle 无法原生支持数据公式的问题。</li>
+<li>Texpad：实时更新的 LaTeX 编辑器，估计是所有平台上最好用的 LaTeX 编辑器了吧。</li>
+</ol>
+<h2 id="5-系统增强">5 系统增强</h2>
+<ol>
+<li>Jitouch + BetterTouchTool: 触摸板增强，感觉还是两个软件配合起来用比较顺滑。</li>
+<li>Bartender： 任务栏图标太多，用它整理，并去掉讨厌的 Siri 和 Spotlight 图标等。</li>
+<li>Paste：颜值爆表的剪切板历史记录软件，快捷键呼出，简直不能更方便。</li>
+<li>iStat Menus：任务栏上的多功能 Monitor。日常用来看网速，应用联网情况和 CPU、内存占用，颜值高又好用（早期版本 6 的 beta 出来时给软件反馈了些 bug 并修改了一些汉化问题，免费送了我一份授权hhh）</li>
+<li>1Password：高效、安全、便捷地管理密码的完美方案，支持 Touch ID（可惜 15 款本本没有），已经离不开。</li>
+<li>DiasyDisk：饼状图分析磁盘占用。</li>
+<li>App Cleaner &amp; Uninstaller：软件卸载，目前觉得还是它卸载最干净。</li>
+<li>Easy New File: 任意地方右键一键在当前路径打开 iTerm。</li>
+<li>Coherence Pro：基于 chrome 的网页打包成 app 的软件，资源占用比原生 chrome 小很多。</li>
+<li>Karabiner-Elements：键位魔改与增强。</li>
+<li>Keyboard Maestro：基于键盘的自动化工具。我用来消除剪贴板格式，和一键填充 1password 主密码 (通过调用 keychain 的方式)。</li>
+<li>MacUpdater: 在一个地方检测整个系统所有软件的更新。</li>
+<li>One Switch：任务栏常驻软件，一键开关深色模式、防止睡眠等等。</li>
+<li>Parallels Desktop：最好用的虚拟机软件。尤其是 Linux 的 headless 模式，内存占用极低，性能也比较高。</li>
+</ol>
+<h2 id="6-图像影音">6 图像影音</h2>
+<ol>
+<li>PP 鸭：最好用的图片压缩软件了吧，可惜不提供 cli 接口。</li>
+<li>Xnip：截图软件中在功能和重量之间权衡最好的了吧。</li>
+<li>PixelMator: 相比 PS 很轻的全能图像编辑软件。</li>
+<li>IINA：视频播放器。</li>
+<li>QQ 音乐 + 腾讯视频 + 爱奇艺 + 优酷：日常影音娱乐。</li>
+</ol>
+<h2 id="7-社交网络">7 社交网络</h2>
+<ol>
+<li>QQ + 微信：微信推荐使用 <a href="https://github.com/MustangYM/WeChatExtension-ForMac">微信小助手</a> 插件，免认证登录和防撤回，比较方便。</li>
+<li>Telegram：好吧，我用来当跨平台文本和文件传输同步，以及链接收藏。在学校的时候，还写过一个 bot 监控老板在不在实验室 hhh。</li>
+<li>Maipo：第三方微博客户端。</li>
 </ol>
 ]]></content>
     </entry>

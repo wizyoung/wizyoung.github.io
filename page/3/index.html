@@ -65,26 +65,60 @@
 </div>
 
     <div class="max-w-4xl w-full mx-auto pt-32">
-      <h1 class="text-2xl font-bold pb-8 flex justify-center items-center">
-        <i class="ri-hashtag"></i>
-        TensorFlow
-      </h1>
+      
+
       <div class="shadow-box bg-white dark:bg-gray-600 border-gray-300 rounded-none md:rounded-lg -mx-1 md:mx-0 md:px-0">
         
   <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
     
     <div class="flex-1 order-2 md:order-1">
       <h2 class="text-2xl font-semibold mb-4">
-        <a href="https://wizyoung.github.io/tensorflow_reading_files/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
-          TensorFlow 学习笔记 -- Input Pipeline
+        <a href="https://wizyoung.github.io/Python中的元类/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Python中的元类
         </a>
       </h2>
-      <div class="mb-4 text-xs text-gray-500">2018-08-22</div>
+      <div class="mb-4 text-xs text-gray-500">2017-01-23</div>
       <div class="mb-4 text-gray-500 dark:text-gray-300">
-        <p>本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.image 模块对图像的处理，以及版本 1.4 前使用的生产者/消费者多线程文件读写流程，和 1.4 后官方主推的 Dataset 处理方式。后者已经开始逐步支持 eager 模式。</p>
+        <blockquote>
+<p>本文摘自我的笔记<a href="https://wizyoung.github.io/Python2%E7%AC%94%E8%AE%B0-%E7%B1%BB/">Python2笔记—类</a></p>
+</blockquote>
+<h2 id="1-继承与实例化">1. 继承与实例化</h2>
+<p>在面向对象体系里面，存在两种关系：</p>
+<ul>
+<li>继承关系：在python里面用<code>__base__</code>可查看，顶层是<code>object</code></li>
+<li>实例关系：表现为某个类型的实例化。在python里面用<code>__class__</code>查看，顶层为<code>type</code>。</li>
+</ul>
 
       </div>
-      <a href="https://wizyoung.github.io/tensorflow_reading_files/" class="btn">
+      <a href="https://wizyoung.github.io/Python中的元类/" class="btn">
+        Read more
+      </a>
+    </div>
+    
+  </div>
+
+  <div class="p-8 border-b border-gray-200 dark:border-gray-700 flex relative overflow-hidden flex-col md:flex-row animated fadeIn">
+    
+    <div class="flex-1 order-2 md:order-1">
+      <h2 class="text-2xl font-semibold mb-4">
+        <a href="https://wizyoung.github.io/Python中的类方法和静态方法/" class="text-gray-700 dark:text-gray-200 border-b-2 border-dotted border-gray-200 dark:border-gray-400 dark:hover:border-gray-200 hover:border-gray-600 transition-all duration-100">
+          Python中的类方法和静态方法
+        </a>
+      </h2>
+      <div class="mb-4 text-xs text-gray-500">2017-01-22</div>
+      <div class="mb-4 text-gray-500 dark:text-gray-300">
+        <blockquote>
+<p>本文摘自我的笔记<a href="https://wizyoung.github.io/Python2%E7%AC%94%E8%AE%B0-%E7%B1%BB/">Python2笔记—类</a></p>
+</blockquote>
+<p>对一个类，我们要调用它的一个方法，必须要绑定实例，而不能直接通过<code>类名.方法名()</code>的形式调用。因此，想要通过类来调用方法，而不是通过实例，可以使用<strong>静态方法</strong><code>@staticmethod</code>和<strong>类方法</strong><code>@classmethod</code>的形式实现。</p>
+<p>二者的形式：</p>
+<pre><code class="language-shell">@classmethod修饰的方法的第一个参数必须是cls。cls指的是类的本身，若有继承出现，cls指当前类。
+@staticmethod修饰的方法没有self和cls参数，可以不接受参数
+</code></pre>
+<p>使用情形：</p>
+
+      </div>
+      <a href="https://wizyoung.github.io/Python中的类方法和静态方法/" class="btn">
         Read more
       </a>
     </div>
@@ -119,6 +153,16 @@
       </div>
 
       
+  <div class="my-4 flex justify-between px-4 md:px-0">
+    
+      <a href="https://wizyoung.github.io/page/2/" class="btn btn-white">
+        <i class="ri-arrow-left-line mr-4"></i>
+        上一页
+      </a>
+    
+    
+  </div>
+
       <footer class="py-12 text-center px-3 md:px-0" v-pre>
   CopyRight © 2017 - 2020
 	<br>
@@ -139,4 +183,5 @@
   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   <script src="https://wizyoung.github.io/media/scripts/main.js"></script>
 </body>
+
 </html>

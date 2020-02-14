@@ -1,0 +1,514 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>实验室挂代理宿舍免费上网折腾小记 - CaptainChen</title>
+<link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="/media/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media/css/align.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="实验室挂代理宿舍免费上网折腾小记 - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+
+<script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d74f9d2ab6f1000123c83b9&product=inline-share-buttons' async='async'></script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90329290-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-90329290-1');
+  </script>
+    
+
+  <meta name="description" content="大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。
+比较简单的方式是搭建一个 L2TP / IPse..." />
+  <meta property="og:title" content="实验室挂代理宿舍免费上网折腾小记 - CaptainChen">
+  <meta property="og:description" content="大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。
+比较简单的方式是搭建一个 L2TP / IPse..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/" />
+  <meta property="og:image" content="https://wizyoung.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="实验室挂代理宿舍免费上网折腾小记 - CaptainChen">
+  <meta name="twitter:description" content="大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。
+比较简单的方式是搭建一个 L2TP / IPse...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://wizyoung.github.io/media/css/prism-material-oceanic.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://wizyoung.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      CaptainChen
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          实验室挂代理宿舍免费上网折腾小记
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-calendar"></i>  2017-02-21
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-clock-o"></i>  1135 words (about 5 min read)
+            <!-- <span style="margin-right:8px"></span>
+            <i class="fa fa-file-word-o"></i>  1135 words -->
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-eye"></i>  <span class="date_info"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> Views
+</span>
+          </div>
+            
+            <script>
+              function lan(){
+                if (document.getElementById("lan").innerText == "简→繁"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_tw.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "繁→簡"
+                }
+                else if(document.getElementById("lan").innerText == "繁→簡"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_cn.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "简→繁"
+                  }
+              }
+            </script>
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-refresh"></i>  <a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体">简→繁</a>
+          </div>
+          
+            <a href="https://wizyoung.github.io/tag/o_ePFYd1I/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              代理
+            </a>
+          
+            <a href="https://wizyoung.github.io/tag/yD36tNLmX/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              网络
+            </a>
+          
+            <a href="https://wizyoung.github.io/tag/4XeB6gFcYk/" class="text-gray-500 text-sm border-b-2 border-dotted border-gray-200 hover:border-gray-600 transition-all duration-100 inline-flex mr-2">
+              <i class="ri-hashtag"></i>
+              路由器
+            </a>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
+<!-- more -->
+<blockquote>
+<p>服务端平台: Ubuntu 16.04<br>
+客户端平台: macOS</p>
+</blockquote>
+<h2 id="1-l2tp-ipsec-服务搭建">1. L2TP / IPsec 服务搭建</h2>
+<h3 id="11-获取公网-ip-和端口转发">1.1 获取公网 IP 和端口转发</h3>
+<p>实验室采用静态 IP，因此，进入路由器后台即可知道实验室网络公网 IP 地址。</p>
+<p>由于 L2TP / IPsec 服务需要占用 500 和 4500 udp 端口，因此，我们首先要在路由器后端开放这两个端口。以 Padavan 固件为例 (其他路由器系统类似)，在端口转发里添加如下规则:</p>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>源IP地址</th>
+<th>端口范围</th>
+<th>内网IP</th>
+<th>本地端口</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>udp500</td>
+<td>*.*.*.*</td>
+<td>500</td>
+<td>主机局域网IP</td>
+<td>500</td>
+<td>Both</td>
+</tr>
+<tr>
+<td>udp4500</td>
+<td>*.*.*.*</td>
+<td>4500</td>
+<td>主机局域网IP</td>
+<td>4500</td>
+<td>Both</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-l2tp-ipsec-服务">1.2 L2TP / IPsec 服务</h3>
+<p>最简单的 L2TP / IPsec VPN 搭建还是用 docker 比较方便。<br>
+首先创建一个 <code>env</code> 文件存储 PSK 密钥、用户名和密码，该文件如下填写：</p>
+<pre><code class="language-shell">VPN_IPSEC_PSK=自定义 PSK 密钥
+VPN_USER=自定义用户名
+VPN_PASSWORD=自定义密码
+</code></pre>
+<p>使用 hwdsl2/ipsec-vpn-server 镜像搭建服务:</p>
+<pre><code class="language-shell">docker run \
+    --name ipsec-vpn-server \
+    --env-file ./vpn.env(替换为自己的 env 文件路径) \
+    --restart=always \
+    -p 500:500/udp \
+    -p 4500:4500/udp \
+    -d --privileged \
+    hwdsl2/ipsec-vpn-server
+</code></pre>
+<p>上面 <code>--restart=always</code> 保证了服务开机、失败后自启动。</p>
+<h3 id="12-macos-客户端设置">1.2 macOS 客户端设置</h3>
+<p>进入 <code>设置</code> -&gt; <code>网络</code>，点击左下角的加号 <code>+</code>, 添加新的 VPN 连接:</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581604645865.jpg" alt="" loading="lazy"></figure>
+<p>在认证连接里面，用户认证的密码对应于上面的 <code>VPN_PASSWORD</code>，机器认证的密码对应于 <code>VPN_IPSEC_PSK</code>。</p>
+<p>记得在高级选项里面勾选<strong>通过VPN连接发送所有流量</strong>，不然 VPN 连接后并不会进行流量转发，比较坑爹。</p>
+<p>这时候点击<code>连接</code>后即可连上 VPN 免费上网了。建议设置里面勾选<code>在菜单栏中显示VPN状态</code>，方便在任务栏一键连接 VPN 并实时查看连接状态。</p>
+<p>L2TP / IPsec VPN 的一个特点是，网络波动掉线后并不会重连，每次在电脑手动重连 VPN 还是比较麻烦的，因此我们可以利用 AppleScript 写一个脚本，实现掉线自动重连：</p>
+<p>打开脚本编辑器，选择语言类型为 AppleScript，填入如下脚本：</p>
+<pre><code class="language-javascript">on idle
+	tell application &quot;System Events&quot;
+		tell current location of network preferences
+			set myConnection to the service &quot;VPN (L2TP)&quot;
+			if myConnection is not null then
+				if current configuration of myConnection is not connected then
+					connect myConnection
+				end if
+			end if
+		end tell
+		return 30
+	end tell
+end idle
+</code></pre>
+<p>上面 <code>set myConnection to the service</code> 后对应的系统设置里面 VPN 连接的名字，默认是 <code>VPN (L2TP)</code>，注意这里括号前有一个空格。</p>
+<p>填写完毕后存储为应用程序即可，如下图所示：<br>
+<img src="https://wizyoung.github.io/post-images/1581605403648.jpg" alt="" loading="lazy"></p>
+<p>双击保存的 app 后即会自动掉线重连 VPN。</p>
+<h2 id="2-shadowsocks-服务搭建">2 Shadowsocks 服务搭建</h2>
+<p>shadowsocks 的搭建就比较简单了，这里安装 Python 版的 shadowsocks 服务:</p>
+<pre><code class="language-shell">sudo pip install shadowsocks
+</code></pre>
+<p>新增配置文件，以新增 <code>/etc/shadowsocks.json</code> 为例，里面填写:</p>
+<pre><code class="language-json">{
+    &quot;server&quot;:&quot;::&quot;,
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:6153,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;rc4-md5&quot;,
+    &quot;server_port&quot;:443,
+    &quot;password&quot;:&quot;password&quot;,
+    &quot;fast_open&quot;:false
+}
+</code></pre>
+<p>server填写 &quot;::&quot; 可以同时转发 ipv4 和 ipv6。考虑到我服务端本地还要运行一个 shadowsocks client 实例，因此为了避免冲突，local_port 不选 1080，而是随便选了一个 6153 端口。另外，为了提高性能，加密方式选用 rc4-md5。由于这里服务端开启了 443 端口，因此路由器记得开放 443 端口转发权限。</p>
+<p>开启 shadowsocks 服务：</p>
+<pre><code class="language-shell">sudo ssserver -c /etc/shadowsocks.json -d start
+</code></pre>
+<p>可以利用 systemctl 添加一个开机自启动服务，使 ss 时刻后台运行。在 <code>etc/systemd/system</code> 下创建 <code>ss.service</code> 文件，内容填写:</p>
+<pre><code class="language-shell">[Unit]
+Description=shadowsocks server
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+
+ExecStart=/usr/local/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>执行以下两条指令使服务生效:</p>
+<pre><code class="language-shell">sudo systemctl enable ss.service
+sudo systemctl start ss.service
+</code></pre>
+<p>客户端中随便一个 ss 客户端填入对应的 IP、端口、加密方式、密码就 OK 了。以 Surge 为例，填写以下配置就行：</p>
+<pre><code class="language-shell">代理名称 = ss, 公网 IP, 443, encrypt-method=rc4-md5, password=password
+</code></pre>
+<p>千兆带宽下蹭网就是爽哈哈哈~</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581609375779.jpg#s70" alt="" loading="lazy"></figure>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+       <!--  <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div> -->
+        <br>
+        <hr>
+        <br>
+        <div class="sharethis-inline-share-buttons"></div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-user"></i> 本文由<a rel="license" href="/"> CaptainChen </a>创作</div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-cc"></i> 该文章采用<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"> 知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。转载请注明出处！</div>
+      </div>
+
+      <!--  -->
+<!-- 
+       -->
+
+      <!-- 来必力City版安装代码 -->
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDUwMS83MDU1">
+      <script type="text/javascript">
+         (function(d, s) {
+             var j, e = d.getElementsByTagName(s)[0];
+
+             if (typeof LivereTower === 'function') { return; }
+
+             j = d.createElement(s);
+             j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+             j.async = true;
+
+             e.parentNode.insertBefore(j, e);
+         })(document, 'script');
+      </script>
+      <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+      <!-- City版安装代码已完成 -->
+
+      <footer class="py-12 text-center px-3 md:px-0" v-pre>
+  CopyRight © 2017 - 2020
+	<br>
+	本站已稳定运行
+	<strong><script type="text/javascript">
+	var urodz= new Date("01/16/2017");
+	var now = new Date();
+	var ile = now.getTime() - urodz.getTime();
+	var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+	document.write(+dni)
+	</script>
+	</strong>天 总访问量 <strong><span id="busuanzi_value_site_uv"></span></strong> 次
+
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li>
+<ul>
+<li><a href="#1-l2tp-ipsec-%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA">1. L2TP / IPsec 服务搭建</a>
+<ul>
+<li><a href="#11-%E8%8E%B7%E5%8F%96%E5%85%AC%E7%BD%91-ip-%E5%92%8C%E7%AB%AF%E5%8F%A3%E8%BD%AC%E5%8F%91">1.1 获取公网 IP 和端口转发</a></li>
+<li><a href="#12-l2tp-ipsec-%E6%9C%8D%E5%8A%A1">1.2 L2TP / IPsec 服务</a></li>
+<li><a href="#12-macos-%E5%AE%A2%E6%88%B7%E7%AB%AF%E8%AE%BE%E7%BD%AE">1.2 macOS 客户端设置</a></li>
+</ul>
+</li>
+<li><a href="#2-shadowsocks-%E6%9C%8D%E5%8A%A1%E6%90%AD%E5%BB%BA">2 Shadowsocks 服务搭建</a></li>
+</ul>
+</li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://wizyoung.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://wizyoung.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+</body>
+
+</html>
