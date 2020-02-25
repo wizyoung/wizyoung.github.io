@@ -1,0 +1,433 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker - CaptainChen</title>
+<link rel="shortcut icon" href="https://wizyoung.github.io/favicon.ico">
+<link href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.7.2/animate.min.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/media/css/tailwind.css">
+<link rel="stylesheet" href="/media/css/font-awesome.min.css">
+<link rel="stylesheet" href="/media/css/align.css">
+<link rel="stylesheet" href="https://wizyoung.github.io/styles/main.css">
+<link rel="alternate" type="application/atom+xml" title="macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker - CaptainChen - Atom Feed" href="https://wizyoung.github.io/atom.xml">
+
+<script async type="text/javascript" src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+<script type='text/javascript' src='https://platform-api.sharethis.com/js/sharethis.js#property=5d74f9d2ab6f1000123c83b9&product=inline-share-buttons' async='async'></script>
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-90329290-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  
+    gtag('config', 'UA-90329290-1');
+  </script>
+    
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?8221f2ad0615a0f5915999d46c59b7bc";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+  <meta name="description" content="在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？
+
+我们知道，Docker 在 ..." />
+  <meta property="og:title" content="macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker - CaptainChen">
+  <meta property="og:description" content="在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？
+
+我们知道，Docker 在 ..." />
+  <meta property="og:type" content="articles">
+  <meta property="og:url" content="https://wizyoung.github.io/pd-vs-docker/" />
+  <meta property="og:image" content="https://wizyoung.github.io/images/avatar.png">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:width" content="1200">
+  <meta name="twitter:title" content="macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker - CaptainChen">
+  <meta name="twitter:description" content="在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？
+
+我们知道，Docker 在 ...">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://wizyoung.github.io/pd-vs-docker/">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.css">
+ 
+  
+    <link rel="stylesheet" href="https://wizyoung.github.io/media/css/prism-material-oceanic.css">
+  
+
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.10.0/katex.min.css">
+  
+</head>
+
+<body>
+  <div class="antialiased flex flex-col min-h-screen" id="app">
+    <a href="https://wizyoung.github.io" class="fixed top-0 left-0 mt-4 bg-black text-white dark:text-gray-700 dark:bg-yellow-50 dark:hover:bg-black dark:hover:text-white inline-flex p-2 pl-8 hover:text-gray-700 hover:bg-yellow-50 font-bold z-10 transition-fast animated fadeInLeft">
+      CaptainChen
+    </a>
+    <div class="max-w-4xl w-full mx-auto">
+      <div class="shadow-box bg-white dark:bg-gray-600 rounded-lg pt-32 md:pt-64 px-4 md:px-8 pb-8 animated fadeIn mb-8">
+        <h1 class="text-5xl font-semibold leading-normal pb-8 mb-8 border-b-8 border-gray-700">
+          macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker
+        </h1>
+        
+        <div class="mb-8 flex flex-wrap">
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-calendar"></i>  2020-02-25
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-clock-o"></i>  2013 words (about 8 min read)
+            <!-- <span style="margin-right:8px"></span>
+            <i class="fa fa-file-word-o"></i>  2013 words -->
+            <span style="margin-right:8px"></span>
+            <i class="fa fa-eye"></i>  <span class="date_info"><span id="busuanzi_container_page_pv"><span id="busuanzi_value_page_pv"></span> Views
+</span>
+          </div>
+            
+            <script>
+              function lan(){
+                if (document.getElementById("lan").innerText == "简→繁"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_tw.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "繁→簡"
+                }
+                else if(document.getElementById("lan").innerText == "繁→簡"){
+                  var s=document.getElementById("tongwenlet_cn");
+                  if(s != null){
+                  document.body.removeChild(s);
+                  }
+                  var s = document.createElement("script");
+                  s.language = "javascript";
+                  s.type = "text/javascript";
+                  s.src = "https://git.oschina.net/runningcheese/JiathisQR.js/raw/master/bookmarklet_cn.js";
+                  s.id = "tongwenlet_cn";
+                  document.body.appendChild(s);
+                  document.getElementById("lan").innerHTML = "简→繁"
+                  }
+              }
+            </script>
+          <div class="text-gray-400 text-sm mr-4">
+            <i class="fa fa-refresh"></i>  <a id="lan" href="javascript:void(0);" onclick="lan();" title="调整简繁体">简→繁</a>
+          </div>
+          
+        </div>
+        <div class="markdown mb-8" v-pre>
+          <p>在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？</p>
+<!-- more -->
+<p>我们知道，Docker 在 Linux 上利用了 Linux 原生支持的容器方式实现资源和环境的隔离，直接利用宿主内核，性能接近原生。然而，在 macOS 上却仍然需要虚拟化的技术。早期的 Docker 干脆直接在开源的 VirtualBox 中构建虚拟机，性能低下。后期的 Docker 基于轻量化的虚拟化框架 <a href="https://github.com/moby/hyperkit">HyperKit</a> 开发，该框架又是 macOS 10.10 后 Apple 官方发布的 <a href="https://developer.apple.com/documentation/hypervisor">Hypervisor.framework</a> 二次开发，<strong>据说</strong>性能得到很大提升。</p>
+<p>作为商业化虚拟机的佼佼者的 Parallels Desktop，提出了自己的 Parallels Hypervisor。因此，Docker 和 Parallels Desktop 在虚拟化技术上谁更胜一筹呢？或者说，开源和商业化闭源的虚拟化技术谁更强？通过一番测试，我的结论是 Parallels Desktop 完全吊打 Docker 。</p>
+<h1 id="1-关闭-parallels-desktop-的图形界面">1. 关闭 Parallels Desktop 的图形界面</h1>
+<p>估计大部分的用户和我一样，运行 linux 虚拟机不需要图形界面，仅仅需要一个 ssh 通过终端连接即可。Parallels 官方的<a href="https://kb.parallels.com/en/123298">这份指引</a>介绍了如何打开 Parallels Desktop 的 headless mode。基本按照下图设置就行:<br>
+<img src="https://wizyoung.github.io/post-images/1582615090295.png" alt="" loading="lazy"></p>
+<p>官方的 headless mode 就是让虚拟机以后台进程的形式运行，同时不显示 GUI 界面。注意这里并不是终止了 GUI 界面相关进程，而仅仅是<strong>不显示</strong>而已，就好比一个电脑主机没有插上显示器。以 Ubuntu 18.04 为例，打开 headless mode 通过 ssh 后登入虚拟机后，我们通过系统活动监视器会发现虚拟机内存占用比较高，约 1G 左右。而通过 htop 命令显示虚拟机内的内存占用如下图:<br>
+<img src="https://wizyoung.github.io/post-images/1582615169203.png" alt="" loading="lazy"><br>
+可以发现，与图形界面相关的 gnome-desktop 套件占用了大量内存。由于图形界面的存在，负责虚拟机与 macOS 宿主通信的 <code>prl_disp_service</code> 也会相应占用更多内存，而且 gnome-desktop 套件经常自动触发后台更新与维护服务导致 <code>prl_disp_service</code> 占用大量 CPU (这就是为什么 Linux 虚拟机经常在用户没有任何操作的时候 CPU 保持高占用，风扇狂转)。</p>
+<p>如何关闭掉图形界面呢？我们知道，不同的 linux 发行版采用不同的桌面环境 (Destop Environment, DE), 依次去手动指定关闭比较繁琐。况且，ubuntu 17 之后采用的 gnome-desktop 桌面环境包含了大量特定组件，以往通过 DM (Display Manager) 去关闭 DE 的方式仍然会残留大量 gnome 相关的进程，浪费内存。</p>
+<p>早期 Linux 系统的 init (PID=1 的 root 进程) 的实现 SysV init 中提出了 run-level 的概念，run-level = 2, 3, 4 代表多用户非图形化界面，run-level  = 5 代表多用户图形化界面。近年来，主流 Linux 发行版的 init 基本替换为了更先进 systemd。systemd 向下对 SysV 兼容，run-level = 2, 3, 4 对应于 multi-user.target, run-level = 5 对应于 graphical.target。systemd 的最大特点是面向目标 (target), 我们定义一个要启动的目标并注明它的依赖条件，systemd 负责满足所有依赖条件并执行目标。通过查看 graphical.target 的依赖链，我们发现，系统要启动图形界面，首先启动 multi-user.target 多用户非图形化界面，然后启动 display-manager.service，再由 display-manager.service 的依赖链依次往下触发大量相关服务。因此，我们只需要在系统启动时，只启动到 multi-user.target 即可，这样的话可尽最大可能避免启动不需要的 GUI 相关服务。</p>
+<p>操作方法：终端运行</p>
+<pre><code class="language-shell">sudo systemctl set-default multi-user.target // 默认是 graphical.target
+# 然后重启
+sudo reboot
+</code></pre>
+<p>此时再 ssh 登入虚拟机会发现内存占用降低到 100M 出头，同时 <code>prl_disp_service</code> 因为没有了图形界面内存占用也会降低到可以忽略不计。下图是 ubuntu 虚拟机内部的内存占用和 macOS 系统显示的虚拟机内存占用 (我进一步移除了占内存大概 10M 的 snapd 服务进程)：<br>
+<img src="https://wizyoung.github.io/post-images/1582615227620.png" alt="" loading="lazy"><br>
+<img src="https://wizyoung.github.io/post-images/1582615236021.png" alt="" loading="lazy"></p>
+<p>可以看到，关闭图形界面相关的进程后，Parallels Desktop 中的 ubuntu 虚拟机内存占用得到极大改善，100M 出头的内存占用几乎可以忽略不计，甚至比随便一个 mac 原生应用还轻量。更牛逼的是，前面提到，Parallels Desktop 支持让虚拟机以后台进程的形式运行，也就是这时我们可以完全退出 Parallels Desktop 主程序而保持虚拟机本地活跃，依然可以 ssh 登入虚拟机，太强了！</p>
+<h1 id="2-parallels-desktop-非-gui-和-docker-性能对比">2. Parallels Desktop (非 GUI) 和 Docker 性能对比</h1>
+<p>下面，我将做些简单的测试，从各个维度对 Parallels Desktop 和 Docker 展开对比。</p>
+<blockquote>
+<p>硬件平台: mac mini late 2018 i-8500B 32G ram<br>
+虚拟机平台: Parallels Desktop 15.1.2 (47123), Docker 2.2.0.3(42716)<br>
+虚拟对象: Ubuntu 18.04.1</p>
+</blockquote>
+<p>为保证公平对比，虚拟平台的设置均为 CPU 2 核，内存 1G，虚拟内存 2G:<br>
+<img src="https://wizyoung.github.io/post-images/1582615250206.png" alt="" loading="lazy"></p>
+<p>(1) 启动速度对比<br>
+Parallels Desktop: 启动主程序，大概不到 3s。Ubuntu 冷启动大概 14s, 从休眠态启动大概 1s (秒启动)。<br>
+Docker: docker 主进程启动大概 12s，Ubuntu 镜像启动速度忽略不计。<br>
+<strong>结论</strong>: 在真实使用中，Parallels Desktop 上用户肯定会采用从休眠态恢复虚拟机，因此这里 Parallels Desktop 胜出，而且体验好太多。</p>
+<p>(2) 内存占用<br>
+Parallels Desktop: 主程序内存占用 100M 左右 (主进程可退出)，虚拟机内存占用 100M 左右(见第一小节图片)，负责 macOS 与虚拟机通信的后台守护进程合计占用 30M 左右 (如下图):<br>
+<img src="https://wizyoung.github.io/post-images/1582615267255.png" alt="" loading="lazy"><br>
+Docker: 仅仅启动主进程，不启动任何容器，docker 依赖的 hyperkit 内存占用居然超过 1.3 G (见下图)！ubuntu 容器内存占用 200M+。<br>
+<img src="https://wizyoung.github.io/post-images/1582615276138.png" alt="" loading="lazy"><br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。Docker 主程序打开什么也不干就常驻 1G + 内存，体验实在是太差了。</p>
+<p>(3) 磁盘 IO:<br>
+利用 dd 命令测试 1G 文件下的磁盘写入速度:</p>
+<pre><code class="language-shell">dd bs=1M count=1K if=/dev/zero of=test oflag=dsync &amp;&amp; rm test
+</code></pre>
+<p>由于 macOS 上的 dd 命令 (BSD 系) 和 ubuntu 不一致，因此利用 homebrew 安装 GNU 版本的 dd: <code>brew install coreutils</code>，保持和 ubuntu 的一致性。GNU 的 dd 命令路径在: <code>/usr/local/opt/coreutils/libexec/gnubin/dd</code>。</p>
+<p>分别执行三次读写速度测试命令，对比原生 macOS, Parallels Desktop，Docker 三者如下：<br>
+<img src="https://wizyoung.github.io/post-images/1582615288671.png" alt="" loading="lazy"></p>
+<p>可以发现， Parallels Desktop 下虚拟机内的磁盘写入速度非常接近原生 macOS, 而 Docker 就惨不忍睹了。经常在网上看到无数人吐槽 Docker 磁盘 I/O 缩水太严重，今日小测果然如此。<br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。</p>
+<p>(4) CPU 性能：<br>
+对 1G 文件进行 md5 运算，作为粗略性能比较：</p>
+<pre><code class="language-shell">dd if=/dev/zero bs=1M count=1K | md5sum
+</code></pre>
+<p>速度对比如下：<br>
+<img src="https://wizyoung.github.io/post-images/1582615296520.png" alt="" loading="lazy"><br>
+可以看到，Parallels Desktop 的 CPU 利用效率也是比 Docker 高出不少。另外，比较神奇的是，原生 macOS 用 md5sum 测试的性能居然不如 Parallels Desktop，是因为 macOS 做了特殊的设定还是什么原因我表示不清楚，毕竟 macOS 基于 BSD，有很多隐藏差异可能我并不知情。<br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。</p>
+<p><mark>总结</mark>: macOS 上使用 Linux 环境，建议采用 Parallels Desktop 虚拟机而不是 Docker, 前者资源占用更少，性能更高。可以看出 Parallels Desktop 作为 macOS 上虚拟化技术的一哥，确实做的出色。这也难怪有用户在<a href="https://forum.parallels.com/threads/parallels-hypervisor-vs-apples-hypervisor.337755/">论坛</a> 提问 Apple Hypervisor 和 Parallels Hypervisor 谁更强时，客服霸气回复 <code>Parallels Hypervisor is the best one.</code> 另外，本文没有使用 VMware 虚拟机是因为在本人的日常体验中，VMware 相比 Parallels Desktop 有着肉眼可见的差距。</p>
+
+        </div>
+        <!-- Share to Twitter, Weibo, Telegram -->
+       <!--  <div class="flex items-center">
+          <div class="mr-4 flex items-center">
+            <i class="ri-share-forward-line text-gray-500"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-blue-500 hover:bg-blue-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTwitter">
+            <i class="ri-twitter-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-red-500 hover:bg-red-100 dark:hover:bg-gray-600 inline-flex" @click="shareToWeibo">
+            <i class="ri-weibo-line"></i>
+          </div>
+          <div class="px-4 cursor-pointer text-indigo-500 hover:bg-indigo-100 dark:hover:bg-gray-600 inline-flex" @click="shareToTelegram">
+            <i class="ri-telegram-line"></i>
+          </div>
+        </div> -->
+        <br>
+        <hr>
+        <br>
+        <div class="sharethis-inline-share-buttons"></div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-user"></i> 本文由<a rel="license" href="/"> CaptainChen </a>创作</div>
+        <div style="color: #ccc;font-size:12px;"><i class="fa fa-cc"></i> 该文章采用<a rel="license" href="https://creativecommons.org/licenses/by-nc/4.0/"> 知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可。转载请注明出处！</div>
+      </div>
+
+      <!--  -->
+<!-- 
+       -->
+
+      <!-- 来必力City版安装代码 -->
+      <div id="lv-container" data-id="city" data-uid="MTAyMC8zMDUwMS83MDU1">
+      <script type="text/javascript">
+         (function(d, s) {
+             var j, e = d.getElementsByTagName(s)[0];
+
+             if (typeof LivereTower === 'function') { return; }
+
+             j = d.createElement(s);
+             j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+             j.async = true;
+
+             e.parentNode.insertBefore(j, e);
+         })(document, 'script');
+      </script>
+      <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+      </div>
+      <!-- City版安装代码已完成 -->
+
+      <footer class="py-12 text-center px-3 md:px-0" v-pre>
+  CopyRight © 2017 - 2020
+	<br>
+	本站已稳定运行
+	<strong><script type="text/javascript">
+	var urodz= new Date("01/16/2017");
+	var now = new Date();
+	var ile = now.getTime() - urodz.getTime();
+	var dni = Math.floor(ile / (1000 * 60 * 60 * 24));
+	document.write(+dni)
+	</script>
+	</strong>天 总访问量 <strong><span id="busuanzi_value_site_uv"></span></strong> 次
+
+</footer>
+    </div>
+
+    <!-- TOC Container -->
+    <div class="fixed right-0 bottom-0 mb-16 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white dark:bg-gray-500 dark:text-gray-200 hover:shadow-lg transition-all animated fadeInRight" @click="showToc = true">
+      <i class="ri-file-list-line"></i>
+    </div>
+
+    <div class="fixed right-0 top-0 bottom-0 overflow-y-auto w-64 bg-white dark:bg-gray-800 p-4 border-l border-gray-100 dark:border-gray-600 z-10 transition-fast" :class="{ '-mr-64': !showToc }">
+      <div class="flex mb-4 justify-end">
+        <div class="w-8 h-8 inline-flex justify-center items-center rounded-full cursor-pointer hover:bg-gray-200 dark:hover:bg-gray-600 transition-fast" @click="showToc = false">
+          <i class="ri-close-line text-lg"></i>
+        </div>
+      </div>
+      <div class="post-toc-container">
+        <ul class="markdownIt-TOC">
+<li><a href="#1-%E5%85%B3%E9%97%AD-parallels-desktop-%E7%9A%84%E5%9B%BE%E5%BD%A2%E7%95%8C%E9%9D%A2">1. 关闭 Parallels Desktop 的图形界面</a></li>
+<li><a href="#2-parallels-desktop-%E9%9D%9E-gui-%E5%92%8C-docker-%E6%80%A7%E8%83%BD%E5%AF%B9%E6%AF%94">2. Parallels Desktop (非 GUI) 和 Docker 性能对比</a></li>
+</ul>
+
+      </div>
+    </div>
+
+    <!-- Back to top -->
+    <div class="fixed right-0 bottom-0 mb-4 mr-4 shadow w-8 h-8 rounded-full flex justify-center items-center z-10 cursor-pointer bg-white hover:shadow-lg transition-all dark:bg-gray-500 dark:text-gray-200" @click="backToUp" v-show="scrolled">
+      <i class="ri-arrow-up-line"></i>
+    </div>
+  </div>
+
+  <!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+  <!-- Background of PhotoSwipe. 
+        It's a separate element as animating opacity is faster than rgba(). -->
+  <div class="pswp__bg">
+  </div>
+  <!-- Slides wrapper with overflow:hidden. -->
+  <div class="pswp__scroll-wrap">
+    <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+    <div class="pswp__container">
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+      <div class="pswp__item">
+      </div>
+    </div>
+    <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+    <div class="pswp__ui pswp__ui--hidden">
+      <div class="pswp__top-bar">
+        <!--  Controls are self-explanatory. Order can be changed. -->
+        <div class="pswp__counter">
+        </div>
+        <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+        <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+        <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+        <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+        <!-- element will get class pswp__preloader--active when preloader is running -->
+        <div class="pswp__preloader">
+          <div class="pswp__preloader__icn">
+            <div class="pswp__preloader__cut">
+              <div class="pswp__preloader__donut">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+        <div class="pswp__share-tooltip">
+        </div>
+      </div>
+      <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+      </button>
+      <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+      </button>
+      <div class="pswp__caption">
+        <div class="pswp__caption__center">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script src="https://wizyoung.github.io/media/scripts/main.js"></script>
+  
+  <!-- Code Highlight -->
+  
+    <script src="https://wizyoung.github.io/media/prism.js"></script>
+    <script>
+      Prism.highlightAll()
+    </script>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+  <script>
+    //拿到预览框架，也就是上面的html代码
+    var pswpElement = document.querySelectorAll('.pswp')[0];
+    //定义图片数组变量
+    var imgitems;
+    /**
+    * 用于显示预览界面
+    * @param index 图片数组下标
+    */
+    function viewImg(index) {
+      //其它选项这里不做过多阐述，详情见官网
+      var pswpoptions = {
+        index: parseInt(index, 10), // 开始幻灯片索引。0是第一张幻灯片。必须是整数，而不是字符串。
+        bgOpacity: 0.7, // 背景透明度，0-1
+        maxSpreadZoom: 3, // 缩放级别，不要太大
+      };
+      //初始化并打开PhotoSwipe，pswpElement对应上面预览框架，PhotoSwipeUI_Default为皮肤，imgitems为图片数组，pswpoptions为选项
+      var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, imgitems, pswpoptions);
+      gallery.init()
+    }
+    /**
+    * 用于添加图片点击事件
+    * @param img 图片元素
+    * @param index 所属下标（在imgitems中的位置）
+    */
+    function addImgClick(img, index) {
+      img.onclick = function() {
+        viewImg(index)
+      }
+    }
+    /**
+    * 轮询所有图片，获取src、width、height等数据，加入imgitems，并给图片元素添加事件
+    * 最好在onload中执行该方法，本站因放在最底部，所以直接初始化
+    * 异步加载图片可在图片元素创建完成后调用此方法
+    */
+    function initImg() {
+      //重置图片数组
+      imgitems = [];
+      //查找class:markdown 下的所有img元素并遍历
+      var imgs = document.querySelectorAll('.markdown img');
+      for (var i = 0; i < imgs.length; i++) {
+        var img = imgs[i];
+        //本站相册初始为loading图片，真实图片放在data-src
+        var ds = img.getAttribute("data-src");
+        //创建image对象，用于获取图片宽高
+        var imgtemp = new Image();
+        //判断是否存在data-src
+        if (ds != null && ds.length > 0) {
+          imgtemp.src = ds
+        } else {
+          imgtemp.src = img.src
+        }
+        //判断是否存在缓存
+        if (imgtemp.complete) {
+          var imgobj = {
+            "src": imgtemp.src,
+            "w": imgtemp.width,
+            "h": imgtemp.height,
+          };
+          imgitems[i] = imgobj;
+          addImgClick(img, i);
+        } else {
+          console.log('进来了2')
+          imgtemp.index = i;
+          imgtemp.img = img;
+          imgtemp.onload = function() {
+            var imgobj = {
+              "src": this.src,
+              "w": this.width,
+              "h": this.height,
+            };
+            //不要使用push，因为onload前后顺序会不同
+            imgitems[this.index] = imgobj
+            //添加点击事件
+            addImgClick(this.img, this.index);
+          }
+        }
+      }
+    }
+    //初始化
+    initImg();
+  </script>
+</body>
+
+</html>
