@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-15T10:47:05.377Z</updated>
+    <updated>2020-02-25T07:24:41.852Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -10,6 +10,74 @@
     <logo>https://wizyoung.github.io/images/avatar.png</logo>
     <icon>https://wizyoung.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CaptainChen</rights>
+    <entry>
+        <title type="html"><![CDATA[macOS 上的 Linux 虚拟化选择: Parallels Desktop vs Docker]]></title>
+        <id>https://wizyoung.github.io/macos-shang-de-linux-xu-ni-parallels-desktop-vs-docker/</id>
+        <link href="https://wizyoung.github.io/macos-shang-de-linux-xu-ni-parallels-desktop-vs-docker/">
+        </link>
+        <updated>2020-02-24T16:31:32.000Z</updated>
+        <summary type="html"><![CDATA[<p>在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？</p>
+<!-- more -->
+<p>我们知道，Docker 在 Linux 上利用了 Linux 原生支持的容器方式实现资源和环境的隔离，直接利用宿主内核，性能接近原生。然而，在 macOS 上却仍然需要虚拟化的技术。早期的 Docker 干脆直接在开源的 VirtualBox 中构建虚拟机，性能低下。后期的 Docker 基于轻量化的虚拟化框架 <a href="https://github.com/moby/hyperkit">HyperKit</a> 开发，该框架又是 macOS 10.10 后 Apple 官方发布的 <a href="https://developer.apple.com/documentation/hypervisor">Hypervisor.framework</a> 二次开发，<strong>据说</strong>性能得到很大提升。</p>
+<p>作为商业化虚拟机的佼佼者的 Parallels Desktop，提出了自己的 Parallels Hypervisor。因此，Docker 和 Parallels Desktop 在虚拟化技术上谁更胜一筹呢？或者说，开源和商业化闭源的虚拟化技术谁更强？通过一番测试，我的结论是 Parallels Desktop 完全吊打 Docker 。</p>
+<h1 id="1-关闭-parallels-desktop-的图形界面">1. 关闭 Parallels Desktop 的图形界面</h1>
+<p>估计大部分的用户和我一样，运行 linux 虚拟机不需要图形界面，仅仅需要一个 ssh 通过终端连接即可。Parallels 官方的<a href="https://kb.parallels.com/en/123298">这份指引</a>介绍了如何打开 Parallels Desktop 的 headless mode。基本按照下图设置就行:<br>
+<img src="https://wizyoung.github.io/post-images/1582615090295.png" alt="" loading="lazy"></p>
+<p>官方的 headless mode 就是让虚拟机以后台进程的形式运行，同时不显示 GUI 界面。注意这里并不是终止了 GUI 界面相关进程，而仅仅是<strong>不显示</strong>而已，就好比一个电脑主机没有插上显示器。以 Ubuntu 18.04 为例，打开 headless mode 通过 ssh 后登入虚拟机后，我们通过系统活动监视器会发现虚拟机内存占用比较高，约 1G 左右。而通过 htop 命令显示虚拟机内的内存占用如下图:<br>
+<img src="https://wizyoung.github.io/post-images/1582615169203.png" alt="" loading="lazy"><br>
+可以发现，与图形界面相关的 gnome-desktop 套件占用了大量内存。由于图形界面的存在，负责虚拟机与 macOS 宿主通信的 <code>prl_disp_service</code> 也会相应占用更多内存，而且 gnome-desktop 套件经常自动触发后台更新与维护服务导致 <code>prl_disp_service</code> 占用大量 CPU (这就是为什么 Linux 虚拟机经常在用户没有任何操作的时候 CPU 保持高占用，风扇狂转)。</p>
+<p>如何关闭掉图形界面呢？我们知道，不同的 linux 发行版采用不同的桌面环境 (Destop Environment, DE), 依次去手动指定关闭比较繁琐。况且，ubuntu 17 之后采用的 gnome-desktop 桌面环境包含了大量特定组件，以往通过 DM (Display Manager) 去关闭 DE 的方式仍然会残留大量 gnome 相关的进程，浪费内存。</p>
+<p>早期 Linux 系统的 init (PID=1 的 root 进程) 的实现 SysV init 中提出了 run-level 的概念，run-level = 2, 3, 4 代表多用户非图形化界面，run-level  = 5 代表多用户图形化界面。近年来，主流 Linux 发行版的 init 基本替换为了更先进 systemd。systemd 向下对 SysV 兼容，run-level = 2, 3, 4 对应于 multi-user.target, run-level = 5 对应于 graphical.target。systemd 的最大特点是面向目标 (target), 我们定义一个要启动的目标并注明它的依赖条件，systemd 负责满足所有依赖条件并执行目标。通过查看 graphical.target 的依赖链，我们发现，系统要启动图形界面，首先启动 multi-user.target 多用户非图形化界面，然后启动 display-manager.service，再由 display-manager.service 的依赖链依次往下触发大量相关服务。因此，我们只需要在系统启动时，只启动到 multi-user.target 即可，这样的话可尽最大可能避免启动不需要的 GUI 相关服务。</p>
+<p>操作方法：终端运行</p>
+<pre><code class="language-shell">sudo systemctl set-default multi-user.target // 默认是 graphical.target
+# 然后重启
+sudo reboot
+</code></pre>
+<p>此时再 ssh 登入虚拟机会发现内存占用降低到 100M 出头，同时 <code>prl_disp_service</code> 因为没有了图形界面内存占用也会降低到可以忽略不计。下图是 ubuntu 虚拟机内部的内存占用和 macOS 系统显示的虚拟机内存占用 (我进一步移除了占内存大概 10M 的 snapd 服务进程)：<br>
+<img src="https://wizyoung.github.io/post-images/1582615227620.png" alt="" loading="lazy"><br>
+<img src="https://wizyoung.github.io/post-images/1582615236021.png" alt="" loading="lazy"></p>
+<p>可以看到，关闭图形界面相关的进程后，Parallels Desktop 中的 ubuntu 虚拟机内存占用得到极大改善，100M 出头的内存占用几乎可以忽略不计，甚至比随便一个 mac 原生应用还轻量。更牛逼的是，前面提到，Parallels Desktop 支持让虚拟机以后台进程的形式运行，也就是这时我们可以完全退出 Parallels Desktop 主程序而保持虚拟机本地活跃，依然可以 ssh 登入虚拟机，太强了！</p>
+<h1 id="2-parallels-desktop-非-gui-和-docker-性能对比">2. Parallels Desktop (非 GUI) 和 Docker 性能对比</h1>
+<p>下面，我将做些简单的测试，从各个维度对 Parallels Desktop 和 Docker 展开对比。</p>
+<blockquote>
+<p>硬件平台: mac mini late 2018 i-8500B 32G ram<br>
+虚拟机平台: Parallels Desktop 15.1.2 (47123), Docker 2.2.0.3(42716)<br>
+虚拟对象: Ubuntu 18.04.1</p>
+</blockquote>
+<p>为保证公平对比，虚拟平台的设置均为 CPU 2 核，内存 1G，虚拟内存 2G:<br>
+<img src="https://wizyoung.github.io/post-images/1582615250206.png" alt="" loading="lazy"></p>
+<p>(1) 启动速度对比<br>
+Parallels Desktop: 启动主程序，大概不到 3s。Ubuntu 冷启动大概 14s, 从休眠态启动大概 1s (秒启动)。<br>
+Docker: docker 主进程启动大概 12s，Ubuntu 镜像启动速度忽略不计。<br>
+<strong>结论</strong>: 在真实使用中，Parallels Desktop 上用户肯定会采用从休眠态恢复虚拟机，因此这里 Parallels Desktop 胜出，而且体验好太多。</p>
+<p>(2) 内存占用<br>
+Parallels Desktop: 主程序内存占用 100M 左右 (主进程可退出)，虚拟机内存占用 100M 左右(见第一小节图片)，负责 macOS 与虚拟机通信的后台守护进程合计占用 30M 左右 (如下图):<br>
+<img src="https://wizyoung.github.io/post-images/1582615267255.png" alt="" loading="lazy"><br>
+Docker: 仅仅启动主进程，不启动任何容器，docker 依赖的 hyperkit 内存占用居然超过 1.3 G (见下图)！ubuntu 容器内存占用 200M+。<br>
+<img src="https://wizyoung.github.io/post-images/1582615276138.png" alt="" loading="lazy"><br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。Docker 主程序打开什么也不干就常驻 1G + 内存，体验实在是太差了。</p>
+<p>(3) 磁盘 IO:<br>
+利用 dd 命令测试 1G 文件下的磁盘写入速度:</p>
+<pre><code class="language-shell">dd bs=1M count=1K if=/dev/zero of=test oflag=dsync &amp;&amp; rm test
+</code></pre>
+<p>由于 macOS 上的 dd 命令 (BSD 系) 和 ubuntu 不一致，因此利用 homebrew 安装 GNU 版本的 dd: <code>brew install coreutils</code>，保持和 ubuntu 的一致性。GNU 的 dd 命令路径在: <code>/usr/local/opt/coreutils/libexec/gnubin/dd</code>。</p>
+<p>分别执行三次读写速度测试命令，对比原生 macOS, Parallels Desktop，Docker 三者如下：<br>
+<img src="https://wizyoung.github.io/post-images/1582615288671.png" alt="" loading="lazy"></p>
+<p>可以发现， Parallels Desktop 下虚拟机内的磁盘写入速度非常接近原生 macOS, 而 Docker 就惨不忍睹了。经常在网上看到无数人吐槽 Docker 磁盘 I/O 缩水太严重，今日小测果然如此。<br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。</p>
+<p>(4) CPU 性能：<br>
+对 1G 文件进行 md5 运算，作为粗略性能比较：</p>
+<pre><code class="language-shell">dd if=/dev/zero bs=1M count=1K | md5sum
+</code></pre>
+<p>速度对比如下：<br>
+<img src="https://wizyoung.github.io/post-images/1582615296520.png" alt="" loading="lazy"><br>
+可以看到，Parallels Desktop 的 CPU 利用效率也是比 Docker 高出不少。另外，比较神奇的是，原生 macOS 用 md5sum 测试的性能居然不如 Parallels Desktop，是因为 macOS 做了特殊的设定还是什么原因我表示不清楚，毕竟 macOS 基于 BSD，有很多隐藏差异可能我并不知情。<br>
+<strong>结论</strong>：Parallels Desktop 完胜，不解释。</p>
+<p><mark>总结</mark>: macOS 上使用 Linux 环境，建议采用 Parallels Desktop 虚拟机而不是 Docker, 前者资源占用更少，性能更高。可以看出 Parallels Desktop 作为 macOS 上虚拟化技术的一哥，确实做的出色。这也难怪有用户在<a href="https://forum.parallels.com/threads/parallels-hypervisor-vs-apples-hypervisor.337755/">论坛</a> 提问 Apple Hypervisor 和 Parallels Hypervisor 谁更强时，客服霸气回复 <code>Parallels Hypervisor is the best one.</code> 另外，本文没有使用 VMware 虚拟机是因为在本人的日常体验中，VMware 相比 Parallels Desktop 有着肉眼可见的差距。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[Bibtex 文献引用小技巧 -- Identification String]]></title>
         <id>https://wizyoung.github.io/bibtex-entries-skill/</id>
@@ -2052,83 +2120,6 @@ brctl addif br0 eth2.2
 <hr>
 <p>参考资料</p>
 <p>[1]<a href="http://qydw.blogspot.jp/2016/11/padavanipv6ipv6.html">三个命令解决Padavan路由器内网IPV6访问（适用于IPV6无需认证的网络）</a></p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[我的 Mac 软件列表]]></title>
-        <id>https://wizyoung.github.io/我的Mac软件列表/</id>
-        <link href="https://wizyoung.github.io/我的Mac软件列表/">
-        </link>
-        <updated>2017-01-28T14:54:56.000Z</updated>
-        <content type="html"><![CDATA[<blockquote>
-<p>本文更新于 2020.1.13</p>
-</blockquote>
-<p>作为 macOS 忠实用户，自从我 2015 年抛弃 Windows 投入 macOS 阵营来，除偶尔需要游戏不方便外，整体的体验还是较之前 Windows 时代好不少，究其原因，无非三点：（1） macOS 是类 Unix 系统，作为商业软件，整体的桌面环境又比一般 Linux 发行版好太多；（2）整体的软件生态环境比 Windows 好一点，大量的优质软件给整个平台带了良好的用户体验，再和 iOS 结合非常舒适。</p>
-<p>由于每年的需要不一致，这几年我电脑上的软件列表一直在发生变化，大概整理了一下截至 2020 年初我经常使用的软件列表：</p>
-<h2 id="1-效率工具">1 效率工具</h2>
-<ol>
-<li>HomeBrew: 一个好用的包管理工具，简单易用。我想主要的缺点是对旧版本软件的支持不太好吧，这一点比不上 apt-get 之类的工具，但大部分条件下够用了。</li>
-<li>iTerm 2 &amp; oh-my-zsh: 比较好用的终端，配合 oh-my-zsh 功能强大颜值又比较高，相信大部分的开发者都是使用的这套配置吧。</li>
-<li>Alfred: workflow 式的效率工具，配合各式插件功能强大，可以看成增强版 Spotlight 吧，日常工作生活中自己写了很多 workflow 进行自动化操作，还是比较方便的。</li>
-<li>Popclip: 鼠标选中文本后弹出的工具条，可进行多种效率操作。基本是日常使用频率最高的小软件了，自己也开发了不少小工具，比如谷歌翻译的插件 <a href="https://github.com/wizyoung/googletranslate.popclipext">googletranslate.popclipext</a>。</li>
-</ol>
-<h2 id="2-coding">2 Coding</h2>
-<ol>
-<li>IDE 系列：目前在用的比较“重”的 IDE: Xcode, Pycharm, IntelljJ IDEA。</li>
-<li>Sublime &amp; VS Code: Sublime 打开速度确实快，当做默认文本编辑器了，以及各种语言的 REPL 环境；VS Code 写写日常代码或者小工程，说到 VS Code 就不得不提远程端的 <a href="https://github.com/cdr/code-server">code-server</a>，单文件可执行文件，扔到 Linux 主机，开放一个端口，本地电脑打开浏览器输入地址就可以运行，远程调用代码，确实好用 （比如公司主机要通过层层跳板机连接，但是可以随便开放本地端口，就可以用这个替代 vim 呀，前提是公司允许）。</li>
-<li>Code Runner：测试小代码片段，随开随用。去年找工作刷 LeetCode 时经常用它作本地调试。</li>
-<li>Dash：全语言文档手册速查，离线查看。</li>
-<li>Tower：比较喜欢的一个 Git 客户端。</li>
-<li>Expression：测试正则表达式。</li>
-</ol>
-<h2 id="3-网络">3 网络</h2>
-<ol>
-<li>Surge: 无痛爬墙，简单网络抓包，好用到没朋友。这几年来一直自己维护了一套规则，经过了时间的考验，在网络上比较丝滑。Surge 提供的 snell 专有协议也比较不错，简单高性能，敏感时期 SS 都挂的时候 snell 比较稳定 (小众就是好呀)。</li>
-<li>Charles: 偶尔抓抓包。</li>
-<li>IP Scanner: 当网络很复杂时，比如多层路由中继，它能一个不落全扫描出来。</li>
-<li>Transmit: 比较好用的 SFTP 客户端，最好用的功能是一键在终端切换到远程路径下，在同类软件中简直无敌。同时支持挂载 google drive, webdav, backblaze b2 等诸多协议。</li>
-<li>BestTrace: IPIP 出品，用来看看 VPS 国际线路，是直连还是绕了地球一大圈。</li>
-<li>GoodSync：局域网文件同步和备份。</li>
-</ol>
-<h2 id="4-知识管理">4 知识管理</h2>
-<ol>
-<li>Keep It: 文档管理与同步工具。以前用 DEVONthink，功能确实强大，然而有点过于复杂，同步机制做的也不 OK，iOS 至今是个半残（即使我付费购买后又进一步解锁了内购），抛弃了。Keep It 虽然功能上不如 DEVONthink，然而基础功能经过一段比较长时间的验证发现完全够用，尽管软件有点小瑕疵，但是作者一直高频更新着，确实一次比一次好。</li>
-<li>Quiver：在经历了印象笔记，为知笔记，有道云笔记，notion，OneNote 等众多笔记软件后，还是选了Quiver。其实大家好评如潮的 notion 的 block 模式不就是抄的 quiver 么，15 年我用 quiver 时 quiver 就提出了 block 模式。与主流完全相反，我抵制 markdown 记笔记，尤其对理工科生而言，大量的图片、代码和公式，用 markdown 往往让人迷失在格式和排版中，混合 block 才是正解。可惜 quiver 是 one-man 软件，给作者反馈了大量意见，从 2018 年底开始就不断跟我说版本 4 要出来了，然而这都 2020 年了。。。独立开发不易，希望作者加把劲吧，再这样下去 notion 的离线模式做好了，quiver 可能就要消失在历史的长河中了。</li>
-<li>系统自带备忘录：自带备忘录记录零碎想法真的超级好用呀~</li>
-<li>OmniGraffle：写 Paper 画个结构图、流程图啥的比较好用。对于公式，配合免费的 LaTeXIT，输入 LaTeX 公式，把生成的矢量 PDF 直接拖入到 OmniGraffle 即可解决 OmniGraffle 无法原生支持数据公式的问题。</li>
-<li>Texpad：实时更新的 LaTeX 编辑器，估计是所有平台上最好用的 LaTeX 编辑器了吧。</li>
-</ol>
-<h2 id="5-系统增强">5 系统增强</h2>
-<ol>
-<li>Jitouch + BetterTouchTool: 触摸板增强，感觉还是两个软件配合起来用比较顺滑。</li>
-<li>Bartender： 任务栏图标太多，用它整理，并去掉讨厌的 Siri 和 Spotlight 图标等。</li>
-<li>Paste：颜值爆表的剪切板历史记录软件，快捷键呼出，简直不能更方便。</li>
-<li>iStat Menus：任务栏上的多功能 Monitor。日常用来看网速，应用联网情况和 CPU、内存占用，颜值高又好用（早期版本 6 的 beta 出来时给软件反馈了些 bug 并修改了一些汉化问题，免费送了我一份授权hhh）</li>
-<li>1Password：高效、安全、便捷地管理密码的完美方案，支持 Touch ID（可惜 15 款本本没有），已经离不开。</li>
-<li>DiasyDisk：饼状图分析磁盘占用。</li>
-<li>App Cleaner &amp; Uninstaller：软件卸载，目前觉得还是它卸载最干净。</li>
-<li>Easy New File: 任意地方右键一键在当前路径打开 iTerm。</li>
-<li>Coherence Pro：基于 chrome 的网页打包成 app 的软件，资源占用比原生 chrome 小很多。</li>
-<li>Karabiner-Elements：键位魔改与增强。</li>
-<li>Keyboard Maestro：基于键盘的自动化工具。我用来消除剪贴板格式，和一键填充 1password 主密码 (通过调用 keychain 的方式)。</li>
-<li>MacUpdater: 在一个地方检测整个系统所有软件的更新。</li>
-<li>One Switch：任务栏常驻软件，一键开关深色模式、防止睡眠等等。</li>
-<li>Parallels Desktop：最好用的虚拟机软件。尤其是 Linux 的 headless 模式，内存占用极低，性能也比较高。</li>
-</ol>
-<h2 id="6-图像影音">6 图像影音</h2>
-<ol>
-<li>PP 鸭：最好用的图片压缩软件了吧，可惜不提供 cli 接口。</li>
-<li>Xnip：截图软件中在功能和重量之间权衡最好的了吧。</li>
-<li>PixelMator: 相比 PS 很轻的全能图像编辑软件。</li>
-<li>IINA：视频播放器。</li>
-<li>QQ 音乐 + 腾讯视频 + 爱奇艺 + 优酷：日常影音娱乐。</li>
-</ol>
-<h2 id="7-社交网络">7 社交网络</h2>
-<ol>
-<li>QQ + 微信：微信推荐使用 <a href="https://github.com/MustangYM/WeChatExtension-ForMac">微信小助手</a> 插件，免认证登录和防撤回，比较方便。</li>
-<li>Telegram：好吧，我用来当跨平台文本和文件传输同步，以及链接收藏。在学校的时候，还写过一个 bot 监控老板在不在实验室 hhh。</li>
-<li>Maipo：第三方微博客户端。</li>
-</ol>
 ]]></content>
     </entry>
 </feed>
