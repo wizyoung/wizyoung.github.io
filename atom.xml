@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-26T14:48:10.893Z</updated>
+    <updated>2020-02-26T15:13:02.328Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -20,110 +20,6 @@
 ]]></summary>
         <content type="html"><![CDATA[<p>前段时间和师弟聊天，谈到网盘的问题，我们一致认为国内的网盘体验真的是太差了。网络不限速、文件不和谐、支持随意分享、支持直链下载、支持命令行上传下载，这几个刚需基本上随便一家国内网盘都有至少 3 点不满足，加上普遍会员价格昂贵，实在没有购买使用的欲望。尤其是支持命令行上传下载，简直是刚需中的刚需了，因为它确保了我能在没有图形界面的 Linux 机器上使用。</p>
 <!-- more -->
-<p>其实，只要手头有一台 VPS，可以很方便地搭建一个私有网盘，满足自己的各种需求。GitHub 上有很多成熟的开源网盘方案，如 NextCloud 等，这里不介绍它们的安装使用，因为它们配置相对复杂 (小白不友好)，系统资源消耗大 (vps 小鸡不友好)。这里推荐两个比较轻量的解决方案：<a href="https://github.com/filebrowser/filebrowser">File Browser</a> 和 <a href="https://github.com/sc0tfree/updog">Updog</a>，基本上都是一行命令搞定。</p>
-<h2 id="1-file-browser">1. File Browser</h2>
-<p><a href="https://github.com/filebrowser/filebrowser">File Browser</a> 是一个 GO 语言编写的 WEB 文件管理器，提供了文件上传、下载、删除、预览、重命名、分享等诸多功能，同时支持多用户管理，功能非常齐全。它的界面如下图：<br>
-<img src="https://wizyoung.github.io/post-images/1582697132943.gif" alt="" loading="lazy"></p>
-<p>File Browser 的使用非常简单，从 Github release 界面下载对应 linux 发行版安装包解压，其实就是一个名为 filebrowser 的可执行文件，<strong>无需任何依赖</strong>，大小仅 30 M+，非常轻量。</p>
-<p>部署仅需一条命令行：</p>
-<pre><code class="language-shell">filebrowser -a 0.0.0.0 -p 8007 -r /root -d /root/filebrowser.db
-</code></pre>
-<p>这样就指定 <code>/root</code> 目录为网盘根目录，在 <code>8007</code> 端口下启动了一个私有网盘。<code>-d</code> 命令指定了存放用户信息的数据库的目录，第一次运行会自动生成。访问 http://your_vps_ip:8007 就可以登入刚刚搭建好的网盘，默认用户名和密码均为 <code>admin</code>，登入后在设置里面可以更改。</p>
-<p>用 nohup 或者 screen 等可以让 File Browser 后台运行，不过为了更方便地使用，我建议使用 systemd 新建一个开机启动的守护进程服务，后台常驻 (因为确实好用)：</p>
-<p>在 <code>etc/systemd/system</code> 下创建 <code>fb.service</code> 文件，内容填写:</p>
-<pre><code class="language-shell">[Unit]
-Description=filebrowser service
-After=network.target
-
-[Service]
-Type=simple
-Restart=always
-
-ExecStart=path_to_filebrowser -a 0.0.0.0 -p 8007 -r /root -d /root/filebrowser.db
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>注意上面的 <code>file_to_filebrowser</code> 填写 File Browser 的绝对路径。</p>
-<p>执行以下两条指令使服务生效并启动:</p>
-<pre><code class="language-shell">sudo systemctl enable fb.service
-sudo systemctl start fb.service
-</code></pre>
-<p>前面我提到 filebrowser 非常轻量，在我的 VPS 上，用 systemctl 查看，该服务仅仅占用 18 M 内存而已：<br>
-<img src="https://wizyoung.github.io/post-images/1582698115434.png" alt="" loading="lazy"></p>
-<p><strong>文件分享</strong><br>
-我非常喜欢 File Browser 的文件分享功能，它可以指定分享外链在一段时间后失效：<br>
-<img src="https://wizyoung.github.io/post-images/1582698217800.png" alt="" loading="lazy"></p>
-<p><strong>直链下载</strong><br>
-前面文件分享获取链接后，复制该链接在浏览器新页面打开，在文件名上右键选择<code>复制链接地址</code>即可得到直链地址。</p>
-<p><strong>命令行上传下载</strong><br>
-在 GitHub 的 issues 里面，作者的多次回复表明他似乎并不希望用户使用命令行进行文件上传和下载 (这点我实在想不通)，然而作者依然透露了 <a href="https://github.com/filebrowser/filebrowser/issues/217">api 接口</a>，这样，我们可以通过简单的 http post 上传文件。然而我发现作者提供的 api 在版本 2.0 后就发生了变动不再有效，通过简单的分析，我获取了新版的 api 的正确使用方式。我手头上两台 VPS 之前安装的 File Browser 版本为 2.0.15 和 2.0.16，以下方法上传文件均是成功的:<br>
-利用 curl 命令通过 post 上传文件：<br>
-首先我们要获取用于认证的 token:</p>
-<pre><code class="language-shell"># 利用 post 命令，传入正确的用户名和密码，获取认证 token，并存入变量 TOKEN 
-TOKEN=$(curl -X POST --data '{&quot;username&quot;:&quot;your_username&quot;, &quot;password&quot;:&quot;your_password&quot;}' http://your_vps_ip:your_port/api/login)
-</code></pre>
-<p>假定 File Browser 指定的文件根目录下有个文件夹 test_dir，要把本机当前目录下的文件 test.png 上传到远端 test_dir 下：</p>
-<pre><code class="language-shell"># 这里加 -o 重定向到 /dev/null 是为了显示上传进度，可省略
-curl -X POST \
-     --header &quot;X-Auth: $TOKEN&quot; \
-     -F &quot;file=@test.png&quot; \
-     -o /dev/null \
-     http://your_vps_ip:your_port/api/resources/test_dir/test.png 
-</code></pre>
-<p>效果如下图：<br>
-<img src="https://wizyoung.github.io/post-images/1582712169852.png" alt="" loading="lazy"></p>
-<p>默认设定是如果文件已存在，则不进行覆盖。可以添加参数 <code>override=true</code> 覆盖旧文件:</p>
-<pre><code class="language-shell">curl -X POST \
-     --header &quot;X-Auth: $TOKEN&quot; \
-     -F &quot;file=@test.png&quot; \
-     -o /dev/null \
-     http://your_vps_ip:your_port/api/resources/test_dir/test.png?override=true 
-</code></pre>
-<p>同样，下载也可以类似进行，不过我觉得还是通过分享链接获取直链下载比较方便。</p>
-<h2 id="2-updog">2. Updog</h2>
-<p><a href="https://github.com/sc0tfree/updog">Updog</a> 是我昨天发现的一个极简 HTTP server, 官方的介绍是用用于替代 Python 内置的 SimpleHTTPServer，初步使用后觉得还不错，比 SimpleHTTPServer 多了文件上传和文件预览的功能，同时 UI 上也更好看一些。</p>
-<p>显示效果:<br>
-<img src="https://wizyoung.github.io/post-images/1582722711606.png" alt="" loading="lazy"></p>
-<p>最上方显示 Updog 的 logo, 以及启动服务器的根目录路径，下面是文件列表。单击文件名开始下载，单击每一项右侧的 <code>View in browser</code> 可以进行简单的文件预览。</p>
-<p>安装方法极其简单：</p>
-<pre><code class="language-shell">pip3 install updog
-</code></pre>
-<p>部署同样只需要一条指令：</p>
-<pre><code class="language-shell">updog -d /your_directory -p 1234 --password 123
-</code></pre>
-<p>这样，就在指定的目录下启动了一个简单的 http server, 端口是 1234, 密码是 123 (用户名留空，浏览器登入时不填写)。省略 <code>--password</code> 则不设置密码。设置开机后以守护进程自启动参考 File Browser 的设定，只需修改 <code>ExecStart</code> 命令。</p>
-<p><strong>命令行下载</strong><br>
-Updog 没有像 File Browser 那样的文件分享功能，不过在需要分享的文件的目录下临时启动一个 Updog 服务也能达到类似的效果。</p>
-<p>命令行下载比较简单，在需要的文件上右键拷贝链接，使用 wget 进行 http 认证下载即可:</p>
-<pre><code class="language-shell"># --continue 开启断点续传，防止网络不稳定下载中断
-# 假定下载根目录下的 test 文件
-wget --continue \
-     --http-user=&quot;&quot; \
-     --http-password=&quot;your_password&quot; \
-     http://your_vps_ip:your_port/test
-</code></pre>
-<p><strong>命令行上传</strong><br>
-对 Updog 的源码进行简单的分析发现，我们同样可以用 curl 命令实现用户认证和文件上传。</p>
-<p>以上面显示效果图为例，假定我们要把当前本地目录下的 test.py 文件上传到远端 tools 目录下，curl 上传的命令是：</p>
-<pre><code class="language-shell"># 注意这里的 path 是绝对路径
-# 这里加 -o 重定向到 /dev/null 是为了显示上传进度，可省略
-curl -X POST \
-     -F file=@test.py \
-     -F path=/home/scotfree/tools \
-     -o /dev/null \
-     -u :your_password http://your_vps_ip:your_port/upload 
-</code></pre>
-<p>题外话：现如今，GFW 技术越来越强，不搞点高级的过墙方法还真容易被干扰。很多新兴协议新增了探测防御的功能，遇到主动审查直接跳转至本机的网盘服务即可，那么本文提到的 File Browser 和 Updog 就是很好的私有网盘实现方案。这样同一个域名，既可以用于过墙，又可以用于私有网盘，使用方便，安全性<strong>相对</strong>更好。事实上，在这套方案下，我的多台 vps 挺过了多次敏感时期，从未被墙稳如老狗，哈哈。</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[VPS 上搭建简易的私有云盘]]></title>
-        <id>https://wizyoung.github.io/vps-shang-da-jian-jian-yi-de-si-you-yun-pan/</id>
-        <link href="https://wizyoung.github.io/vps-shang-da-jian-jian-yi-de-si-you-yun-pan/">
-        </link>
-        <updated>2020-02-26T05:22:54.000Z</updated>
-        <content type="html"><![CDATA[<p>前段时间和师弟聊天，谈到网盘的问题，我们一致认为国内的网盘体验真的是太差了。网络不限速、文件不和谐、支持随意分享、支持直链下载、支持命令行上传下载，这几个刚需基本上随便一家国内网盘都有至少 3 点不满足，加上普遍会员价格昂贵，实在没有购买使用的欲望。尤其是支持命令行上传下载，简直是刚需中的刚需了，因为它确保了我能在没有图形界面的 Linux 机器上使用。</p>
 <p>其实，只要手头有一台 VPS，可以很方便地搭建一个私有网盘，满足自己的各种需求。GitHub 上有很多成熟的开源网盘方案，如 NextCloud 等，这里不介绍它们的安装使用，因为它们配置相对复杂 (小白不友好)，系统资源消耗大 (vps 小鸡不友好)。这里推荐两个比较轻量的解决方案：<a href="https://github.com/filebrowser/filebrowser">File Browser</a> 和 <a href="https://github.com/sc0tfree/updog">Updog</a>，基本上都是一行命令搞定。</p>
 <h2 id="1-file-browser">1. File Browser</h2>
 <p><a href="https://github.com/filebrowser/filebrowser">File Browser</a> 是一个 GO 语言编写的 WEB 文件管理器，提供了文件上传、下载、删除、预览、重命名、分享等诸多功能，同时支持多用户管理，功能非常齐全。它的界面如下图：<br>
@@ -2122,6 +2018,145 @@ sudo reboot
 <p>上一步的步骤中把 Primary Display 设置为 PCIE 或者 Auto</p>
 <h3 id="5-总结">5. 总结</h3>
 <p>总结起来一句话：给独显装驱动的时候，不要占用独显。凡是线插在独显口，又进入 GUI 图形界面操作的，一定失败！</p>
+]]></content>
+    </entry>
+    <entry>
+        <title type="html"><![CDATA[实验室挂代理宿舍免费上网折腾小记]]></title>
+        <id>https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/</id>
+        <link href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/">
+        </link>
+        <updated>2017-02-21T05:10:07.000Z</updated>
+        <summary type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
+<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
+<!-- more -->
+<blockquote>
+<p>服务端平台: Ubuntu 16.04<br>
+客户端平台: macOS</p>
+</blockquote>
+<h2 id="1-l2tp-ipsec-服务搭建">1. L2TP / IPsec 服务搭建</h2>
+<h3 id="11-获取公网-ip-和端口转发">1.1 获取公网 IP 和端口转发</h3>
+<p>实验室采用静态 IP，因此，进入路由器后台即可知道实验室网络公网 IP 地址。</p>
+<p>由于 L2TP / IPsec 服务需要占用 500 和 4500 udp 端口，因此，我们首先要在路由器后端开放这两个端口。以 Padavan 固件为例 (其他路由器系统类似)，在端口转发里添加如下规则:</p>
+<table>
+<thead>
+<tr>
+<th>服务名称</th>
+<th>源IP地址</th>
+<th>端口范围</th>
+<th>内网IP</th>
+<th>本地端口</th>
+<th>协议</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>udp500</td>
+<td>*.*.*.*</td>
+<td>500</td>
+<td>主机局域网IP</td>
+<td>500</td>
+<td>Both</td>
+</tr>
+<tr>
+<td>udp4500</td>
+<td>*.*.*.*</td>
+<td>4500</td>
+<td>主机局域网IP</td>
+<td>4500</td>
+<td>Both</td>
+</tr>
+</tbody>
+</table>
+<h3 id="12-l2tp-ipsec-服务">1.2 L2TP / IPsec 服务</h3>
+<p>最简单的 L2TP / IPsec VPN 搭建还是用 docker 比较方便。<br>
+首先创建一个 <code>env</code> 文件存储 PSK 密钥、用户名和密码，该文件如下填写：</p>
+<pre><code class="language-shell">VPN_IPSEC_PSK=自定义 PSK 密钥
+VPN_USER=自定义用户名
+VPN_PASSWORD=自定义密码
+</code></pre>
+<p>使用 hwdsl2/ipsec-vpn-server 镜像搭建服务:</p>
+<pre><code class="language-shell">docker run \
+    --name ipsec-vpn-server \
+    --env-file ./vpn.env(替换为自己的 env 文件路径) \
+    --restart=always \
+    -p 500:500/udp \
+    -p 4500:4500/udp \
+    -d --privileged \
+    hwdsl2/ipsec-vpn-server
+</code></pre>
+<p>上面 <code>--restart=always</code> 保证了服务开机、失败后自启动。</p>
+<h3 id="12-macos-客户端设置">1.2 macOS 客户端设置</h3>
+<p>进入 <code>设置</code> -&gt; <code>网络</code>，点击左下角的加号 <code>+</code>, 添加新的 VPN 连接:</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581604645865.jpg" alt="" loading="lazy"></figure>
+<p>在认证连接里面，用户认证的密码对应于上面的 <code>VPN_PASSWORD</code>，机器认证的密码对应于 <code>VPN_IPSEC_PSK</code>。</p>
+<p>记得在高级选项里面勾选<strong>通过VPN连接发送所有流量</strong>，不然 VPN 连接后并不会进行流量转发，比较坑爹。</p>
+<p>这时候点击<code>连接</code>后即可连上 VPN 免费上网了。建议设置里面勾选<code>在菜单栏中显示VPN状态</code>，方便在任务栏一键连接 VPN 并实时查看连接状态。</p>
+<p>L2TP / IPsec VPN 的一个特点是，网络波动掉线后并不会重连，每次在电脑手动重连 VPN 还是比较麻烦的，因此我们可以利用 AppleScript 写一个脚本，实现掉线自动重连：</p>
+<p>打开脚本编辑器，选择语言类型为 AppleScript，填入如下脚本：</p>
+<pre><code class="language-javascript">on idle
+	tell application &quot;System Events&quot;
+		tell current location of network preferences
+			set myConnection to the service &quot;VPN (L2TP)&quot;
+			if myConnection is not null then
+				if current configuration of myConnection is not connected then
+					connect myConnection
+				end if
+			end if
+		end tell
+		return 30
+	end tell
+end idle
+</code></pre>
+<p>上面 <code>set myConnection to the service</code> 后对应的系统设置里面 VPN 连接的名字，默认是 <code>VPN (L2TP)</code>，注意这里括号前有一个空格。</p>
+<p>填写完毕后存储为应用程序即可，如下图所示：<br>
+<img src="https://wizyoung.github.io/post-images/1581605403648.jpg" alt="" loading="lazy"></p>
+<p>双击保存的 app 后即会自动掉线重连 VPN。</p>
+<h2 id="2-shadowsocks-服务搭建">2 Shadowsocks 服务搭建</h2>
+<p>shadowsocks 的搭建就比较简单了，这里安装 Python 版的 shadowsocks 服务:</p>
+<pre><code class="language-shell">sudo pip install shadowsocks
+</code></pre>
+<p>新增配置文件，以新增 <code>/etc/shadowsocks.json</code> 为例，里面填写:</p>
+<pre><code class="language-json">{
+    &quot;server&quot;:&quot;::&quot;,
+    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
+    &quot;local_port&quot;:6153,
+    &quot;timeout&quot;:300,
+    &quot;method&quot;:&quot;rc4-md5&quot;,
+    &quot;server_port&quot;:443,
+    &quot;password&quot;:&quot;password&quot;,
+    &quot;fast_open&quot;:false
+}
+</code></pre>
+<p>server填写 &quot;::&quot; 可以同时转发 ipv4 和 ipv6。考虑到我服务端本地还要运行一个 shadowsocks client 实例，因此为了避免冲突，local_port 不选 1080，而是随便选了一个 6153 端口。另外，为了提高性能，加密方式选用 rc4-md5。由于这里服务端开启了 443 端口，因此路由器记得开放 443 端口转发权限。</p>
+<p>开启 shadowsocks 服务：</p>
+<pre><code class="language-shell">sudo ssserver -c /etc/shadowsocks.json -d start
+</code></pre>
+<p>可以利用 systemctl 添加一个开机自启动服务，使 ss 时刻后台运行。在 <code>etc/systemd/system</code> 下创建 <code>ss.service</code> 文件，内容填写:</p>
+<pre><code class="language-shell">[Unit]
+Description=shadowsocks server
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+
+ExecStart=/usr/local/bin/ssserver -c /etc/shadowsocks.json
+
+[Install]
+WantedBy=multi-user.target
+</code></pre>
+<p>执行以下两条指令使服务生效:</p>
+<pre><code class="language-shell">sudo systemctl enable ss.service
+sudo systemctl start ss.service
+</code></pre>
+<p>客户端中随便一个 ss 客户端填入对应的 IP、端口、加密方式、密码就 OK 了。以 Surge 为例，填写以下配置就行：</p>
+<pre><code class="language-shell">代理名称 = ss, 公网 IP, 443, encrypt-method=rc4-md5, password=password
+</code></pre>
+<p>千兆带宽下蹭网就是爽哈哈哈~</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581609375779.jpg#s70" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
