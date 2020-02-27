@@ -42,6 +42,22 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
 
   <meta name="description" content="在 macOS 上运行 Linux 系统有两种方式：(1) 使用商业虚拟机软件 (如 Parallels Desktop) ; (2) 使用 Docker 虚拟化技术。哪种方式在性能、内存、I/O 上更优呢？
 
@@ -203,7 +219,7 @@ Docker: 仅仅启动主进程，不启动任何容器，docker 依赖的 hyperki
 终端运行：</p>
 <pre><code class="language-shell">docker-machine create --driver=parallels prl-dev
 </code></pre>
-<p>就可以构建一个基于 parallel hypervisor 的名为 prl-dev 的 Docker 客户端。从执行过程我们可以看到，中途下载了大概 60M 左右的 <a href="https://github.com/boot2docker/boot2docker">boot2docker</a>，相关文件均在 <code>/Users/$USER/.docker</code> 目录下。<br>
+<p>就可以构建一个基于 parallels hypervisor 的名为 prl-dev 的 Docker 客户端。从执行过程我们可以看到，中途下载了大概 60M 左右的 <a href="https://github.com/boot2docker/boot2docker">boot2docker</a>，相关文件均在 <code>/Users/$USER/.docker</code> 目录下。<br>
 打开 parallels desktop 软件，我们可以看到多了一个 docker 虚拟机：<br>
 <img src="https://wizyoung.github.io/post-images/1582805827593.png" alt="" loading="lazy"><br>
 点击开关按钮启动此虚拟机 (等价于命令行执行 <code>docker-machine start prl-dev</code>)。</p>

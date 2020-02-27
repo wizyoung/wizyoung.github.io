@@ -42,6 +42,22 @@ var _hmt = _hmt || [];
 })();
 </script>
 
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
 
   <meta name="description" content="本篇笔记主要总结了如何在 TensorFlow 如何构建高效的 Input Pipeline，目的是协调 CPU 文件预处理和 GPU 模型计算之间的调度，尽最大限度发挥 GPU 算力。其中涉及到 TFRecord 文件的读写，tf.ima..." />
   <meta property="og:title" content="TensorFlow 学习笔记 -- Input Pipeline - CaptainChen">
