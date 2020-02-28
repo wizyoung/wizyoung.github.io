@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-02-27T15:45:59.980Z</updated>
+    <updated>2020-02-28T08:52:44.020Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -10,6 +10,66 @@
     <logo>https://wizyoung.github.io/images/avatar.png</logo>
     <icon>https://wizyoung.github.io/favicon.ico</icon>
     <rights>All rights reserved 2020, CaptainChen</rights>
+    <entry>
+        <title type="html"><![CDATA[盘点我 2019 年购买的各种产品]]></title>
+        <id>https://wizyoung.github.io/what-I-bought-in-2019/</id>
+        <link href="https://wizyoung.github.io/what-I-bought-in-2019/">
+        </link>
+        <updated>2020-02-27T17:36:40.000Z</updated>
+        <summary type="html"><![CDATA[<p>最近受疫情影响困在湖北家中，闲下来整理收拾个人物品，盘点了下过去一年自己购买的各种产品，发现过去一年自己还真是“不节俭”😅不过也还好，钱花在刀刃上就行。</p>
+]]></summary>
+        <content type="html"><![CDATA[<p>最近受疫情影响困在湖北家中，闲下来整理收拾个人物品，盘点了下过去一年自己购买的各种产品，发现过去一年自己还真是“不节俭”😅不过也还好，钱花在刀刃上就行。</p>
+<!-- more -->
+<h2 id="1-电子产品">1. 电子产品</h2>
+<h3 id="1-air-pods-2-代">(1) Air Pods (2 代)</h3>
+<p>老实说，长久以来我一直抵制使用蓝牙耳机。众所周知，同等价格下蓝牙耳机的音质和有线耳机相比简直是被碾压，让曾经秉承“音质为上”论的我对蓝牙耳机一直嗤之以鼻。而且，这玩意就和充电宝一样，要用的时候永远是没电或者低电量状态。还别提总是需要手动连接设备，以及切换设备非常麻烦（是的，永远别低估了人能有多懒）。我手头上支持蓝牙连接的大法耳机基本都是插线使用，买来试水的小米蓝牙耳机，用了几次就搁置吃灰了。</p>
+<p>后来在 B 站看到 UP 主疯狂推荐 Air Pods，自己拿朋友的过来试了下后，觉得，哎呀，真香 ~ 充电盒保证了基本能用一整天，充电速度也快，关键是，打开充电盒盖子就自动连上 iPhone 了，无需任何多余操作，简直懒人福音。虽然音质一般，但是耐不住方便呀。我常对室友讲，Air Pods 是我 2019 年买过的最值得的产品之一了(大概懒是人类文明进步的阶梯吧 2333)。</p>
+<h3 id="2-apple-watch-series-4">(2) Apple Watch (series 4)</h3>
+<p>学生时代我换过了不少手表，从最早的电子表切换到各类石英表，最后又切回 G-Shock 这类复古式电子表，以为找到了真爱。这中间我也尝试过小米手环，然而小米手环给了带来了极差的用户体验，导致我一度对智能手表 / 手环这类产品嗤之以鼻，认为是华而不实的鸡肋。然而，又一个真香定律😂2019 年找暑期实习的时候压力山大，恰好我手机习惯长期保持静音状态，导致错过不少重要电话，头疼不已。Air Pods 的体验告诉我，也许 Apple 的产品就是不一样。买来体验之后觉得，嗯，还不错，电话不会漏接了(正式秋招确实没漏一个电话)，充电也没那么烦，watch OS 还不错，还能监督我运动 (虽然没运动几次)。就是成本有点高 23333，整体上感觉中规中矩吧，购买时有点冲动成分在里面。</p>
+<h3 id="3-mac-mini-late-2018-以及相关配件">(3) mac mini late 2018 以及相关配件</h3>
+<p>手头的 15 款 13 寸 mbp 用了 4 年多开始卡顿了，因为保养还不错，计划闲鱼卖掉。考虑到工作之后肯定需要一个在出租屋的日用机，于是计划在毕业季购买一个 mac mini。正好之前万年不更新的 mac mini 在 2018 年底进行了大幅更新，各大网站评测还不错，让我十分心水。在 “24 免息分期等于不要钱” 的理念下，我在苹果官网分期购买了入门款的 mac mini 2018 款 (i5 6 核处理，8G 内存，256G 固态)。对了，分期支付还是用的朋友的信用卡😅。</p>
+<p>8G 内存显然是不够用的，然而想要在官网升级到 32G 内存就得多花 4404 大洋，狮子大开口呀！于是我毫不犹豫地去京东购买了两条 16G DDR4 2666Hz 的<a href="https://item.jd.com/100006470174.html">海盗船内存条</a>回来自己手动扩容了，只需 1100 大洋，相比官方扩容节省不少。这里实名 diss 下米家的 wiha 螺丝刀，手柄太细不好发力，在拧下 mac mini 主板上的两个固定螺丝时费劲九牛二虎之一硬是没拧下来，还险些滑丝，网上一看好多人用米家螺丝刀都翻车了。最后去实验室拿了粗手柄的螺丝刀才顺利卸下这两颗螺丝。</p>
+<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1582867722345.png" alt="" loading="lazy"></figure>
+<p>不得不说，mac mini 2018 的体验是相当不错的，毕竟是台式 U，散热空间也比笔记本大。购买前去各论坛调研，很多人不推荐购买 i7 款是因为 i7 降频严重。实际体验时，基本上手上这款 i5 CPU 利用率达到 70% 时，CPU 都超过 90 度了。不是说 mac mini 2018 的散热不好，而是日常使用 CPU 利用率很少超过 70%，真要超过，买 i7 也是降频，还不如省钱买 i5。</p>
+<p>用 Geekbench 5 跑分测试 (<a href="https://browser.geekbench.com/mac-benchmarks">榜单地址</a>) 发现性能大幅超越平均基线，不知道和双通道大内存有没有关系：<br>
+<img src="https://wizyoung.github.io/post-images/1582868540844.png" alt="" loading="lazy"><br>
+<img src="https://wizyoung.github.io/post-images/1582868550726.png" alt="" loading="lazy"></p>
+<p>虽然 mac mini 温控基本令人满意，我仍然打算从淘宝购入下图这个静音小风扇，据说在炎热夏季散热效果显著。</p>
+<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1582868880597.png" alt="" loading="lazy"></figure>
+<h3 id="4-aoc-u2790-pqu-27-寸-4k-显示器">(4) AOC U2790 PQU 27 寸 4K 显示器</h3>
+<p>趁打折以 1699 购入了这个性价比超高的 4K 显示器，色彩还 OK，出厂自带 25 点校色，色彩偏差实测比较小，漏光控制也还不错，支架支持俯仰和左右旋转。整体使用体验很棒，这个价位下应该超值了。</p>
+<p>4K 显示器提高生活幸福感显著，因此在预算允许的情况下，我强烈建议购买 4K 显示器。不过不建议购买淘宝上的便携式 4K 显示器 (包括 gobigger 这种)，因为色彩控制实在是太差了，或者是品控不过关，而且价格还普遍不便宜。淘宝上有大量类似的便携式产品，我是吃过亏，不是面板电流声大，就是漏光太严重，或者有坏点，最后全部退货了。</p>
+<h3 id="5-罗技-mx-master-2s-鼠标">(5) 罗技 MX Master 2S 鼠标</h3>
+<p>风评很好的一个经典鼠标，就是有点贵。基本上随便去个论坛求推荐 mac 鼠标，MX Master 系列一定人气最高。年底我从闲鱼花 280 购买了一个 95 新的 MX Master 2S，几个月体验下来，满分 5 分的话给个 4 分吧，不至于网上说的那么好。这款鼠标最值得肯定的一点是非常跟手，移动非常细腻精确，在各种奇怪的物体表面上都能胜任，这一点确实是在我至今为止用过的无线鼠标中表现最好的，毕竟最高可达 4000 dpi。鼠标功能键也比较多，配置好了，第一次觉得在 macOS 上其实触摸板也不是刚需了。缺点是，整体的体积有点过大，我花了好久才适应，手小的同学或者女生不推荐购买使用。其次是滚轮有点晃动，而且在无极滚动模式下由于滚轮太灵敏容易回滚，阻尼部分还有可调节的空间。最后就是侧面按键手感有点糟糕。</p>
+<h3 id="6-绿巨能-macbook-pro-电池">(6) 绿巨能 macbook pro 电池</h3>
+<p>前面提到，原计划二手卖掉手上的 15 款 mbp，结果中间某天 mbp 从桌子边缘滑落至地面，磕缺了一个角，过了两天电池又不争气地鼓包了，在闲鱼估价，这成色已经卖不了几个钱了，算了，那就干脆留着吧。下图可见，电池鼓包已经相当严重了。。。<br>
+<img src="https://wizyoung.github.io/post-images/1582871419151.jpg" alt="" loading="lazy"></p>
+<figure data-type="image" tabindex="3"><img src="https://wizyoung.github.io/post-images/1582871623244.jpg" alt="" loading="lazy"></figure>
+<p>现在让我花 1500 大洋去 Apple Store 换电池是不可能的了，花费四五百去线下淘宝店换又担心奸商给我垃圾电芯，不如自己动手，丰衣足食。京东搜了下，自营的 macbook 电池就绿巨能和品恒两个品牌，于是花费 340 购买了绿巨能<a href="https://item.jd.com/4494181.html">这款电池</a>。</p>
+<p>流程参考 <a href="https://zh.ifixit.com/Guide/MacBook+Pro%EF%BC%8813+%E8%8B%B1%E5%AF%B8%EF%BC%8C%E9%85%8D%E5%A4%87+Retina+%E6%98%BE%E7%A4%BA%E5%B1%8F2015+%E5%B9%B4%E5%88%9D%E6%9C%9F%EF%BC%89%E7%94%B5%E6%B1%A0%E6%9B%B4%E6%8D%A2/45137">iFixit 的指引</a> ，整体还算顺利，排线拆卸都好说，就是电池粘在金属壳体上要取下来稍微有点费劲。最后更换完的效果如下图：<br>
+<img src="https://wizyoung.github.io/post-images/1582872122283.jpg" alt="" loading="lazy"></p>
+<p>刚换完电池，使用时可能会出现悬崖式掉电，或者系统提示电池需要修理等现象，于是大量评论斥责垃圾产品，说实话，这些差评让我在购买前比较迟疑。其实，这是因为新电池需要手动校准，并不是产品质量原因。我的做法是，电池放电到 10% 以下后插电充满，如此重复 3 次后，基本恢复正常。新电池还是比较给力的，我的 15 款 mbp 电池续航又恢复到 10 小时以上了，满血复活。系统信息中查询电池容量，超过 mbp 出厂预设 6559 mAh:</p>
+<figure data-type="image" tabindex="4"><img src="https://wizyoung.github.io/post-images/1582872972168.jpg" alt="" loading="lazy"></figure>
+<h3 id="7-海康威视-e200p-sata-固态硬盘">(7) 海康威视 e200p SATA 固态硬盘</h3>
+<p>海康威视今年在民用固态硬盘领域动作不小，出了像 c2000pro 几个很有诚意的产品。趁打折特价，我以 699 元的价格购入了一块 1TB 容量的海康威视 e200p SATA 固态硬盘，主要用作移动存储设备。不选 M.2 接口是因为发热太大了，不适合长期插在主机上。这款 e200p 硬盘 1TB 版上的 SLC 缓存足够大，TLC 颗粒本身读写速度也很给力，基本上稳定在读 550 MB/s 写 450 MB/s 的水平。作为一款带掉电保护的入门企业级固态，699 的价格确实很香。缺点是，出厂固件比较糟糕，长时间通电会有掉盘现象。解决方案是加入官方 QQ 群，从群文件下载固件手动更新。。。这海康的售后有点奇葩呀，第一次听说加 QQ 群的，固件更新也不放在官网上，很迷😂好在新固件解决了掉盘问题。海康应该感谢我们这些吃螃蟹的。。。</p>
+<h3 id="8-紫米-充电器充电宝-二合一产品">(8) 紫米 充电器+充电宝 二合一产品</h3>
+<p>我也不知道怎么称呼这个东西(<a href="https://item.jd.com/5900981.html">链接</a>)，见下图:</p>
+<figure data-type="image" tabindex="5"><img src="https://wizyoung.github.io/post-images/1582874768550.png#w50#h50" alt="" loading="lazy"></figure>
+<p>既是充电器，又是充电宝，优先给连接的设备充电，有点中学时代楼道应急灯的感觉。挺不错的，再也不会出现，出门要带充电宝结果充电宝没电的尴尬处境了。五星推荐。</p>
+<h2 id="2-其他产品">2. 其他产品</h2>
+<h3 id="1-地平线-8-号行李箱">(1) 地平线 8 号行李箱</h3>
+<p>虽然我本人非常讨厌老罗，但是一码归一码，锤科的很多产品还是很不错的，比如这款地平线 8 号行李箱。颜值非常高，滚轮非常润滑同时非常结实，基本是我用过的所有拉杆箱中滚轮质量最好的了，没有之一。整体质量非常过关，坐个正常体重的成人溜两下没有问题。一年下来坐火车、高铁、飞机，没有刻意保护，箱体表面基本没有什么可见划痕。已经推荐给好几个朋友了，用过都说好~</p>
+<h3 id="2-站立可升降工作台">(2) 站立可升降工作台</h3>
+<p>19 年在百度实习的时候看到很多员工桌面上都有这个工作台，全部来自一家淘宝店(<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.68662e8dLHqL9P&amp;id=520106270406&amp;_u=s1kn4hom1916">链接</a>)。</p>
+<figure data-type="image" tabindex="6"><img src="https://wizyoung.github.io/post-images/1582875577941.png#w50#h50" alt="" loading="lazy"></figure>
+<p>凳子上坐久了屁股疼，可以把电脑端到工作台上进行站立办公，可手动升降高度，非常方便。回学校后我也买了一个，130 的价格在同类产品中属于最便宜的之一了，用料还算比较实在。</p>
+<h3 id="3-匹克态极跑鞋">(3) 匹克态极跑鞋</h3>
+<p>19 年非常火的一双国产跑鞋，匹克态极，被网友称为国产之光。主要是采用了匹克自主研发的黑科技中底材料，好像就叫态极吧，这材料据说“走的时候软，跑的时候弹”，穿在脚上缓慢行走有“踩屎”的快感。鞋盒里面甚至还提供了这种材料的样品供把玩，体验后，觉得确实是挺好玩的一种非牛顿流体，软起来捏橡皮泥，硬起来可以当乒乓球打。</p>
+<p>我和室友一起购买了匹克态极和天猫的联名款。怎么说呢，鞋底确实挺软挺舒服的，有“踩屎”的感觉，但是把控不到位，导致给脚掌的支撑性不足，容易崴脚。整体做工也不算出色，外观比较丑😂行吧，就算支持国货了。</p>
+<h3 id="4-其他软件服务">(4) 其他软件服务</h3>
+<p>过去一年还租了两台 VPS，一台小众的美国 VPS 历经风雨从未被墙，一台从网友手上低价收的一台香港 VPS，保证了 24 / 7 科学上网的可用性。另外还购买或续费了很多正版软件产品或服务，如 macOS 上的 transmit, dash, bartender, 1password, papers 等。音乐平台上，抛弃了 Apple Music 和网易云，投入了 QQ 音乐的怀抱。</p>
+]]></content>
+    </entry>
     <entry>
         <title type="html"><![CDATA[VPS 上搭建简易的私有云盘]]></title>
         <id>https://wizyoung.github.io/vps-selfhosted-private-cloud-setting-up/</id>
@@ -2049,145 +2109,6 @@ sudo reboot
 <p>上一步的步骤中把 Primary Display 设置为 PCIE 或者 Auto</p>
 <h3 id="5-总结">5. 总结</h3>
 <p>总结起来一句话：给独显装驱动的时候，不要占用独显。凡是线插在独显口，又进入 GUI 图形界面操作的，一定失败！</p>
-]]></content>
-    </entry>
-    <entry>
-        <title type="html"><![CDATA[实验室挂代理宿舍免费上网折腾小记]]></title>
-        <id>https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/</id>
-        <link href="https://wizyoung.github.io/实验室挂代理宿舍免费上网折腾小记/">
-        </link>
-        <updated>2017-02-21T05:10:07.000Z</updated>
-        <summary type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
-<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
-]]></summary>
-        <content type="html"><![CDATA[<p>大学的网费还是比较贵的，自从研究生进入实验室后发现，实验室网段属于校园网的白名单，也就是说流量不计费。正好实验室主机安装了 Linux 系统，搭建一个代理服务，校园网连接使用不就免流量了么。</p>
-<p>比较简单的方式是搭建一个 L2TP / IPsec-vpn 或者 shadowsocks 服务。</p>
-<!-- more -->
-<blockquote>
-<p>服务端平台: Ubuntu 16.04<br>
-客户端平台: macOS</p>
-</blockquote>
-<h2 id="1-l2tp-ipsec-服务搭建">1. L2TP / IPsec 服务搭建</h2>
-<h3 id="11-获取公网-ip-和端口转发">1.1 获取公网 IP 和端口转发</h3>
-<p>实验室采用静态 IP，因此，进入路由器后台即可知道实验室网络公网 IP 地址。</p>
-<p>由于 L2TP / IPsec 服务需要占用 500 和 4500 udp 端口，因此，我们首先要在路由器后端开放这两个端口。以 Padavan 固件为例 (其他路由器系统类似)，在端口转发里添加如下规则:</p>
-<table>
-<thead>
-<tr>
-<th>服务名称</th>
-<th>源IP地址</th>
-<th>端口范围</th>
-<th>内网IP</th>
-<th>本地端口</th>
-<th>协议</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>udp500</td>
-<td>*.*.*.*</td>
-<td>500</td>
-<td>主机局域网IP</td>
-<td>500</td>
-<td>Both</td>
-</tr>
-<tr>
-<td>udp4500</td>
-<td>*.*.*.*</td>
-<td>4500</td>
-<td>主机局域网IP</td>
-<td>4500</td>
-<td>Both</td>
-</tr>
-</tbody>
-</table>
-<h3 id="12-l2tp-ipsec-服务">1.2 L2TP / IPsec 服务</h3>
-<p>最简单的 L2TP / IPsec VPN 搭建还是用 docker 比较方便。<br>
-首先创建一个 <code>env</code> 文件存储 PSK 密钥、用户名和密码，该文件如下填写：</p>
-<pre><code class="language-shell">VPN_IPSEC_PSK=自定义 PSK 密钥
-VPN_USER=自定义用户名
-VPN_PASSWORD=自定义密码
-</code></pre>
-<p>使用 hwdsl2/ipsec-vpn-server 镜像搭建服务:</p>
-<pre><code class="language-shell">docker run \
-    --name ipsec-vpn-server \
-    --env-file ./vpn.env(替换为自己的 env 文件路径) \
-    --restart=always \
-    -p 500:500/udp \
-    -p 4500:4500/udp \
-    -d --privileged \
-    hwdsl2/ipsec-vpn-server
-</code></pre>
-<p>上面 <code>--restart=always</code> 保证了服务开机、失败后自启动。</p>
-<h3 id="12-macos-客户端设置">1.2 macOS 客户端设置</h3>
-<p>进入 <code>设置</code> -&gt; <code>网络</code>，点击左下角的加号 <code>+</code>, 添加新的 VPN 连接:</p>
-<figure data-type="image" tabindex="1"><img src="https://wizyoung.github.io/post-images/1581604645865.jpg" alt="" loading="lazy"></figure>
-<p>在认证连接里面，用户认证的密码对应于上面的 <code>VPN_PASSWORD</code>，机器认证的密码对应于 <code>VPN_IPSEC_PSK</code>。</p>
-<p>记得在高级选项里面勾选<strong>通过VPN连接发送所有流量</strong>，不然 VPN 连接后并不会进行流量转发，比较坑爹。</p>
-<p>这时候点击<code>连接</code>后即可连上 VPN 免费上网了。建议设置里面勾选<code>在菜单栏中显示VPN状态</code>，方便在任务栏一键连接 VPN 并实时查看连接状态。</p>
-<p>L2TP / IPsec VPN 的一个特点是，网络波动掉线后并不会重连，每次在电脑手动重连 VPN 还是比较麻烦的，因此我们可以利用 AppleScript 写一个脚本，实现掉线自动重连：</p>
-<p>打开脚本编辑器，选择语言类型为 AppleScript，填入如下脚本：</p>
-<pre><code class="language-javascript">on idle
-	tell application &quot;System Events&quot;
-		tell current location of network preferences
-			set myConnection to the service &quot;VPN (L2TP)&quot;
-			if myConnection is not null then
-				if current configuration of myConnection is not connected then
-					connect myConnection
-				end if
-			end if
-		end tell
-		return 30
-	end tell
-end idle
-</code></pre>
-<p>上面 <code>set myConnection to the service</code> 后对应的系统设置里面 VPN 连接的名字，默认是 <code>VPN (L2TP)</code>，注意这里括号前有一个空格。</p>
-<p>填写完毕后存储为应用程序即可，如下图所示：<br>
-<img src="https://wizyoung.github.io/post-images/1581605403648.jpg" alt="" loading="lazy"></p>
-<p>双击保存的 app 后即会自动掉线重连 VPN。</p>
-<h2 id="2-shadowsocks-服务搭建">2 Shadowsocks 服务搭建</h2>
-<p>shadowsocks 的搭建就比较简单了，这里安装 Python 版的 shadowsocks 服务:</p>
-<pre><code class="language-shell">sudo pip install shadowsocks
-</code></pre>
-<p>新增配置文件，以新增 <code>/etc/shadowsocks.json</code> 为例，里面填写:</p>
-<pre><code class="language-json">{
-    &quot;server&quot;:&quot;::&quot;,
-    &quot;local_address&quot;:&quot;127.0.0.1&quot;,
-    &quot;local_port&quot;:6153,
-    &quot;timeout&quot;:300,
-    &quot;method&quot;:&quot;rc4-md5&quot;,
-    &quot;server_port&quot;:443,
-    &quot;password&quot;:&quot;password&quot;,
-    &quot;fast_open&quot;:false
-}
-</code></pre>
-<p>server填写 &quot;::&quot; 可以同时转发 ipv4 和 ipv6。考虑到我服务端本地还要运行一个 shadowsocks client 实例，因此为了避免冲突，local_port 不选 1080，而是随便选了一个 6153 端口。另外，为了提高性能，加密方式选用 rc4-md5。由于这里服务端开启了 443 端口，因此路由器记得开放 443 端口转发权限。</p>
-<p>开启 shadowsocks 服务：</p>
-<pre><code class="language-shell">sudo ssserver -c /etc/shadowsocks.json -d start
-</code></pre>
-<p>可以利用 systemctl 添加一个开机自启动服务，使 ss 时刻后台运行。在 <code>etc/systemd/system</code> 下创建 <code>ss.service</code> 文件，内容填写:</p>
-<pre><code class="language-shell">[Unit]
-Description=shadowsocks server
-After=network.target
-
-[Service]
-Type=simple
-Restart=always
-
-ExecStart=/usr/local/bin/ssserver -c /etc/shadowsocks.json
-
-[Install]
-WantedBy=multi-user.target
-</code></pre>
-<p>执行以下两条指令使服务生效:</p>
-<pre><code class="language-shell">sudo systemctl enable ss.service
-sudo systemctl start ss.service
-</code></pre>
-<p>客户端中随便一个 ss 客户端填入对应的 IP、端口、加密方式、密码就 OK 了。以 Surge 为例，填写以下配置就行：</p>
-<pre><code class="language-shell">代理名称 = ss, 公网 IP, 443, encrypt-method=rc4-md5, password=password
-</code></pre>
-<p>千兆带宽下蹭网就是爽哈哈哈~</p>
-<figure data-type="image" tabindex="2"><img src="https://wizyoung.github.io/post-images/1581609375779.jpg#s70" alt="" loading="lazy"></figure>
 ]]></content>
     </entry>
 </feed>
