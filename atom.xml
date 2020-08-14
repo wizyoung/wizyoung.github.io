@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://wizyoung.github.io</id>
     <title>CaptainChen</title>
-    <updated>2020-08-14T14:35:26.216Z</updated>
+    <updated>2020-08-14T14:37:49.677Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://wizyoung.github.io"/>
     <link rel="self" href="https://wizyoung.github.io/atom.xml"/>
@@ -41,29 +41,29 @@
 <p>4K 显示器提高生活幸福感显著，因此在预算允许的情况下，我强烈建议购买 4K 显示器。不过不建议购买淘宝上的便携式 4K 显示器 (包括 gobigger 这种)，因为色彩控制实在是太差了，或者是品控不过关，而且价格还普遍不便宜。淘宝上有大量类似的便携式产品，我是吃过亏，不是面板电流声大，就是漏光太严重，或者有坏点，最后全部退货了。</p>
 <h3 id="5-罗技-mx-master-2s-鼠标">(5) 罗技 MX Master 2S 鼠标</h3>
 <p>风评很好的一个经典鼠标，就是有点贵。基本上随便去个论坛求推荐 mac 鼠标，MX Master 系列一定人气最高。年底我从闲鱼花 280 购买了一个 95 新的 MX Master 2S，几个月体验下来，满分 5 分的话给个 4 分吧，不至于网上说的那么好。这款鼠标最值得肯定的一点是非常跟手，移动非常细腻精确，在各种奇怪的物体表面上都能胜任，这一点确实是在我至今为止用过的无线鼠标中表现最好的，毕竟最高可达 4000 dpi。鼠标功能键也比较多，配置好了，第一次觉得在 macOS 上其实触摸板也不是刚需了。缺点是，整体的体积有点过大，我花了好久才适应，手小的同学或者女生不推荐购买使用。其次是滚轮有点晃动，而且在无极滚动模式下由于滚轮太灵敏容易回滚，阻尼部分还有可调节的空间。最后就是侧面按键手感有点糟糕。</p>
-<p>补充：尴尬！大写的尴尬！我的 Master 2S 在中强度使用刚好半年情况下，出现了左键连击的情况，上网搜索才发现原来有如此多网友同样翻车，甚至我在朋友圈吐槽时，身边刚好也有位朋友一样翻车！看来购买需慎重。最后我怎么解决的呢，作为在沙航磨炼过的 boy, 当然是掏出自己的电烙铁自己修了~<br>
-<img src="https://wizyoung.github.io/post-images/1597415690466.JPG" alt="" loading="lazy"></p>
+<p>补充：尴尬！大写的尴尬！我的 Master 2S 在中强度使用刚好半年情况下，出现了左键连击的情况，上网搜索才发现原来有如此多网友同样翻车，甚至我在朋友圈吐槽时，身边刚好也有位朋友一样翻车！看来购买需慎重。最后我怎么解决的呢，作为在沙航磨炼过的 boy, 当然是掏出自己的电烙铁自己修了~</p>
+<figure data-type="image" tabindex="3"><img src="https://wizyoung.github.io/post-images/1597415690466.JPG" alt="" loading="lazy"></figure>
 <h3 id="6-绿巨能-macbook-pro-电池">(6) 绿巨能 macbook pro 电池</h3>
 <p>前面提到，原计划二手卖掉手上的 15 款 mbp，结果中间某天 mbp 从桌子边缘滑落至地面，磕缺了一个角，过了两天电池又不争气地鼓包了，在闲鱼估价，这成色已经卖不了几个钱了，算了，那就干脆留着吧。下图可见，电池鼓包已经相当严重了。。。<br>
 <img src="https://wizyoung.github.io/post-images/1582871419151.jpg" alt="" loading="lazy"></p>
-<figure data-type="image" tabindex="3"><img src="https://wizyoung.github.io/post-images/1582871623244.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="4"><img src="https://wizyoung.github.io/post-images/1582871623244.jpg" alt="" loading="lazy"></figure>
 <p>现在让我花 1500 大洋去 Apple Store 换电池是不可能的了，花费四五百去线下淘宝店换又担心奸商给我垃圾电芯，不如自己动手，丰衣足食。京东搜了下，自营的 macbook 电池就绿巨能和品恒两个品牌，于是花费 340 购买了绿巨能<a href="https://item.jd.com/4494181.html">这款电池</a>。</p>
 <p>流程参考 <a href="https://zh.ifixit.com/Guide/MacBook+Pro%EF%BC%8813+%E8%8B%B1%E5%AF%B8%EF%BC%8C%E9%85%8D%E5%A4%87+Retina+%E6%98%BE%E7%A4%BA%E5%B1%8F2015+%E5%B9%B4%E5%88%9D%E6%9C%9F%EF%BC%89%E7%94%B5%E6%B1%A0%E6%9B%B4%E6%8D%A2/45137">iFixit 的指引</a> ，整体还算顺利，排线拆卸都好说，就是电池粘在金属壳体上要取下来稍微有点费劲。最后更换完的效果如下图：<br>
 <img src="https://wizyoung.github.io/post-images/1582872122283.jpg" alt="" loading="lazy"></p>
 <p>刚换完电池，使用时可能会出现悬崖式掉电，或者系统提示电池需要修理等现象，于是大量评论斥责垃圾产品，说实话，这些差评让我在购买前比较迟疑。其实，这是因为新电池需要手动校准，并不是产品质量原因。我的做法是，电池放电到 10% 以下后插电充满，如此重复 3 次后，基本恢复正常。新电池还是比较给力的，我的 15 款 mbp 电池续航又恢复到 10 小时以上了，满血复活。系统信息中查询电池容量，超过 mbp 出厂预设 6559 mAh:</p>
-<figure data-type="image" tabindex="4"><img src="https://wizyoung.github.io/post-images/1582872972168.jpg" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="5"><img src="https://wizyoung.github.io/post-images/1582872972168.jpg" alt="" loading="lazy"></figure>
 <h3 id="7-海康威视-e200p-sata-固态硬盘">(7) 海康威视 e200p SATA 固态硬盘</h3>
 <p>海康威视今年在民用固态硬盘领域动作不小，出了像 c2000pro 几个很有诚意的产品。趁打折特价，我以 699 元的价格购入了一块 1TB 容量的海康威视 e200p SATA 固态硬盘，主要用作移动存储设备。不选 M.2 接口是因为发热太大了，不适合长期插在主机上。这款 e200p 硬盘 1TB 版上的 SLC 缓存足够大，TLC 颗粒本身读写速度也很给力，基本上稳定在读 550 MB/s 写 450 MB/s 的水平。作为一款带掉电保护的入门企业级固态，699 的价格确实很香。缺点是，出厂固件比较糟糕，长时间通电会有掉盘现象。解决方案是加入官方 QQ 群，从群文件下载固件手动更新。。。这海康的售后有点奇葩呀，第一次听说加 QQ 群的，固件更新也不放在官网上，很迷😂好在新固件解决了掉盘问题。海康应该感谢我们这些吃螃蟹的。。。</p>
 <h3 id="8-紫米-充电器充电宝-二合一产品">(8) 紫米 充电器+充电宝 二合一产品</h3>
 <p>我也不知道怎么称呼这个东西(<a href="https://item.jd.com/5900981.html">链接</a>)，见下图:</p>
-<figure data-type="image" tabindex="5"><img src="https://wizyoung.github.io/post-images/1582874768550.png#w50#h50" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="6"><img src="https://wizyoung.github.io/post-images/1582874768550.png#w50#h50" alt="" loading="lazy"></figure>
 <p>既是充电器，又是充电宝，优先给连接的设备充电，有点中学时代楼道应急灯的感觉。挺不错的，再也不会出现，出门要带充电宝结果充电宝没电的尴尬处境了。五星推荐。</p>
 <h2 id="2-其他产品">2. 其他产品</h2>
 <h3 id="1-地平线-8-号行李箱">(1) 地平线 8 号行李箱</h3>
 <p>虽然我本人非常讨厌老罗，但是一码归一码，锤科的很多产品还是很不错的，比如这款地平线 8 号行李箱。颜值非常高，滚轮非常润滑同时非常结实，基本是我用过的所有拉杆箱中滚轮质量最好的了，没有之一。整体质量非常过关，坐个正常体重的成人溜两下没有问题。一年下来坐火车、高铁、飞机，没有刻意保护，箱体表面基本没有什么可见划痕。已经推荐给好几个朋友了，用过都说好~</p>
 <h3 id="2-站立可升降工作台">(2) 站立可升降工作台</h3>
 <p>19 年在百度实习的时候看到很多员工桌面上都有这个工作台，全部来自一家淘宝店(<a href="https://item.taobao.com/item.htm?spm=a1z09.2.0.0.68662e8dLHqL9P&amp;id=520106270406&amp;_u=s1kn4hom1916">链接</a>)。</p>
-<figure data-type="image" tabindex="6"><img src="https://wizyoung.github.io/post-images/1582875577941.png#w50#h50" alt="" loading="lazy"></figure>
+<figure data-type="image" tabindex="7"><img src="https://wizyoung.github.io/post-images/1582875577941.png#w50#h50" alt="" loading="lazy"></figure>
 <p>凳子上坐久了屁股疼，可以把电脑端到工作台上进行站立办公，可手动升降高度，非常方便。回学校后我也买了一个，130 的价格在同类产品中属于最便宜的之一了，用料还算比较实在。</p>
 <h3 id="3-匹克态极跑鞋">(3) 匹克态极跑鞋</h3>
 <p>19 年非常火的一双国产跑鞋，匹克态极，被网友称为国产之光。主要是采用了匹克自主研发的黑科技中底材料，好像就叫态极吧，这材料据说“走的时候软，跑的时候弹”，穿在脚上缓慢行走有“踩屎”的快感。鞋盒里面甚至还提供了这种材料的样品供把玩，体验后，觉得确实是挺好玩的一种非牛顿流体，软起来捏橡皮泥，硬起来可以当乒乓球打。</p>
