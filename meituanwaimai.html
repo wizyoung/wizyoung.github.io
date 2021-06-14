@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+    <title>IP检测</title>
+    <link rel="icon" href="logo.png" sizes="192x192" />
+    <link rel="icon" href="logo.png" sizes="32x32" />
+    <link rel="apple-touch-icon-precomposed" href="logo.png" />
+    <meta name="msapplication-TileImage" content="logo.png" />
+    <link rel="shortcut icon" href="logo.png" type="image/x-icon">
+    <meta name="referrer" content="no-referrer" />
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE;chrome=1">
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <!-- 强制移动设备以app模式打开页面(即在移动设备下全屏，仅支持部分浏览器) -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="full-screen" content="yes">
+    <!--UC强制全屏-->
+    <meta name="browsermode" content="application">
+    <!--UC应用模式-->
+    <meta name="x5-fullscreen" content="true">
+    <!--QQ强制全屏-->
+    <meta name="x5-page-mode" content="app">
+    <!--QQ应用模式-->
+    <style>
+    * {
+        padding: 0;
+        margin: 0;
+        outline: none;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        /*  background: #fff;*/
+        color: #fff;
+    }
+
+    body {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    img {
+        vertical-align: middle;
+        margin-top: -2px;
+    }
+
+    ul {
+        list-style: none;
+        width: calc(100% - 60px);
+        max-width: 720px;
+        line-height: 26px;
+        position: relative;
+        margin: 50px auto 0;
+        display: block;
+        border: 1px solid #fff;
+        border-radius: 15px;
+    }
+
+    li {
+        width: 100%;
+        display: block;
+        float: left;
+        text-align: center;
+        font-family: Helvetica, Arial, sans-serif;
+        font-size: 14px;
+        border-bottom: 1px solid #fff;
+        height: 50px;
+        line-height: 50px;
+    }
+
+    li:nth-child(2) {
+        height: 30px;
+        line-height: 30px;
+    }
+
+    li:last-child {
+        border: none;
+        clear: both;
+        float: none;
+    }
+
+    span {
+        display: block;
+        width: 70%;
+        float: left;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    li span:nth-child(1) {
+        border-right: 1px solid #fff;
+        width: calc(30% - 1px);
+    }
+
+    span a {
+        display: block;
+        width: 90px;
+        height: 30px;
+        font-size: 14px;
+        line-height: 30px;
+        border: 1px solid #fff;
+        border-radius: 15px;
+        color: #000;
+        cursor: pointer;
+        overflow: hidden;
+        margin: 15px auto 0;
+        text-decoration: none;
+        background:#fff;
+    }
+
+    span a:active {
+        border-color: #fff;
+        box-shadow: 0 1px 20px 0 rgba(60, 60, 60, 0.1)
+    }
+
+    .flag {
+        display: inline-block;
+        height: 12px;
+    }
+
+    .other {
+        width: 100%;
+        margin: 20px auto;
+        font-size: 12px;
+        line-height: 30px;
+        text-align: center;
+    }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.3.1/dist/jquery.min.js"></script>
+</head>
+
+<body>
+    <div align="center">
+        <h2>美团外卖红包扫码领取</h2>
+        <img src="/images/meituan.jpg" alt="meituan" width="400" height="400">
+    </div>
+    
+</body>
+</html>
