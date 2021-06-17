@@ -36,8 +36,7 @@ $(function() {
         $('#search-text').val(word);
         $('#word').empty();
         $('#word').hide();
-        //$("form").submit();
-         $('.submit').trigger('click');//触发搜索事件
+        $('.submit').trigger('click');//触发搜索事件
     })
     $(document).on('click', '.container,.banner-video,nav', function() {
         $('#word').empty();
